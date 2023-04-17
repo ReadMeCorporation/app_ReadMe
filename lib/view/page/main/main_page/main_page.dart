@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:readme_app/core/constants/colours.dart';
+import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/use_icons.dart';
 
 class MainPage extends StatefulWidget {
@@ -31,7 +32,9 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
         showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
+        iconSize: Dimens.font_sp40,
         backgroundColor: Colours.app_sub_white,
         selectedItemColor: Colours.app_main,
         unselectedItemColor: Colours.app_sub_black,
