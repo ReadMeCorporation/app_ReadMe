@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/use_icons.dart';
+import 'package:readme_app/view/page/category/category_page/category_page.dart';
+import 'package:readme_app/view/page/search/search_page/search_page.dart';
+import 'package:readme_app/view/page/storage/storage_page/storage_page.dart';
+import 'package:readme_app/view/page/user/user_page/user_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -22,11 +26,11 @@ class _MainPageState extends State<MainPage> {
       body: IndexedStack(
         index: _selectedIndex,
         children: [
-          Center(child: Text("카테고리페이지")),
-          Center(child: Text("검색페이지")),
+          CategoryPage(),
+          SearchPage(),
           Center(child: Text("메인페이지")),
-          Center(child: Text("보관함페이지")),
-          Center(child: Text("마이페이지")),
+          StoragePage(),
+          UserPage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
