@@ -15,6 +15,9 @@ class Move {
   static String storagePage = "/storage";
   static String userPage = "/user";
   static String navigationBar = "/navigation";
+
+  static String alarm = "/alarm";
+  static String cart = "/cart";
 }
 
 Map<String, Widget Function(BuildContext)> getRouters() {
@@ -25,5 +28,8 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.storagePage: (context) => StoragePage(),
     Move.userPage: (context) => UserPage(),
     Move.navigationBar: (context) => HomeNavigationBar(),
+
+    // Move.alarm: (context) => AlarmPage(),
+    // Move.cart: (context) => CartPaga(),
   };
 }

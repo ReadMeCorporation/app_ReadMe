@@ -21,7 +21,7 @@ class UseIcons {
   static const Icon home = Icon(CupertinoIcons.home);
   static const Icon search = Icon(CupertinoIcons.search);
   static const Icon category = Icon(CupertinoIcons.bars);
-  static const Icon userinfo = Icon(CupertinoIcons.person_fill);
+  static const Icon userinfo = Icon(CupertinoIcons.person);
   static const Icon box = Icon(CupertinoIcons.archivebox);
 
 

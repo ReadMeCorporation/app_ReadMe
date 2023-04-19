@@ -19,7 +19,7 @@ class HomeNavigationBar extends StatefulWidget {
 
 class _HomeNavigationBarState extends State<HomeNavigationBar> {
 
-  int _selectedIndex = 0;
+  int _selectedIndex = 2;
 
   List<Widget> pageList = [
     CategoryPage(),
