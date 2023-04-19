@@ -7,15 +7,13 @@ import 'package:readme_app/model/cart_mock_data.dart';
 import 'package:readme_app/view/components/use_button.dart';
 
 class CartPageBody extends StatefulWidget {
-
-   CartPageBody({Key? key}) : super(key: key);
+  CartPageBody({Key? key}) : super(key: key);
 
   @override
   State<CartPageBody> createState() => _CartPageBodyState();
 }
 
 class _CartPageBodyState extends State<CartPageBody> {
-
   bool isAllChecked = false;
 
   int getSum() {
@@ -80,8 +78,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       border: Border(
-                          bottom:
-                          BorderSide(color: Colours.app_sub_darkgrey))),
+                          bottom: BorderSide(color: Colours.app_sub_darkgrey))),
                   // width: MediaQuery.of(context).size.width,
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -102,7 +99,9 @@ class _CartPageBodyState extends State<CartPageBody> {
                             width: 100,
                             height: 200,
                           ),
-                          SizedBox(width: 10,),
+                          SizedBox(
+                            width: 10,
+                          ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,10 +110,11 @@ class _CartPageBodyState extends State<CartPageBody> {
                                 child: Text(
                                   "${cartList[index].title}",
                                   style: TextStyle(
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: 17, ),
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 17,
+                                  ),
                                   overflow: TextOverflow.ellipsis,
-                                  maxLines:3,
+                                  maxLines: 3,
                                 ),
                                 width: 180,
                               ),
@@ -175,7 +175,9 @@ class _CartPageBodyState extends State<CartPageBody> {
                         Text("${getCount()}권"),
                       ],
                     ),
-                    SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       children: [
                         Container(
@@ -186,11 +188,16 @@ class _CartPageBodyState extends State<CartPageBody> {
                         Text(priceFormat(getSum())),
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    Text("결제 수단", style: TextStyle(fontWeight: FontWeight.w600)),
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text("결제 수단",
+                        style: TextStyle(fontWeight: FontWeight.w600)),
+                    SizedBox(
+                      height: 20,
+                    ),
                     InkWell(
-                      onTap: (){},
+                      onTap: () {},
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -201,18 +208,25 @@ class _CartPageBodyState extends State<CartPageBody> {
                                 width: 300,
                                 height: 180,
                                 decoration: BoxDecoration(
-                                  color: Colours.app_sub_grey,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
+                                    color: Colours.app_sub_grey,
+                                    borderRadius: BorderRadius.circular(10),
+                                    border: Border.all(
+                                        color: Colours.app_sub_darkgrey)),
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     HsStyleIcons.add,
-                                    Text("카드 추가", style: TextStyle(fontWeight: FontWeight.w600),)
+                                    Text(
+                                      "카드 추가",
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w600),
+                                    )
                                   ],
                                 ),
                               ),
-                              SizedBox(height: 10,),
+                              SizedBox(
+                                height: 10,
+                              ),
                               Text("본인 명의의 카드만 추가 가능합니다"),
                             ],
                           ),
@@ -220,12 +234,13 @@ class _CartPageBodyState extends State<CartPageBody> {
                         ],
                       ),
                     ),
-
                   ],
                 ),
               ),
-      
             ],
+          ),
+          SizedBox(
+            height: 100,
           ),
         ],
       ),

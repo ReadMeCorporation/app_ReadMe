@@ -13,6 +13,29 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
+  bool isAllChecked = false;
+
+  int getSum() {
+    int sum = cartList
+        .where((element) => element.ischecked)
+        .map((e) => e.price)
+        .toList()
+        .fold(0, (a, b) => a + b);
+    return sum;
+  }
+
+  int getCount() {
+    int count = cartList.where((element) => element.ischecked).toList().length;
+    return count;
+  }
+
+  allChecked(value) {
+    if (value == true) {
+      cartList.forEach((element) => element.ischecked = true);
+    } else {
+      cartList.forEach((element) => element.ischecked = false);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

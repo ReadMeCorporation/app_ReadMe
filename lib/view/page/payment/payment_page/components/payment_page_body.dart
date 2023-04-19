@@ -20,6 +20,14 @@ class _PaymentPageBodyState extends State<PaymentPageBody> {
     return newPrice.format(price);
   }
 
+  int getSum() {
+    int sum = paymentList
+        .map((e) => e.price)
+        .toList()
+        .fold(0, (a, b) => a + b);
+    return sum;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -143,6 +151,15 @@ class _PaymentPageBodyState extends State<PaymentPageBody> {
                   ),
                 );
               },),
+              Divider(thickness: 1,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("총 금액 ", style: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimens.font_sp18),),
+                  Text("${priceFormat(getSum())}", style: TextStyle(fontSize: Dimens.font_sp18),),
+                ],
+              ),
+              SizedBox(height: 100,),
             ],
           ),
         ));

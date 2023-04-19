@@ -6,16 +6,16 @@ class MembershipPageHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text("멤버십 정보", style: TextStyle(
+    return Padding(
+      padding: const EdgeInsets.only(left: 10, right: 10, top: 20),
+      child: Column(
+        children: [
+          Text("멤버십 정보", style: TextStyle(
             fontWeight: FontWeight.w700, fontSize: Dimens.font_sp20
             ,),),
-        ),
-        SizedBox(height: 10,),
-      ],
+          SizedBox(height: 10,),
+        ],
+      ),
     );
   }
 }

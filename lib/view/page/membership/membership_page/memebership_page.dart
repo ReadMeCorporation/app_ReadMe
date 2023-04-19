@@ -15,7 +15,16 @@ class MembershipPage extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: SizedBox(
           width: double.infinity,
-          child: _buildFloatingActionButton(),
+          child: FloatingActionButton(
+              backgroundColor: Colours.app_sub_black,
+              shape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.circular(20)
+              ),
+              onPressed: () {
+                // 나중에 추가!!!!
+              },
+              child: Text("결제하기", style: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimens.font_sp20),)
+          ),
         ),
       ),
       backgroundColor: Colours.app_sub_white,
@@ -49,18 +58,5 @@ class MembershipPage extends StatelessWidget {
 
 
 
-  Widget _buildFloatingActionButton() {
-    return FloatingActionButton(
-            backgroundColor: Colours.app_sub_black,
-            shape: ContinuousRectangleBorder(
-                borderRadius: BorderRadius.circular(20)),
-            onPressed: () {
-              // 나중에 추가!!!!
-            },
-            child: Text(
-              "결제하기",
-              style: TextStyle(
-                  fontWeight: FontWeight.w700, fontSize: Dimens.font_sp20),
-            ));
-  }
+
 }
