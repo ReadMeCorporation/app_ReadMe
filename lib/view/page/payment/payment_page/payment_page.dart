@@ -1,13 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
-import 'package:readme_app/model/payment_mock_data.dart';
-import 'package:readme_app/view/components/use_button.dart';
-import 'package:readme_app/view/page/payment/components/payment_page_body.dart';
+import 'package:readme_app/view/page/payment/payment_page/components/payment_page_body.dart';
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({Key? key}) : super(key: key);

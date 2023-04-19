@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
-import 'package:readme_app/core/constants/use_icons.dart';
 import 'package:readme_app/model/cart_mock_data.dart';
-import 'package:readme_app/view/components/use_button.dart';
-import 'package:readme_app/view/page/cart/components/cart_page_body.dart';
-import 'package:readme_app/view/page/main/main_page/main_page.dart';
+import 'package:readme_app/view/page/cart/cart_page/components/cart_page_body.dart';
 
 class CartPage extends StatefulWidget {
   const CartPage({Key? key}) : super(key: key);

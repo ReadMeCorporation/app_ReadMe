@@ -7,7 +7,7 @@ import 'package:readme_app/view/page/main/main_page/main_page.dart';
 import 'package:readme_app/view/page/search/search_page/search_page.dart';
 import 'package:readme_app/view/page/storage/storage_page/storage_page.dart';
 import 'package:readme_app/view/page/user/user_page/user_page.dart';
-import 'package:readme_app/view/page/payment/payment_page.dart';
+import 'package:readme_app/view/page/payment/payment_page/payment_page.dart';
 
 import '../../view/page/book_viwer/book_viwer_page/book_viwer_page.dart';
 
