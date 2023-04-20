@@ -35,7 +35,6 @@ class MembershipPage extends StatelessWidget {
               color: Colours.app_sub_black,
               fontWeight: FontWeight.w700,
               fontSize: 22),
-
         ),
         centerTitle: true,
         leading: Row(
