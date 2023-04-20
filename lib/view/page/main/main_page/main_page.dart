@@ -31,11 +31,11 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: _buildScrollView,
+      body: _buildMainScrollView,
     );
   }
 
-  SingleChildScrollView get _buildScrollView {
+  SingleChildScrollView get _buildMainScrollView {
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -48,10 +48,7 @@ class _MainPageState extends State<MainPage> {
               itemCount: cartList.length,
               itemBuilder: (context, index) {
                 return Container(
-                  width: MediaQuery
-                      .of(context)
-                      .size
-                      .width,
+                  width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(color: Colours.app_sub_darkgrey),
@@ -73,29 +70,35 @@ class _MainPageState extends State<MainPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              "${cartList[index].title}",
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 20,
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, "/bookDetail");
+                              },
+                              child: Text(
+                                "${cartList[index].title}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 20,
+                                ),
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 100,
                               ),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 100,
+                              style: TextButton.styleFrom(
+                                minimumSize: Size.zero,
+                                padding: EdgeInsets.only(bottom: 7),
+                                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                              ),
                             ),
                             Text(
-                              "${cartList[index].author} | ${cartList[index]
-                                  .store}",
-                              style: TextStyle(
-                                  fontSize: 16
-                              ),
+                              "${cartList[index].author} | ${cartList[index].store}",
+                              style: TextStyle(fontSize: 16),
                             ),
                             Row(
                               children: [
                                 YhIcons.star,
-                                Text("${cartList[index].score}",
-                                  style: TextStyle(
-                                      fontSize: 16
-                                  ),
+                                Text(
+                                  "${cartList[index].score}",
+                                  style: TextStyle(fontSize: 16),
                                 ),
                               ],
                             ),
