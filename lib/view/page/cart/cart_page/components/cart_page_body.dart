@@ -66,75 +66,78 @@ class _CartPageBodyState extends State<CartPageBody> {
               ),
             ],
           ),
-          Divider(thickness: 2),
+          Divider(thickness: 2, height: 1,),
           ListView.builder(
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             itemCount: cartList.length,
             itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(top: 5.0),
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      border: Border(
-                          bottom: BorderSide(color: Colours.app_sub_darkgrey))),
-                  // width: MediaQuery.of(context).size.width,
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Checkbox(
-                        activeColor: Colours.app_sub_black,
-                        value: cartList[index].ischecked,
-                        onChanged: (value) {
-                          setState(() {
-                            cartList[index].ischecked = value!;
-                          });
-                        },
-                      ),
-                      Row(
-                        children: [
-                          Image.asset(
-                            "assets/images/${cartList[index].image}",
+              return Container(
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    border: Border(
+                        bottom: BorderSide(color: Colours.app_sub_darkgrey))),
+                // width: MediaQuery.of(context).size.width,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Checkbox(
+                      activeColor: Colours.app_sub_black,
+                      value: cartList[index].ischecked,
+                      onChanged: (value) {
+                        setState(() {
+                          cartList[index].ischecked = value!;
+                        });
+                      },
+                    ),
+                    Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 15.0),
+                          child: Container(
                             width: 100,
-                            height: 200,
+                            height: 150,
+                            child: Image.asset(
+                              "assets/images/${cartList[index].image}",
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                child: Text(
-                                  "${cartList[index].title}",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 17,
-                                  ),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 3,
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              child: Text(
+                                "${cartList[index].title}",
+                                style: TextStyle(
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: 17,
                                 ),
-                                width: 180,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 3,
                               ),
-                              Text(
-                                  "${cartList[index].author} | ${cartList[index].store}"),
-                              Row(
-                                children: [
-                                  HsStyleIcons.star,
-                                  Text("${cartList[index].score}"),
-                                ],
-                              ),
-                              Text("소장가 ${cartList[index].price}"),
-                            ],
-                          ),
-                        ],
-                      ),
-                      Spacer(),
-                      IconButton(onPressed: () {}, icon: HsStyleIcons.delete)
-                    ],
-                  ),
+                              width: 180,
+                            ),
+                            Text(
+                                "${cartList[index].author} | ${cartList[index].store}"),
+                            Row(
+                              children: [
+                                HsStyleIcons.star,
+                                Text("${cartList[index].score}"),
+                              ],
+                            ),
+                            Text("소장가 ${cartList[index].price}"),
+                          ],
+                        ),
+                      ],
+                    ),
+                    Spacer(),
+                    IconButton(onPressed: () {}, icon: HsStyleIcons.delete)
+                  ],
                 ),
               );
             },
