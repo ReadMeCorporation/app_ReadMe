@@ -214,10 +214,10 @@ class _BookDetailPageState extends State<BookDetailPage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "책 소개",
+                        "< 책 소개 >",
                         style: TextStyle(
                             color: Colours.app_sub_black,
-                            fontSize: Dimens.font_sp24,
+                            fontSize: Dimens.font_sp20,
                             fontWeight: FontWeight.bold),
                       ),
                       SizedBox(height: 15),
@@ -225,35 +225,76 @@ class _BookDetailPageState extends State<BookDetailPage> {
                         "${bookDetail.bookInfo}",
                         style: TextStyle(
                           color: Colours.app_sub_black,
-                          fontSize: Dimens.font_sp20,
+                          fontSize: Dimens.font_sp18,
                         ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 4,
                       ),
-                      SizedBox(height: 15),
-                      Container(
-                        height: 50,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "목차",
-                              style: TextStyle(
-                                color: Colours.app_sub_black,
-                                fontSize: Dimens.font_sp24,
-                                fontWeight: FontWeight.bold,
-                              ),
+                      SizedBox(height: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "< 목차 >",
+                            style: TextStyle(
+                              color: Colours.app_sub_black,
+                              fontSize: Dimens.font_sp20,
+                              fontWeight: FontWeight.bold,
                             ),
-                            Expanded(
-                              child: ListView.builder(
-                                itemCount: bookContentList.length,
-                                itemBuilder: (context, index) {
-                                  return Text("- ${bookContentList[index]}");
-                                },
-                              ),
+                          ),
+                          SizedBox(height: 15),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: List.generate(
+                              bookContentList.length,
+                              (index) {
+                                return Text(
+                                  '- ${bookContentList[index].toString()}',
+                                  style: TextStyle(
+                                    fontSize: Dimens.font_sp18,
+                                    color: Colours.app_sub_black,
+                                  ),
+                                );
+                              },
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
+                      ),
+                      SizedBox(height: 20),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "< 작가 정보 >",
+                            style: TextStyle(
+                              color: Colours.app_sub_black,
+                              fontSize: Dimens.font_sp20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 15),
+                          Text(
+                            "${bookDetail.author}",
+                            style: TextStyle(
+                              color: Colours.app_sub_black,
+                              fontSize: Dimens.font_sp18,
+                            ),
+                          ),
+                          SizedBox(height: 10),
+                          Text(
+                            "${bookDetail.authorInfo}",
+                            style: TextStyle(
+                              color: Colours.app_sub_black,
+                              fontSize: Dimens.font_sp18,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 4,
+                          ),
+                          SizedBox(height: 15),
+                          Divider(
+                            thickness: 2,
+                          ),
+                        ],
                       ),
                     ],
                   ),
