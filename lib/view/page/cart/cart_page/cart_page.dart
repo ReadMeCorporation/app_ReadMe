@@ -3,6 +3,7 @@ import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
 import 'package:readme_app/model/cart_mock_data.dart';
+import 'package:readme_app/util/bootpay/bootpay_default.dart';
 import 'package:readme_app/view/page/cart/cart_page/components/cart_page_body.dart';
 
 class CartPage extends StatefulWidget {
@@ -43,19 +44,8 @@ class _CartPageState extends State<CartPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton:  Padding(
           padding: const EdgeInsets.all(8.0),
-          child: SizedBox(
-            width: double.infinity,
-            child: FloatingActionButton(
-                backgroundColor: Colours.app_sub_black,
-                shape: ContinuousRectangleBorder(
-                    borderRadius: BorderRadius.circular(20)
-                ),
-                onPressed: () {
-                  // 나중에 추가!!!!
-                },
-                child: Text("결제하기", style: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimens.font_sp20),)
-            ),
-          ),
+          child:
+            BootPayDefault()
         ),
       backgroundColor: Colours.app_sub_white,
       appBar: AppBar(

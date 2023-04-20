@@ -191,49 +191,6 @@ class _CartPageBodyState extends State<CartPageBody> {
                     SizedBox(
                       height: 10,
                     ),
-                    Text("결제 수단",
-                        style: TextStyle(fontWeight: FontWeight.w600)),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    InkWell(
-                      onTap: () {},
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          HsStyleIcons.backFill,
-                          Column(
-                            children: [
-                              Container(
-                                width: 300,
-                                height: 180,
-                                decoration: BoxDecoration(
-                                    color: Colours.app_sub_grey,
-                                    borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                        color: Colours.app_sub_darkgrey)),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    HsStyleIcons.add,
-                                    Text(
-                                      "카드 추가",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600),
-                                    )
-                                  ],
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10,
-                              ),
-                              Text("본인 명의의 카드만 추가 가능합니다"),
-                            ],
-                          ),
-                          HsStyleIcons.nextFill,
-                        ],
-                      ),
-                    ),
                   ],
                 ),
               ),
