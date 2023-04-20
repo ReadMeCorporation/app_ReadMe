@@ -32,7 +32,7 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SafeArea(
         child: pageList.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(

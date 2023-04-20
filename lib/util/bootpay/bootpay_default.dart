@@ -123,8 +123,6 @@ class _BootPayDefaultState extends State<BootPayDefault> {
       payload.orderId = DateTime.now()
           .millisecondsSinceEpoch
           .toString();
-
-
   //주문번호, 개발사에서 고유값으로 지정해야함
 
     // payload.metadata = {
