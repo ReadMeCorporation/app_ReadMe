@@ -11,6 +11,10 @@ class _CategoryPageBodyState extends State<CategoryPageBody> with TickerProvider
 
   late TabController _tabController;
 
+  List<String> categoryList = [
+    '종합', '자기계발', '에세이','인문','경영','언어','소설','역사'
+  ];
+
   @override
   void initState() {
     _tabController = TabController(
@@ -25,20 +29,17 @@ class _CategoryPageBodyState extends State<CategoryPageBody> with TickerProvider
     return Column(
       children: [
         Container(
-          decoration: BoxDecoration(
-            border: Border.all(),
-          ),
           child: TabBar(
             tabs: [
               Container(
-                height: 80,
+                height: 30,
                 alignment: Alignment.center,
                 child: Text(
                   'Tab1',
                 ),
               ),
               Container(
-                height: 80,
+                height: 30,
                 alignment: Alignment.center,
                 child: Text(
                   'Tab2',
