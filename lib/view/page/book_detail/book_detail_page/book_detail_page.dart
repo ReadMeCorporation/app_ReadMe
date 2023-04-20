@@ -209,7 +209,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                   Divider(
                     thickness: 2,
                   ),
-                  SizedBox(height: 10),
+                  SizedBox(height: 15),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -220,15 +220,40 @@ class _BookDetailPageState extends State<BookDetailPage> {
                             fontSize: Dimens.font_sp24,
                             fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 15),
                       Text(
                         "${bookDetail.bookInfo}",
                         style: TextStyle(
-                            color: Colours.app_sub_black,
-                            fontSize: Dimens.font_sp20,
+                          color: Colours.app_sub_black,
+                          fontSize: Dimens.font_sp20,
                         ),
                         overflow: TextOverflow.ellipsis,
                         maxLines: 4,
+                      ),
+                      SizedBox(height: 15),
+                      Container(
+                        height: 50,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "목차",
+                              style: TextStyle(
+                                color: Colours.app_sub_black,
+                                fontSize: Dimens.font_sp24,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                            Expanded(
+                              child: ListView.builder(
+                                itemCount: bookContentList.length,
+                                itemBuilder: (context, index) {
+                                  return Text("- ${bookContentList[index]}");
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
