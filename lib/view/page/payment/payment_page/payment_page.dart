@@ -35,7 +35,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   borderRadius: BorderRadius.circular(20)
               ),
             onPressed: () {
-              // 나중에 추가!!!!
+              Navigator.pushNamed(context, "/main");
             },
             child: Text("완료", style: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimens.font_sp20),)
           ),
