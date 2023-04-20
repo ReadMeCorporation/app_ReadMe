@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
+import 'package:readme_app/util/bootpay/bootpay_default.dart';
+import 'package:readme_app/util/bootpay/bootpay_subscribe.dart';
 import 'package:readme_app/view/page/membership/membership_page/components/membership_page_body.dart';
 
 class MembershipPage extends StatelessWidget {
@@ -13,19 +15,7 @@ class MembershipPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: SizedBox(
-          width: double.infinity,
-          child: FloatingActionButton(
-              backgroundColor: Colours.app_sub_black,
-              shape: ContinuousRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)
-              ),
-              onPressed: () {
-                // 나중에 추가!!!!
-              },
-              child: Text("결제하기", style: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimens.font_sp20),)
-          ),
-        ),
+        child: BootPaySubscribe()
       ),
       backgroundColor: Colours.app_sub_white,
       appBar: AppBar(

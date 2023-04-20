@@ -31,46 +31,46 @@ class MembershipPagePayment extends StatelessWidget {
                 Text("9,900원"),
               ],),
               SizedBox(height: 10,),
-              Text("결제수단", style: TextStyle(
-                  fontWeight: FontWeight.w700
-              )),
+              // Text("결제수단", style: TextStyle(
+              //     fontWeight: FontWeight.w700
+              // )),
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: InkWell(
-            onTap: (){},
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                HsStyleIcons.backFill,
-                Column(
-                  children: [
-                    Container(
-                      width: 300,
-                      height: 180,
-                      decoration: BoxDecoration(
-                        color: Colours.app_sub_grey,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          HsStyleIcons.add,
-                          Text("카드 추가", style: TextStyle(fontWeight: FontWeight.w600),)
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 10,),
-                    Text("본인 명의의 카드만 추가 가능합니다"),
-                  ],
-                ),
-                HsStyleIcons.nextFill,
-              ],
-            ),
-          ),
-        ),
+        // Padding(
+        //   padding: const EdgeInsets.all(10.0),
+        //   child: InkWell(
+        //     onTap: (){},
+        //     child: Row(
+        //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        //       children: [
+        //         HsStyleIcons.backFill,
+        //         Column(
+        //           children: [
+        //             Container(
+        //               width: 300,
+        //               height: 180,
+        //               decoration: BoxDecoration(
+        //                 color: Colours.app_sub_grey,
+        //                 borderRadius: BorderRadius.circular(10),
+        //               ),
+        //               child: Column(
+        //                 mainAxisAlignment: MainAxisAlignment.center,
+        //                 children: [
+        //                   HsStyleIcons.add,
+        //                   Text("카드 추가", style: TextStyle(fontWeight: FontWeight.w600),)
+        //                 ],
+        //               ),
+        //             ),
+        //             SizedBox(height: 10,),
+        //             Text("본인 명의의 카드만 추가 가능합니다"),
+        //           ],
+        //         ),
+        //         HsStyleIcons.nextFill,
+        //       ],
+        //     ),
+        //   ),
+        // ),
       ],
     );
   }

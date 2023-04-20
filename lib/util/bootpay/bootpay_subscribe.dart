@@ -7,16 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 
-class BootPayDefault extends StatefulWidget {
+class BootPaySubscribe extends StatefulWidget {
 
-
-  const BootPayDefault({Key? key}) : super(key: key);
+  const BootPaySubscribe({Key? key}) : super(key: key);
 
   @override
-  State<BootPayDefault> createState() => _BootPayDefaultState();
+  State<BootPaySubscribe> createState() => _BootPaySubscribeState();
 }
 
-class _BootPayDefaultState extends State<BootPayDefault> {
+class _BootPaySubscribeState extends State<BootPaySubscribe> {
   Payload payload = Payload();
 
   // String _data = ""; // 서버승인을 위해 사용되기 위한 변수
@@ -43,7 +42,7 @@ class _BootPayDefaultState extends State<BootPayDefault> {
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(20)),
           onPressed: () {
-            bootpayDefault(context);
+            bootPaySubscribe(context);
           },
           child: Text(
             "결제하기",
@@ -53,13 +52,13 @@ class _BootPayDefaultState extends State<BootPayDefault> {
     );
   }
 
-  void bootpayDefault(BuildContext context) {
-    Payload payload = getPayload(context);
+  void bootPaySubscribe(BuildContext context) {
+    Payload payload = getPayload();
     if (kIsWeb) {
       payload.extra?.openType = "iframe";
     }
 
-    Bootpay().requestPayment(
+    Bootpay().requestSubscription(
       context: context,
       payload: payload,
       showCloseButton: false,
@@ -101,7 +100,7 @@ class _BootPayDefaultState extends State<BootPayDefault> {
     );
   }
 
-  Payload getPayload(BuildContext context) {
+  Payload getPayload() {
     Payload payload = Payload();
     Item item1 = Item();
     item1.name = "미키 '마우스"; // 주문정보에 담길 상품명
@@ -115,17 +114,14 @@ class _BootPayDefaultState extends State<BootPayDefault> {
     // payload.iosApplicationId = iosApplicationId; // ios application id
 
     payload.pg = '다날';
-    payload.method = '카드';
+    payload.method = '카드자동';
     // payload.methods = ['card', 'phone', 'vbank', 'bank', 'kakao'];
     payload.orderName = "테스트 상품"; //결제할 상품명
     payload.price = 500.0; //정기결제시 0 혹은 주석
 
-      payload.orderId = DateTime.now()
-          .millisecondsSinceEpoch
-          .toString();
-
-
-  //주문번호, 개발사에서 고유값으로 지정해야함
+    payload.subscriptionId = DateTime.now()
+        .millisecondsSinceEpoch
+        .toString(); //주문번호, 개발사에서 고유값으로 지정해야함
 
     // payload.metadata = {
     //   "callbackParam1" : "value12",

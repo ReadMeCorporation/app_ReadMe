@@ -45,7 +45,7 @@ class _CartPageState extends State<CartPage> {
         floatingActionButton:  Padding(
           padding: const EdgeInsets.all(8.0),
           child:
-            BootPayDefault()
+          BootPayDefault(),
         ),
       backgroundColor: Colours.app_sub_white,
       appBar: AppBar(
