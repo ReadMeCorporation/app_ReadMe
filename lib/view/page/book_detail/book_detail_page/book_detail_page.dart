@@ -172,9 +172,12 @@ class _BookDetailPageState extends State<BookDetailPage> {
                           "도서 정보",
                           style: TextStyle(
                             color: _selectedButtonIndex == 0
-                                ? Colours.app_main
+                                ? Colours.app_sub_black
                                 : Colours.app_sub_black,
                             fontSize: Dimens.font_sp20,
+                            fontWeight: _selectedButtonIndex == 0
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                           ),
                         ),
                       ),
@@ -192,9 +195,12 @@ class _BookDetailPageState extends State<BookDetailPage> {
                           "리뷰 관리",
                           style: TextStyle(
                             color: _selectedButtonIndex == 1
-                                ? Colours.app_main
+                                ? Colours.app_sub_black
                                 : Colours.app_sub_black,
                             fontSize: Dimens.font_sp20,
+                            fontWeight: _selectedButtonIndex == 1
+                                ? FontWeight.bold
+                                : FontWeight.normal,
                           ),
                         ),
                       ),
@@ -202,6 +208,29 @@ class _BookDetailPageState extends State<BookDetailPage> {
                   ),
                   Divider(
                     thickness: 2,
+                  ),
+                  SizedBox(height: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "책 소개",
+                        style: TextStyle(
+                            color: Colours.app_sub_black,
+                            fontSize: Dimens.font_sp24,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        "${bookDetail.bookInfo}",
+                        style: TextStyle(
+                            color: Colours.app_sub_black,
+                            fontSize: Dimens.font_sp20,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 4,
+                      ),
+                    ],
                   ),
                 ],
               ),

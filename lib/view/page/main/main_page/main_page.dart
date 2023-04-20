@@ -249,6 +249,9 @@ class _MainPageState extends State<MainPage> {
       height: 450,
       width: double.infinity,
       child: Swiper(
+        autoplay: true,
+        duration: 5,
+        autoplayDelay: 5,
         controller: SwiperController(),
         pagination: SwiperPagination(),
         itemCount: imgList.length,
