@@ -39,12 +39,20 @@ class MembershipPage extends StatelessWidget {
         centerTitle: true,
         leading: Row(
           children: [
-            HsStyleIcons.back,
             IconButton(
+                padding: EdgeInsets.only(left: 10, right: 5),
+                constraints: BoxConstraints(),
                 onPressed: () {
-                  Navigator.pushNamed(context, "/main");
+                  Navigator.pop(context);
                 },
-                icon: HsStyleIcons.homeFill)
+                icon: HsStyleIcons.back),
+            IconButton(
+              padding: EdgeInsets.zero,
+              constraints: BoxConstraints(),
+              onPressed: () {
+                Navigator.pushNamed(context, "/main");
+              },
+              icon: HsStyleIcons.homeFill,)
           ],
         ),
         leadingWidth: 100,

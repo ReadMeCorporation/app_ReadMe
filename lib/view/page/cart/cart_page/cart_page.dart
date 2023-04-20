@@ -69,10 +69,20 @@ class _CartPageState extends State<CartPage> {
         centerTitle: true,
         leading: Row(
           children: [
-            HsStyleIcons.back,
-            IconButton(onPressed: (){
-              Navigator.pushNamed(context, "/main");
-            }, icon: HsStyleIcons.homeFill)
+            IconButton(
+                padding: EdgeInsets.only(left: 10, right: 5),
+                constraints: BoxConstraints(),
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: HsStyleIcons.back),
+            IconButton(
+              padding: EdgeInsets.zero,
+              constraints: BoxConstraints(),
+              onPressed: () {
+                Navigator.pushNamed(context, "/main");
+              },
+              icon: HsStyleIcons.homeFill,)
           ],
         ),
         leadingWidth: 100,
