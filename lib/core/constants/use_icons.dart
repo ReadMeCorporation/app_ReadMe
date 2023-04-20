@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 class UseIcons {
   // 방향
   static const Icon back = Icon(CupertinoIcons.back);
-  static const Icon backFill = Icon(CupertinoIcons.arrowtriangle_left_fill);
+  static const Icon backFill = Icon(CupertinoIcons.chevron_back);
   static const Icon next = Icon(CupertinoIcons.arrow_right);
   static const Icon nextFill = Icon(CupertinoIcons.arrowtriangle_right_fill);
   static const Icon up = Icon(CupertinoIcons.arrow_up_circle);

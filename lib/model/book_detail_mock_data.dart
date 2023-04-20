@@ -24,11 +24,11 @@ class BookDetailMockData {
 }
 
 BookDetailMockData bookDetail = BookDetailMockData(
-  image: "book1.png",
+  image: "book.jpg",
   bigCategory: "소설",
   smallCategory: "로맨스",
-  title: "언어의 무게",
-  author: "Pascal Mercier",
+  title: "1984",
+  author: "조지 오웰",
   price: 15000,
   bookInfo: "모두가 잊은 낭만을 되살리는 작가, 파스칼 메르시어 《리스본행 야간열차》 이후 16년 만의 신작 장편소설 《리스본행 야간열차》로 전세계를 매혹한 파스칼 메르시어가 16년 만의 신작 장편소설 《언어의 무게》로 독자들을 만난다. 이번 작품에서는 이탈리아와 영국을 배경으로 여러 문학인의 삶을 다채롭게 조명한다. 유서 깊은 출판사를 경영해온 레이랜드는 생의 끝자락에 서서 자신의 삶을 돌아본다. 번역가로서 살아온 세월과 흘러간 인연, 수많은 작가와 번역가와 출판인……. 문학을 삶의 지침으로 삼은 이 모든 사람을 돌아보며 레이랜드는 그동안 외면해온 창작을 향한 열망을 정면으로 마주한다.",
   content: "저주토끼 머리 차가운 손가락 몸하다 안녕, 내 사랑 덫 흉터 즐거운 나의 집 바람과 모래의 지배자 재회",
