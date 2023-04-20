@@ -9,6 +9,9 @@ import 'package:readme_app/view/page/storage/storage_page/storage_page.dart';
 import 'package:readme_app/view/page/user/user_page/user_page.dart';
 import 'package:readme_app/view/page/payment/payment_page.dart';
 
+import '../../view/page/book_viwer/book_viwer_page/book_viwer_page.dart';
+import '../../view/page/book_viwer/book_viwer_page/drawer_test.dart';
+
 
 class Move {
   static String categoryPage = "/category";
@@ -20,6 +23,8 @@ class Move {
   static String cartPage = "/cart";
   static String paymentPage = "/payment";
   static String alarmPage = "/alarm";
+  static String bookViwerPage = "/viwer";
+  static String bookViwerPage2 = "/drawerTest2";
 }
 
 
@@ -37,5 +42,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
    // Move.alarmPage: (context) => AlarmPage(),
     Move.cartPage : (context) => CartPage(),
     Move.paymentPage : (context) => PaymentPage(),
+    Move.bookViwerPage : (context) => BookViwerPage(),
+    // Move.bookViwerPage2 : (context) => BookViwerPage2(),
   };
 }
