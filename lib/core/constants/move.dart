@@ -1,9 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:readme_app/view/components/home_navigation_bar.dart';
-import 'package:readme_app/view/page/alarm/alarm_page/alarm_page.dart';
-import 'package:readme_app/view/page/book_viewer/book_viewer_page/book_viewer_page.dart';
-import 'package:readme_app/view/page/cart/cart_page/cart_page.dart';
 import 'package:readme_app/view/page/category/category_page/category_page.dart';
+import 'package:readme_app/view/page/cart/cart_page/cart_page.dart';
 import 'package:readme_app/view/page/main/main_page/main_page.dart';
 import 'package:readme_app/view/page/membership/membership_page/memebership_page.dart';
 import 'package:readme_app/view/page/membership_cancel/membership_cancel_page.dart';
@@ -43,6 +42,7 @@ class Move {
 
   static String loginPage = "/login";
 
+  static String bookDetailPage = "/bookDetail";
 }
 
 
@@ -57,10 +57,11 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.storagePage: (context) => StoragePage(),
     Move.userPage: (context) => UserPage(),
     Move.navigationBar: (context) => HomeNavigationBar(),
-    Move.paymentPage: (context) => PaymentPage(),
     Move.alarmPage: (context) => AlarmPage(),
+    Move.paymentPage: (context) => PaymentPage(),
     Move.cartPage : (context) => CartPage(),
     Move.paymentPage : (context) => PaymentPage(),
+    Move.bookDetailPage : (context) => BookDetailPage(),
     Move.bookViewerPage : (context) => BookViewerPage(),
     Move.membershipPage : (context) => MembershipPage(),
     Move.reviewPage : (context) => ReviewPage(),

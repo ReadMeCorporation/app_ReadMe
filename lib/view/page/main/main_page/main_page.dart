@@ -31,94 +31,106 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: _buildAppBar(context),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _buildAdScreen(),
-            _buildMainListBar(),
-            Container(
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: cartList.length,
-                itemBuilder: (context, index) {
-                  return Container(
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      border: Border(
-                        bottom: BorderSide(color: Colours.app_sub_darkgrey),
-                      ),
+      body: _buildScrollView,
+    );
+  }
+
+  SingleChildScrollView get _buildScrollView {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          _buildAdScreen(),
+          _buildMainListBar(),
+          Container(
+            child: ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: cartList.length,
+              itemBuilder: (context, index) {
+                return Container(
+                  width: MediaQuery
+                      .of(context)
+                      .size
+                      .width,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      bottom: BorderSide(color: Colours.app_sub_darkgrey),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Row(
-                        children: [
-                          Image.asset(
-                            "assets/images/${cartList[index].image}",
-                            width: 100,
-                            height: 150,
-                          ),
-                          SizedBox(
-                            width: 15,
-                          ),
-                          Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "${cartList[index].title}",
-                                style: TextStyle(
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: 20,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                                maxLines: 100,
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          "assets/images/${cartList[index].image}",
+                          width: 100,
+                          height: 150,
+                        ),
+                        SizedBox(
+                          width: 15,
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${cartList[index].title}",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20,
                               ),
-                              Text(
-                                  "${cartList[index].author} | ${cartList[index].store}",
-                                style: TextStyle(
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 100,
+                            ),
+                            Text(
+                              "${cartList[index].author} | ${cartList[index]
+                                  .store}",
+                              style: TextStyle(
                                   fontSize: 16
-                                ),
                               ),
-                              Row(
-                                children: [
-                                  YhIcons.star,
-                                  Text("${cartList[index].score}",
+                            ),
+                            Row(
+                              children: [
+                                YhIcons.star,
+                                Text("${cartList[index].score}",
                                   style: TextStyle(
-                                    fontSize: 16
+                                      fontSize: 16
                                   ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Text("소장가 ${cartList[index].price}"),
-                                  SizedBox(width: 100),
-                                  IconButton(
-                                    padding: EdgeInsets.zero,
-                                    constraints: BoxConstraints(),
-                                    onPressed: () {},
-                                    icon: YhIcons.heart,
-                                  ),
-                                  IconButton(
-                                    padding: EdgeInsets.zero,
-                                    constraints: BoxConstraints(),
-                                    onPressed: () {},
-                                    icon: YhIcons.cart2,
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                                ),
+                              ],
+                            ),
+                            Row(
+                              children: [
+                                Text("소장가 ${cartList[index].price}"),
+                                SizedBox(width: 100),
+                                IconButton(
+                                  padding: EdgeInsets.zero,
+                                  constraints: BoxConstraints(),
+                                  onPressed: () {
+                                    // 추후 추가
+                                  },
+                                  icon: YhIcons.heart,
+                                ),
+                                IconButton(
+                                  padding: EdgeInsets.zero,
+                                  constraints: BoxConstraints(),
+                                  onPressed: () {
+                                    Navigator.pushNamed(context, "/cart");
+                                  },
+                                  icon: YhIcons.cart2,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  );
-                },
-              ),
+                  ),
+                );
+              },
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -267,7 +279,9 @@ AppBar _buildAppBar(BuildContext context) {
       icon: Image.asset(
         "assets/images/img.png",
       ),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, "/main");
+      },
     ),
     actions: [
       IconButton(
@@ -279,7 +293,7 @@ AppBar _buildAppBar(BuildContext context) {
       IconButton(
           icon: YhIcons.cart,
           onPressed: () {
-            // Navigator.pushNamed(context, "/cart");
+            Navigator.pushNamed(context, "/cart");
           })
     ],
   );
