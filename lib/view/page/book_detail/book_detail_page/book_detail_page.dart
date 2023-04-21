@@ -161,6 +161,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                 riewList.length,
                 (index) {
                   return Container(
+                    margin: EdgeInsets.symmetric(vertical: 5),
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
                       border: Border.all(
