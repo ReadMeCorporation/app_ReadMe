@@ -294,6 +294,7 @@ class _BookDetailPageState extends State<BookDetailPage> {
                           Divider(
                             thickness: 2,
                           ),
+                          SizedBox(height: 15),
                         ],
                       ),
                     ],
