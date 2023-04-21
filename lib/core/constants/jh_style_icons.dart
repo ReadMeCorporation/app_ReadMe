@@ -13,6 +13,8 @@ class JHicons {
   static const Icon bookmarkBox = Icon(CupertinoIcons.book_circle);
   static const Icon hambuger = Icon(Icons.menu, size: 40,);
   static const Icon hambugerSquare = Icon(CupertinoIcons.square_grid_2x2_fill, size: 35,);
+  static const Icon add = Icon(CupertinoIcons.add, size: 35,);
+  static const Icon minus = Icon(CupertinoIcons.minus, size: 35,);
 
   static const Icon heartFill = Icon(CupertinoIcons.heart_fill, size: 35, color: Colours.app_sub_black,);
   static const Icon colorCircleBlack = Icon(CupertinoIcons.circle_fill, size: 35, color: Colours.app_sub_black,);

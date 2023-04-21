@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
+import 'package:readme_app/core/constants/jh_style_button_add_minus.dart';
 
-import '../../../../core/constants/jh_style_button.dart';
 import '../../../../core/constants/jh_style_icons.dart';
-import '../../../../core/constants/move.dart';
-import '../../../components/use_button.dart';
 
 class BookDrawer extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey; // Add the scaffoldKey here
@@ -39,28 +37,28 @@ class BookDrawer extends StatelessWidget {
                     Container(
                       child: IconButton(
                           onPressed: () {
-                            print("하트 눌러짐");
+                            print("검은색 테마");
                           },
                           icon: JHicons.colorCircleBlack),
                     ),
                     Container(
                       child: IconButton(
                           onPressed: () {
-                            print("하트 눌러짐");
+                            print("하얀색 테마");
                           },
                           icon: JHicons.colorCircleWhite),
                     ),
                     Container(
                       child: IconButton(
                           onPressed: () {
-                            print("하트 눌러짐");
+                            print("메인 테마");
                           },
                           icon: JHicons.colorCircleMain),
                     ),
                     Container(
                       child: IconButton(
                           onPressed: () {
-                            print("하트 눌러짐");
+                            print("회색 테마");
                           },
                           icon: JHicons.colorCircleGrey),
                     ),
@@ -69,9 +67,6 @@ class BookDrawer extends StatelessWidget {
               ),
               contentPadding: EdgeInsets.only(right: 30),
             ),
-            // Divider(
-            //   color: Colours.app_sub_black,
-            // ),
             ListTile(
               trailing: Container(
                 width: 250,
@@ -92,26 +87,44 @@ class BookDrawer extends StatelessWidget {
                     SizedBox(
                       width: 10,
                     ),
-                    Container(
-                      width: 100,
-                      child: jhUseButton(
-                        title: "마이너스",
-                        buttonPressed: () {
-                          Navigator.pushNamed(context, Move.cartPage);
-                        },
-                      ),
+                    Stack(
+                      children: [
+                        Container(
+                          width: 80,
+                          child: jhUseButtonAddMinus(
+                            title: "",
+                            buttonPressed: () {},
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 3),
+                          width: 80,
+                          child: Positioned(
+                            child: JHicons.minus,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       width: 20,
                     ),
-                    Container(
-                      width: 100,
-                      child: jhUseButton(
-                        title: "플러스",
-                        buttonPressed: () {
-                          print("장바구니 버튼 눌러짐");
-                        },
-                      ),
+                    Stack(
+                      children: [
+                        Container(
+                          width: 80,
+                          child: jhUseButtonAddMinus(
+                            title: "",
+                            buttonPressed: () {},
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.symmetric(vertical: 3),
+                          width: 80,
+                          child: Positioned(
+                            child: JHicons.add,
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       width: 10,
@@ -119,14 +132,11 @@ class BookDrawer extends StatelessWidget {
                   ],
                 ),
               ),
-              contentPadding: EdgeInsets.only(right: 30),
+              contentPadding: EdgeInsets.only(right: 50),
             ),
             SizedBox(
               width: 5,
             ),
-            // Divider(
-            //   color: Colours.app_sub_black,
-            // ),
             ListTile(
               trailing: Container(
                 width: 250,
@@ -150,21 +160,32 @@ class BookDrawer extends StatelessWidget {
                     Container(
                       width: 80,
                       child: TextButton(
-                        child: Text("나눔고딕", style: TextStyle(color: Colours.app_sub_black, fontWeight: FontWeight.w500)),
+                        child: Text("나눔고딕",
+                            style: TextStyle(
+                                color: Colours.app_sub_black,
+                                fontWeight: FontWeight.w500)),
                         onPressed: () {},
                       ),
                     ),
                     Container(
                       width: 80,
                       child: TextButton(
-                        child: Text("나눔명조", style: TextStyle(color: Colours.app_sub_black, fontWeight: FontWeight.w500)),
+                        child: Text("나눔명조",
+                            style: TextStyle(
+                                color: Colours.app_sub_black,
+                                fontWeight: FontWeight.w500)),
                         onPressed: () {},
                       ),
                     ),
                     Container(
                       width: 80,
                       child: TextButton(
-                        child: Text("마루부리",style: TextStyle(color: Colours.app_sub_black, fontWeight: FontWeight.w500),),
+                        child: Text(
+                          "마루부리",
+                          style: TextStyle(
+                              color: Colours.app_sub_black,
+                              fontWeight: FontWeight.w500),
+                        ),
                         onPressed: () {},
                       ),
                     ),
