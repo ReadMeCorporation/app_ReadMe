@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
 import 'package:readme_app/core/constants/yh_style_icons.dart';
-import 'package:readme_app/view/page/category/category_page/components/category_page_body.dart';
+import 'package:readme_app/view/page/category/category_page/components/example/category_page_body.dart';
 
 class CategoryPage extends StatefulWidget {
    const CategoryPage({Key? key}) : super(key: key);
@@ -18,6 +18,7 @@ class _CategoryPageState extends State<CategoryPage>  {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colours.app_sub_white,
       appBar: PreferredSize(
         preferredSize:  Size.fromHeight(kToolbarHeight),
         child: PreferredSize(
@@ -45,6 +46,7 @@ class _CategoryPageState extends State<CategoryPage>  {
             ),
             actions: [
               IconButton(
+                  padding: EdgeInsets.only(right: 15),
                   icon: YhIcons.cart,
                   onPressed: () {
                   Navigator.pushNamed(context, "/cart");

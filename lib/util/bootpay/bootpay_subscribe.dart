@@ -55,7 +55,7 @@ class _BootPaySubscribeState extends State<BootPaySubscribe> {
   void bootPaySubscribe(BuildContext context) {
     Payload payload = getPayload();
     if (kIsWeb) {
-      payload.extra?.openType = "iframe";
+      payload.extra?.openType = "redirect";
     }
 
     Bootpay().requestSubscription(
