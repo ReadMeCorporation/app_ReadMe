@@ -72,7 +72,7 @@ class _PaymentPageState extends State<PaymentPage> {
         leadingWidth: 100,
         backgroundColor: Colours.app_sub_white,
       ),
-      body: PaymentPageBody(),
+      body: PaymentPageBodyMembership(),
     );
   }
 }

@@ -47,6 +47,7 @@ class _CategoryPageSubBodyState extends State<CategoryPageSubBody>
           child: TabBarView(
               controller: _tabController2,
               children:  List.generate(5, (index) {
+                // 카테고리에 맞게 리스트 받기
                 return CategoryPageContent();
               }),
         )

@@ -35,34 +35,32 @@ class _PaymentPageBodyState extends State<PaymentPageBody> {
           padding: const EdgeInsets.all(20.0),
           child: Column(
             children: [
-              Row(
-                children: [
-                  Text(
-                    "2023.04.19",
-                    style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: Dimens.font_sp20,
-                        color: Colours.app_sub_black),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  Text(
-                    "(결제)",
-                    style: TextStyle(
-                        fontSize: Dimens.font_sp14, color: Colours.app_sub_black),
-                  ),
-                  Spacer(),
-                  Text("총 ${paymentList.length}건", style: TextStyle(
-                      fontSize: Dimens.font_sp14, color: Colours.app_sub_blue))
-                ],
-              ),
+              _dateInfo(),
               SizedBox(height: 10,),
-              ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: paymentList.length, itemBuilder: (context, index) {
-                return Padding(
+              Column(
+                children: _bookTile(),
+              ),
+              Divider(thickness: 1,),
+              _totalPrice(),
+              SizedBox(height: 100,),
+            ],
+          ),
+        ));
+  }
+
+  Widget _totalPrice() {
+    return Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text("총 금액 ", style: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimens.font_sp18),),
+                Text("${priceFormat(getSum())}", style: TextStyle(fontSize: Dimens.font_sp18),),
+              ],
+            );
+  }
+
+  List<Widget> _bookTile() {
+    return List.generate(paymentList.length, (index) {
+                return  Padding(
                   padding: const EdgeInsets.symmetric(vertical: 5.0),
                   child: Container(
                     decoration: BoxDecoration(
@@ -150,18 +148,35 @@ class _PaymentPageBodyState extends State<PaymentPageBody> {
                     ),
                   ),
                 );
-              },),
-              Divider(thickness: 1,),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Text("총 금액 ", style: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimens.font_sp18),),
-                  Text("${priceFormat(getSum())}", style: TextStyle(fontSize: Dimens.font_sp18),),
-                ],
-              ),
-              SizedBox(height: 100,),
-            ],
-          ),
-        ));
+              });
+  }
+
+
+
+
+
+  Widget _dateInfo() {
+    return Row(
+              children: [
+                Text(
+                  "2023.04.19",
+                  style: TextStyle(
+                      fontWeight: FontWeight.w700,
+                      fontSize: Dimens.font_sp20,
+                      color: Colours.app_sub_black),
+                ),
+                SizedBox(
+                  width: 5,
+                ),
+                Text(
+                  "(결제)",
+                  style: TextStyle(
+                      fontSize: Dimens.font_sp14, color: Colours.app_sub_black),
+                ),
+                Spacer(),
+                Text("총 ${paymentList.length}건", style: TextStyle(
+                    fontSize: Dimens.font_sp14, color: Colours.app_sub_blue))
+              ],
+            );
   }
 }
