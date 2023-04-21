@@ -181,8 +181,8 @@ class _BookDetailPageState extends State<BookDetailPage> {
                             children: [
                               StarScore(score: riewList[index].stars),
                               Spacer(),
-                              Text(riewList[index].userId),
-                              Text("| ${riewList[index].writeTime}")
+                              Text("${riewList[index].userId } "),
+                              Text("|  ${riewList[index].writeTime}")
                             ],
                           ),
                           SizedBox(height: 10),
