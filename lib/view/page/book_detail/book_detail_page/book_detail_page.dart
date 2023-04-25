@@ -201,18 +201,6 @@ class _BookDetailPageState extends State<BookDetailPage> {
             Divider(
               thickness: 2,
             ),
-            //SizedBox(height: 15),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 15),
-              child: Text(
-                "< 리뷰 작성 >",
-                style: TextStyle(
-                  color: Colours.app_sub_black,
-                  fontSize: Dimens.font_sp20,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
             _buildRivewWrite(context),
           ],
         ),
@@ -220,12 +208,25 @@ class _BookDetailPageState extends State<BookDetailPage> {
     );
   }
 
-
-
   Container _buildRivewWrite(BuildContext context) {
     return Container(
-            margin: EdgeInsets.symmetric(vertical: 5),
-            width: MediaQuery.of(context).size.width,
+      margin: EdgeInsets.symmetric(vertical: 15),
+      width: MediaQuery.of(context).size.width,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Container(
+            margin: EdgeInsets.only(bottom: 15),
+            child: Text(
+              "< 리뷰 작성 >",
+              style: TextStyle(
+                color: Colours.app_sub_black,
+                fontSize: Dimens.font_sp20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          Container(
             decoration: BoxDecoration(
               border: Border.all(
                 style: BorderStyle.solid,
@@ -288,7 +289,10 @@ class _BookDetailPageState extends State<BookDetailPage> {
                 ),
               ],
             ),
-          );
+          ),
+        ],
+      ),
+    );
   }
 
   Row _buildPrice() {
