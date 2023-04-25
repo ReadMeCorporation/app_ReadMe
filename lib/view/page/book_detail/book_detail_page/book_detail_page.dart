@@ -63,6 +63,16 @@ class _BookDetailPageState extends State<BookDetailPage> {
     );
   }
 
+
+
+
+
+
+
+
+
+
+
   Column _buildListContents(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
