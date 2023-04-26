@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      initialRoute: Move.bookDetailPage,
+      initialRoute: Move.navigationBar,
       routes: getRouters(),
     );
   }
