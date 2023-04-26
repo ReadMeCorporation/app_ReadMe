@@ -18,7 +18,7 @@ class _BookmarkListPageState extends State<BookmarkListPage> {
     "2대를 영원히 붙잡아 두기소리다이것은 피어나기 ...",
     "3대를 영원히 붙잡아 두기소리다이것은 피어나기 ...",
   ]; // 북마크 임시 갯수
-  final bookmarkPageNumber = 148; // 북마크한 페이지
+  final bookmarkPageNumber = 148; // 북마크 한 페이지
   final bookmarkTime = "2023-04-21"; // 북마크 한 날짜
   final bookmarkIndex = 3; //
 
