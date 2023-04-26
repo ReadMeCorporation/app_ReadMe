@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:readme_app/view/bookmark/bookmark_list_page/bookmark_list_page.dart';
 import 'package:readme_app/view/components/home_navigation_bar.dart';
 import 'package:readme_app/view/page/alarm/alarm_page/alarm_page.dart';
 import 'package:readme_app/view/page/book_viewer/book_viewer_page/book_viewer_page.dart';
@@ -16,6 +15,8 @@ import 'package:readme_app/view/page/payment_list/payment_list_page.dart';
 import 'package:readme_app/view/page/search/search_list_page/search_list_page.dart';
 import 'package:readme_app/view/page/storage/storage_page/storage_page.dart';
 import 'package:readme_app/view/page/user/user_page/user_page.dart';
+
+import '../../view/page/bookmark/bookmark_list_page/bookmark_list_page.dart';
 
 
 class Move {
