@@ -2,7 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final dio = Dio(BaseOptions(
-  baseUrl: "http://43.200.163.130:8070",
+  baseUrl: "http://192.168.200.155:8070",
   contentType: "application/json; charset=utf-8",
 ));
 
