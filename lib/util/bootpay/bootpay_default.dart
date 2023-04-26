@@ -95,15 +95,15 @@ class _BootPayDefaultState extends State<BootPayDefault> {
             3. 서버승인을 하고자 하실 때 (클라이언트 승인 X)
             return false; 후에 서버에서 결제승인 수행
          */
-        // Bootpay().transactionConfirm();
-        //
-        return true;
+        Bootpay().transactionConfirm();
+
+        return false;
       },
       onDone: (String data) {
-         dio.post("http://43.200.163.130:8070/payments/callback",
-            options: Options(
-              contentType: "application/json; charset=utf-8"
-            ));
+         // dio.post("http://43.200.163.130:8070/payments/callback",
+         //    options: Options(
+         //      contentType: "application/json; charset=utf-8"
+         //    ));
         print('------- onDone: $data');
       },
     );
@@ -154,7 +154,6 @@ class _BootPayDefaultState extends State<BootPayDefault> {
     Extra extra = Extra(); // 결제 옵션
     // extra.appScheme = 'bootpayFlutterExample';
     extra.separatelyConfirmed = true;
-
     // extra.cardQuota = '3';
     // // extra.openType = 'popup';
 
