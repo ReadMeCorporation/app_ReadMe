@@ -16,6 +16,7 @@ import 'package:readme_app/view/page/search/search_list_page/search_list_page.da
 import 'package:readme_app/view/page/storage/storage_page/storage_page.dart';
 import 'package:readme_app/view/page/user/user_page/user_page.dart';
 
+import '../../view/page/auth/login_page/login_page.dart';
 import '../../view/page/bookmark/bookmark_list_page/bookmark_list_page.dart';
 
 
@@ -37,6 +38,8 @@ class Move {
   static String questionPage = "/question";
   static String questionListPage = "/questionList";
   static String bookmarkListPage = "/bookmarkList";
+  static String loginPage = "/login";
+
 }
 
 
@@ -63,6 +66,8 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.questionPage : (context) => QuestionPage(),
     Move.questionListPage : (context) => QuestionListPage(),
     Move.bookmarkListPage : (context) => BookmarkListPage(),
+    Move.loginPage: (context) => LoginPage(),
+
 
   };
 }
