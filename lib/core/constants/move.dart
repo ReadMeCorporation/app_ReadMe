@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:readme_app/view/bookmark/bookmark_list_page/bookmark_list_page.dart';
 import 'package:readme_app/view/components/home_navigation_bar.dart';
 import 'package:readme_app/view/page/alarm/alarm_page/alarm_page.dart';
+import 'package:readme_app/view/page/book_viewer/book_viewer_page/book_viewer_page.dart';
 import 'package:readme_app/view/page/cart/cart_page/cart_page.dart';
 import 'package:readme_app/view/page/category/category_page/category_page.dart';
 import 'package:readme_app/view/page/main/main_page/main_page.dart';
@@ -15,8 +17,6 @@ import 'package:readme_app/view/page/search/search_list_page/search_list_page.da
 import 'package:readme_app/view/page/storage/storage_page/storage_page.dart';
 import 'package:readme_app/view/page/user/user_page/user_page.dart';
 
-import '../../view/page/book_viwer/book_viwer_page/book_viwer_page.dart';
-
 
 class Move {
   static String categoryPage = "/category";
@@ -29,12 +29,13 @@ class Move {
   static String paymentPage = "/payment";
   static String alarmPage = "/alarm";
   static String membershipPage = "/membership";
-  static String bookViwerPage = "/viwer";
+  static String bookViewerPage = "/viewer";
   static String reviewPage = "/review";
   static String paymentListPage = "/paymentList";
   static String membershipCancelPage = "/membershipCancel";
   static String questionPage = "/question";
   static String questionListPage = "/questionList";
+  static String bookmarkListPage = "/bookmarkList";
 }
 
 
@@ -53,12 +54,14 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.alarmPage: (context) => AlarmPage(),
     Move.cartPage : (context) => CartPage(),
     Move.paymentPage : (context) => PaymentPage(),
-    Move.bookViwerPage : (context) => BookViwerPage(),
+    Move.bookViewerPage : (context) => BookViewerPage(),
     Move.membershipPage : (context) => MembershipPage(),
     Move.reviewPage : (context) => ReviewPage(),
     Move.paymentListPage : (context) => PaymentListPage(),
     Move.membershipCancelPage : (context) => MembershipCancelPage(),
     Move.questionPage : (context) => QuestionPage(),
     Move.questionListPage : (context) => QuestionListPage(),
+    Move.bookmarkListPage : (context) => BookmarkListPage(),
+
   };
 }

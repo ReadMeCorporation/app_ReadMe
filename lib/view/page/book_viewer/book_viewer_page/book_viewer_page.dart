@@ -1,22 +1,21 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:readme_app/view/page/book_viwer/components/book_drawer_no_membership.dart';
+import 'package:readme_app/view/page/book_viewer/components/book_drawer_no_membership.dart';
 import '../../../../core/constants/colours.dart';
-import '../../../../core/constants/hs_style_icons.dart';
 import '../../../../core/constants/jh_style_icons.dart';
 import '../../../../util/epub/src/helpers/epub_document.dart';
 import '../../../../util/epub/src/ui/epub_view.dart';
 import '../components/book_drawer.dart';
 
-class BookViwerPage extends StatefulWidget {
-  BookViwerPage({Key? key}) : super(key: key);
+class BookViewerPage extends StatefulWidget {
+  BookViewerPage({Key? key}) : super(key: key);
 
   @override
-  _BookViwerPageState createState() => _BookViwerPageState();
+  _BookViewerPageState createState() => _BookViewerPageState();
 }
 
 /// 책 받아오기
-class _BookViwerPageState extends State<BookViwerPage>
+class _BookViewerPageState extends State<BookViewerPage>
     with WidgetsBindingObserver {
   @override
   void initState() {
