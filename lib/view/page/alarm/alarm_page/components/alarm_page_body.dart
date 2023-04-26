@@ -103,16 +103,7 @@ class _AlarmPageBodyState extends State<AlarmPageBody> {
                                         padding:
                                             const EdgeInsets.only(bottom: 5.0),
                                         child: Text(
-                                          "ReadMe의 버전이 업데이트 되었습니다.",
-                                          style: TextStyle(
-                                              fontSize: Dimens.font_sp14),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 5.0),
-                                        child: Text(
-                                          "이제 도서 뷰어의 폰트 사이즈를 지정할 수 있어요 😍",
+                                          "ReadMe의 버전이 업데이트 되었습니다. 이제 도서 뷰어의 폰트 사이즈를 지정할 수 있어요 😍",
                                           style: TextStyle(
                                               fontSize: Dimens.font_sp14),
                                         ),
@@ -145,9 +136,10 @@ class _AlarmPageBodyState extends State<AlarmPageBody> {
                         borderRadius: BorderRadius.circular(10),
                         border: Border.all(color: Colours.app_sub_grey)),
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Row(
                         children: [
+                          // Image.asset("assets/images/img.png", width: 25,),
                           HsStyleIcons.megaphone,
                           SizedBox(
                             width: 5,

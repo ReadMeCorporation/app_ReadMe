@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(primaryColor: Colours.app_main, fontFamily: 'NanumGothic',),
       navigatorKey: navigatorKey,
       debugShowCheckedModeBanner: false,
-      initialRoute: Move.searchListPage,
+      initialRoute: Move.questionPage,
       routes: getRouters(),
     );
   }

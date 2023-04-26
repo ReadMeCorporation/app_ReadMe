@@ -36,14 +36,6 @@ class AlarmPage extends StatelessWidget {
                   icon: HsStyleIcons.homeFill,),
               ],
             ),
-            actions: [
-              IconButton(
-                  padding: EdgeInsets.only(right: 15),
-                  icon: YhIcons.cart,
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/cart");
-                  })
-            ],
             title: Text(
               "알림내역",
               style: TextStyle(

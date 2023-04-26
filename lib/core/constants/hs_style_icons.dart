@@ -11,7 +11,7 @@ class HsStyleIcons {
   static const Icon nextFill = Icon(CupertinoIcons.arrowtriangle_right_fill);
   static const Icon backFill = Icon(CupertinoIcons.arrowtriangle_left_fill);
   static const Icon add = Icon(CupertinoIcons.add, size: 60);
-  static const Icon megaphone = Icon(CupertinoIcons.speaker_2_fill);
+  static const Icon megaphone = Icon(CupertinoIcons.speaker_2_fill, size: 20,);
   static const Icon bookPayment = Icon(CupertinoIcons.book_fill, size: 35,);
   static const Icon card = Icon(CupertinoIcons.creditcard, size: 35,);
   static const Icon review = Icon(CupertinoIcons.ellipses_bubble_fill, size: 35,);

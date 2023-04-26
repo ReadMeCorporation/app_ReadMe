@@ -8,6 +8,7 @@ import 'package:readme_app/view/page/membership/membership_page/memebership_page
 import 'package:readme_app/view/page/membership_cancel/membership_cancel_page.dart';
 import 'package:readme_app/view/page/payment/payment_page/payment_page.dart';
 import 'package:readme_app/view/page/question/question_page.dart';
+import 'package:readme_app/view/page/question_list/question_list_page.dart';
 import 'package:readme_app/view/page/review/review_page.dart';
 import 'package:readme_app/view/page/payment_list/payment_list_page.dart';
 import 'package:readme_app/view/page/search/search_list_page/search_list_page.dart';
@@ -33,6 +34,7 @@ class Move {
   static String paymentListPage = "/paymentList";
   static String membershipCancelPage = "/membershipCancel";
   static String questionPage = "/question";
+  static String questionListPage = "/questionList";
 }
 
 
@@ -57,5 +59,6 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.paymentListPage : (context) => PaymentListPage(),
     Move.membershipCancelPage : (context) => MembershipCancelPage(),
     Move.questionPage : (context) => QuestionPage(),
+    Move.questionListPage : (context) => QuestionListPage(),
   };
 }
