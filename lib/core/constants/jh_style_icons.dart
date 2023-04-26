@@ -14,6 +14,8 @@ class JHicons {
   static const Icon add = Icon(CupertinoIcons.add, size: 35,);
   static const Icon minus = Icon(CupertinoIcons.minus, size: 35,);
 
+
+  static const Icon search = Icon(CupertinoIcons.search, size: 20, color: Colours.app_sub_black,);
   static const Icon heartFill = Icon(CupertinoIcons.heart_fill, size: 35, color: Colours.app_sub_black,);
   static const Icon colorCircleBlack = Icon(CupertinoIcons.circle_fill, size: 35, color: Colours.app_sub_black,);
   static const Icon colorCircleWhite = Icon(CupertinoIcons.circle_fill, size: 35, color: Colours.app_sub_white,);

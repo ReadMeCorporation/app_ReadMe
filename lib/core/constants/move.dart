@@ -10,7 +10,7 @@ import 'package:readme_app/view/page/payment/payment_page/payment_page.dart';
 import 'package:readme_app/view/page/question/question_page.dart';
 import 'package:readme_app/view/page/review/review_page.dart';
 import 'package:readme_app/view/page/payment_list/payment_list_page.dart';
-import 'package:readme_app/view/page/search/search_page/search_page.dart';
+import 'package:readme_app/view/page/search/search_list_page/search_list_page.dart';
 import 'package:readme_app/view/page/storage/storage_page/storage_page.dart';
 import 'package:readme_app/view/page/user/user_page/user_page.dart';
 
@@ -19,7 +19,7 @@ import '../../view/page/book_viwer/book_viwer_page/book_viwer_page.dart';
 
 class Move {
   static String categoryPage = "/category";
-  static String searchPage = "/search";
+  static String searchListPage = "/search";
   static String mainPage = "/main";
   static String storagePage = "/storage";
   static String userPage = "/user";
@@ -42,7 +42,7 @@ class Move {
 Map<String, Widget Function(BuildContext)> getRouters() {
   return {
     Move.categoryPage: (context) => CategoryPage(),
-    Move.searchPage: (context) => SearchPage(),
+    Move.searchListPage: (context) => SearchListPage(),
     Move.mainPage: (context) => MainPage(),
     Move.storagePage: (context) => StoragePage(),
     Move.userPage: (context) => UserPage(),
