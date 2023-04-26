@@ -103,9 +103,7 @@ class _BootPayDefaultState extends State<BootPayDefault> {
          dio.post("http://43.200.163.130:8070/payments/callback",
             options: Options(
               contentType: "application/json; charset=utf-8"
-            ),
-            data: data);
-
+            ));
         print('------- onDone: $data');
       },
     );

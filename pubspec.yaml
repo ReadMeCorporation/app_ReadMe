@@ -33,7 +33,7 @@ dependencies:
   validators: ^3.0.0
   intl: ^0.17.0
   dio: ^5.1.1
-  flutter_riverpod: ^2.3.2
+  flutter_riverpod: ^2.3.6
   logger: ^1.1.0
   flutter_secure_storage: ^7.0.0
   card_swiper: ^2.0.4
