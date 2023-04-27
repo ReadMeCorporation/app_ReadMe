@@ -58,7 +58,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.paymentPage: (context) => PaymentPage(),
     Move.cartPage: (context) => CartPage(),
     Move.bookDetailPage: (context) => BookDetailPage(),
-    Move.modalButtonSheet: (context) => ModalButtonSheet(),
+    // Move.modalButtonSheet: (context) => ModalButtonSheet(),
     Move.bookViewerPage: (context) => BookViewerPage(),
     Move.membershipPage: (context) => MembershipPage(),
     Move.reviewPage: (context) => ReviewPage(),
