@@ -1,16 +1,22 @@
 import 'package:intl/intl.dart';
+import 'package:readme_app/model/big_category/big_category.dart';
+import 'package:readme_app/model/file_info/file_info.dart';
+import 'package:readme_app/model/publisher/publisher.dart';
+import 'package:readme_app/model/small_category/small_category.dart';
 
 class Book {
   final int id;
-  final String publisher;
+  final Publisher publisher;
   final String title;
   final String author;
   final String price;
   final String introduction;
-  final String bicCategory; // id
+  final String filepath;
+  final BigCategory bigCategory; // id
+  final SmallCategory smallCategory; // id
   final String authorinfo;
   final String status;
-  final String fileInfo; // id
+  final FileInfo fileInfo; // id
 
   Book({
     required this.id,
@@ -19,7 +25,9 @@ class Book {
     required this.author,
     required this.price,
     required this.introduction,
-    required this.bicCategory,
+    required this.filepath,
+    required this.bigCategory,
+    required this.smallCategory,
     required this.authorinfo,
     required this.status,
     required this.fileInfo,
@@ -33,7 +41,9 @@ class Book {
     "author": author,
     "price": price,
     "introduction": introduction,
-    "bicCategory": bicCategory,
+    "filepath" : filepath,
+    "bigCategory": bigCategory,
+    "smallCategory" : smallCategory,
     "authorinfo": authorinfo,
     "status": status,
     "fileInfo": fileInfo,
@@ -42,14 +52,15 @@ class Book {
 
   Book.fromJson(Map<String, dynamic> json)
   : id = json["id"],
-    publisher = json["publisher"],
+    publisher = Publisher.fromJson(json["publisher"]),
     title = json["title"],
     author = json["author"],
     price = json["price"],
     introduction = json["introduction"],
-    bicCategory = json["bicCategory"],
+    filepath = json["filepath"],
+    bigCategory = BigCategory.fromJson(json["bigCategory"]),
+    smallCategory = SmallCategory.fromJson(json["smallCategory"]),
     authorinfo = json["authorinfo"],
     status = json["status"],
-    fileInfo = json["fileInfo"];
-
+    fileInfo = FileInfo.fromJson(json["fileInfo"]);
 }
