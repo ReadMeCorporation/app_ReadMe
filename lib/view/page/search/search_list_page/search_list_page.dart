@@ -27,9 +27,11 @@ class _SearchListPageState extends State<SearchListPage> {
       debugShowCheckedModeBanner: false,
       home: SafeArea(
         child: Scaffold(
-          key: _scaffoldKey,
-          appBar: searchAppBar(),
-          body: searchWords == "1984" ? buildSearchSuccess() : buildRecentlyWords()
+            key: _scaffoldKey,
+            appBar: searchAppBar(),
+            body: searchWords == "1984"
+                ? buildSearchSuccess()
+                : buildRecentlyWords()
         ),
       ),
     );
@@ -37,37 +39,38 @@ class _SearchListPageState extends State<SearchListPage> {
 
   Column buildRecentlyWords() {
     return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(left: 20.0, top: 10),
-              child: Text(
-                "최근 검색어",
-                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0, top: 10),
+          child: Text(
+            "최근 검색어",
+            style: TextStyle(fontSize: 22, fontWeight: FontWeight.w700),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          child: Container(
+            width: 400,
+            child: recentlyWords == true
+                ? Text("1. 1984")
+                : Center(
+                child: Text("최근 검색어가 없습니다.",
+                    style: TextStyle(fontSize: 16))),
+            margin: EdgeInsets.symmetric(vertical: 10),
+            height: 150,
+            decoration: BoxDecoration(
+              color: Colours.app_sub_grey,
+              borderRadius: BorderRadius.all(
+                Radius.circular(8.0),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20.0),
-              child: Container(
-                width: 400,
-                child: recentlyWords == true
-                    ? Text("1. 1984")
-                    : Center(
-                        child: Text("최근 검색어가 없습니다.",
-                            style: TextStyle(fontSize: 16))),
-                margin: EdgeInsets.symmetric(vertical: 10),
-                height: 150,
-                decoration: BoxDecoration(
-                  color: Colours.app_sub_grey,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8.0),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        );
+          ),
+        ),
+      ],
+    );
   }
+
   Widget buildSearchSuccess() {
     return SingleChildScrollView(
       child: Container(
@@ -77,7 +80,10 @@ class _SearchListPageState extends State<SearchListPage> {
           itemCount: 1,
           itemBuilder: (context, index) {
             return Container(
-              width: MediaQuery.of(context).size.width,
+              width: MediaQuery
+                  .of(context)
+                  .size
+                  .width,
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(color: Colours.app_sub_darkgrey),
@@ -109,7 +115,8 @@ class _SearchListPageState extends State<SearchListPage> {
                           maxLines: 100,
                         ),
                         Text(
-                          "${cartList[index].author} | ${cartList[index].store}",
+                          "${cartList[index].author} | ${cartList[index]
+                              .store}",
                           style: TextStyle(fontSize: 16),
                         ),
                         Row(
@@ -153,18 +160,28 @@ class _SearchListPageState extends State<SearchListPage> {
 
   AppBar searchAppBar() {
     return AppBar(
+      leading: IconButton(
+        icon: HsStyleIcons.back,
+        onPressed: () {
+          Navigator.pop(context);
+        },
+      ),
+      actions: [
+        IconButton(onPressed: () {
+          // 추가
+        }, icon: JHicons.search)
+      ],
       backgroundColor: Colours.app_sub_white,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Container(child: HsStyleIcons.back),
           // Container(child: UseIcons.search),
           Form(
             key: _formKey,
             child: Row(
               children: <Widget>[
                 Container(
-                  width: 300,
+                  width: 250,
                   // height: 40,
                   decoration: BoxDecoration(
                     // color: Colours.app_main,
@@ -195,7 +212,7 @@ class _SearchListPageState extends State<SearchListPage> {
                     },
                   ),
                 ),
-                Container(child: JHicons.search),
+                // Container(child: JHicons.search),
               ],
             ),
           ),
