@@ -14,17 +14,32 @@ class CartPage extends StatefulWidget {
 }
 
 class _CartPageState extends State<CartPage> {
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton:  Padding(
+      floatingActionButton: Padding(
           padding: const EdgeInsets.all(8.0),
-          child:
-          BootPayDefault(),
-        ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 8.0),
+                child: SizedBox(
+                  width: 50,
+                  child: FloatingActionButton(
+                    backgroundColor: Colours.app_main,
+                    onPressed: () {
+                      // 기능 추가
+                    },
+                    child: HsStyleIcons.up,
+                  ),
+                ),
+              ),
+              BootPayDefault(),
+            ],
+          )),
       backgroundColor: Colours.app_sub_white,
       appBar: AppBar(
         title: Text(
@@ -48,14 +63,14 @@ class _CartPageState extends State<CartPage> {
               padding: EdgeInsets.zero,
               constraints: BoxConstraints(),
               onPressed: () {
-                Navigator.pushNamed(context, "/main");
+                Navigator.pushNamed(context, "/navigation");
               },
-              icon: HsStyleIcons.homeFill,)
+              icon: HsStyleIcons.homeFill,
+            )
           ],
         ),
         leadingWidth: 100,
         backgroundColor: Colours.app_sub_white,
-
       ),
       body: CartPageBody(),
     );

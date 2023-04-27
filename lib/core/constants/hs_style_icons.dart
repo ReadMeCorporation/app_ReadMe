@@ -15,4 +15,5 @@ class HsStyleIcons {
   static const Icon bookPayment = Icon(CupertinoIcons.book_fill, size: 35,);
   static const Icon card = Icon(CupertinoIcons.creditcard, size: 35,);
   static const Icon review = Icon(CupertinoIcons.ellipses_bubble_fill, size: 35,);
+  static const Icon up = Icon(CupertinoIcons.arrow_up);
 }
