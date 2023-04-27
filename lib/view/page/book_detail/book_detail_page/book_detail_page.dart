@@ -8,6 +8,7 @@ import 'package:readme_app/core/constants/yh_style_icons.dart';
 import 'package:readme_app/model/book_detail_mock_data.dart';
 import 'package:readme_app/model/review_mock_data.dart';
 import 'package:readme_app/util/star_score/star_score.dart';
+import 'package:readme_app/view/page/book_detail/book_detail_page/components/modal_button_sheet.dart';
 
 class BookDetailPage extends StatefulWidget {
   const BookDetailPage({Key? key}) : super(key: key);
@@ -62,16 +63,6 @@ class _BookDetailPageState extends State<BookDetailPage> {
       ),
     );
   }
-
-
-
-
-
-
-
-
-
-
 
   Column _buildListContents(BuildContext context) {
     return Column(

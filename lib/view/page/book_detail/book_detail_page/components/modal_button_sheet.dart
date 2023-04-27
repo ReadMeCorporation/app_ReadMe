@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
+import 'package:readme_app/core/constants/move.dart';
 import 'package:readme_app/model/book_detail_mock_data.dart';
 
 class ModalButtonSheet extends StatefulWidget {
@@ -51,9 +52,25 @@ class _ModalButtonSheetState extends State<ModalButtonSheet>
                   padding: EdgeInsets.all(5),
                 ),
                 child: Text("장바구니"),
-                onPressed: () {
-                  // 모달창 들어가기
-                },
+                onPressed: () => showDialog(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: const Text("장바구니 담기 완료"),
+                      content: const Text("장바구니로 이동하시겠습니까?"),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () => Navigator.pop(context, 'Cancle'),
+                          child: const Text('Cancle'),
+                        ),
+                        TextButton(
+                          onPressed: () => Move.cartPage,
+                          child: const Text('Ok'),
+
+                        ),
+                      ],
+                    ),
+
+                ),
               ),
             ),
             SizedBox(width: 10),
@@ -85,7 +102,10 @@ class _ModalButtonSheetState extends State<ModalButtonSheet>
         return StatefulBuilder(
           builder: (BuildContext context, StateSetter setState) {
             return Container(
-              height: MediaQuery.of(context).size.height / 3,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height / 3,
               child: Column(
                 children: [
                   TabBar(
@@ -162,7 +182,8 @@ class _ModalButtonSheetState extends State<ModalButtonSheet>
                                 ),
                                 SizedBox(width: 30),
                                 Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment
+                                      .start,
                                   children: [
                                     Text(
                                       '${bookDetail.title}',
