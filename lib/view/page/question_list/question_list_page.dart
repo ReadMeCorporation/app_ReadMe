@@ -41,7 +41,7 @@ class QuestionListPage extends StatelessWidget {
             padding: EdgeInsets.zero,
             constraints: BoxConstraints(),
             onPressed: () {
-              Navigator.pushNamed(context, "/main");
+              Navigator.pushNamed(context, "/navigation");
             },
             icon: HsStyleIcons.homeFill,)
         ],

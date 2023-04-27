@@ -19,95 +19,105 @@ class _CategoryPageContentState extends State<CategoryPageContent> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10.0),
-          child: _myDropdown(),
-        ),
-        Divider(thickness: 1, height: 1,),
-        _bookTile(context)
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 10.0),
+            child: _myDropdown(),
+          ),
+          Divider(
+            thickness: 1,
+            height: 1,
+          ),
+          _bookTile(context)
+        ],
+      ),
     );
   }
 
   Widget _bookTile(BuildContext context) {
     return Column(
-        children: List.generate(cartList.length, (index) {
-          return Container(
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              border: Border(
-                bottom: BorderSide(color: Colours.app_sub_darkgrey),
-              ),
+      children: 
+        
+         _listExample(context),
+  
+    );
+  }
+
+  List<Widget> _listExample(BuildContext context) {
+    return List.generate(cartList.length, (index) {
+        return Container(
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            border: Border(
+              bottom: BorderSide(color: Colours.app_sub_darkgrey),
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(15.0),
-              child: Row(
-                children: [
-                  Image.asset(
-                    "assets/images/${cartList[index].image}",
-                    width: 100,
-                    height: 150,
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "${cartList[index].title}",
-                        style: TextStyle(
-                          fontWeight: FontWeight.w700,
-                          fontSize: 20,
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Row(
+              children: [
+                Image.asset(
+                  "assets/images/${cartList[index].image}",
+                  width: 100,
+                  height: 150,
+                ),
+                SizedBox(
+                  width: 15,
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "${cartList[index].title}",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 100,
+                    ),
+                    Text(
+                      "${cartList[index].author} | ${cartList[index].store}",
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    Row(
+                      children: [
+                        YhIcons.star,
+                        Text(
+                          "${cartList[index].score}",
+                          style: TextStyle(fontSize: 16),
                         ),
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 100,
-                      ),
-                      Text(
-                        "${cartList[index].author} | ${cartList[index].store}",
-                        style: TextStyle(
-                            fontSize: 16
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Text("소장가 ${cartList[index].price}"),
+                        SizedBox(width: 100),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: BoxConstraints(),
+                          onPressed: () {},
+                          icon: YhIcons.heart,
                         ),
-                      ),
-                      Row(
-                        children: [
-                          YhIcons.star,
-                          Text("${cartList[index].score}",
-                            style: TextStyle(
-                                fontSize: 16
-                            ),
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Text("소장가 ${cartList[index].price}"),
-                          SizedBox(width: 100),
-                          IconButton(
-                            padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
-                            onPressed: () {},
-                            icon: YhIcons.heart,
-                          ),
-                          IconButton(
-                            padding: EdgeInsets.zero,
-                            constraints: BoxConstraints(),
-                            onPressed: () {},
-                            icon: YhIcons.cart2,
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                        SizedBox(width: 10),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          constraints: BoxConstraints(),
+                          onPressed: () {},
+                          icon: YhIcons.cart2,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
             ),
-          );
-        }),
-      );
+          ),
+        );
+      });
   }
 
   //

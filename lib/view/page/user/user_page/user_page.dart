@@ -22,7 +22,8 @@ class _UserPageState extends State<UserPage> {
             children: [
               _logout(),
               _header(),
-              _membershipInfoCard(context),
+              _membershipCard(),
+              // _membershipInfoCard(context),
               _mainButton(),
               _subButton(),
               _bottomInfo(),
@@ -93,7 +94,9 @@ class _UserPageState extends State<UserPage> {
                         BorderSide(color: Colours.app_sub_grey, width: 2.0))),
             child: InkWell(
               onTap: () {
-                // 추가
+                // 추가 question
+                Navigator.pushNamed(context, "/question");
+
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -118,7 +121,8 @@ class _UserPageState extends State<UserPage> {
                         BorderSide(color: Colours.app_sub_grey, width: 2.0))),
             child: InkWell(
               onTap: () {
-                // 추가
+                Navigator.pushNamed(context, "/questionList");
+
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -155,7 +159,7 @@ class _UserPageState extends State<UserPage> {
                           BorderSide(color: Colours.app_sub_grey, width: 2.0))),
               child: InkWell(
                 onTap: (){
-                  // 추가
+                  // 보관함 연결
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -183,7 +187,7 @@ class _UserPageState extends State<UserPage> {
                           BorderSide(color: Colours.app_sub_grey, width: 2.0))),
               child: InkWell(
                 onTap: (){
-                  // 추가
+                  Navigator.pushNamed(context, "/paymentList");
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -209,7 +213,9 @@ class _UserPageState extends State<UserPage> {
                           BorderSide(color: Colours.app_sub_grey, width: 2.0))),
               child: InkWell(
                 onTap: (){
-                  // 추가
+                  // review
+                  Navigator.pushNamed(context, "/review");
+
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -257,7 +263,7 @@ class _UserPageState extends State<UserPage> {
             child: UseButton(
               title: "멤버십 구독하기",
               buttonPressed: () {
-                // 추가하기
+               // PaymentPageBodyMembership 연결 추가
               },
             ),
           )),
