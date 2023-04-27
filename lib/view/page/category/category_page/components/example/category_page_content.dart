@@ -38,10 +38,8 @@ class _CategoryPageContentState extends State<CategoryPageContent> {
 
   Widget _bookTile(BuildContext context) {
     return Column(
-      children: 
-        
+      children:
          _listExample(context),
-  
     );
   }
 
@@ -58,6 +56,11 @@ class _CategoryPageContentState extends State<CategoryPageContent> {
             padding: const EdgeInsets.all(15.0),
             child: Row(
               children: [
+                // Image.network(
+                //   "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/632892f6-d998-426f-b9ae-90c70a5ef775-soil.png",
+                //   width: 100,
+                //   height: 150,
+                // ),
                 Image.asset(
                   "assets/images/${cartList[index].image}",
                   width: 100,
@@ -86,6 +89,7 @@ class _CategoryPageContentState extends State<CategoryPageContent> {
                     Row(
                       children: [
                         YhIcons.star,
+                        SizedBox(width: 5,),
                         Text(
                           "${cartList[index].score}",
                           style: TextStyle(fontSize: 16),
