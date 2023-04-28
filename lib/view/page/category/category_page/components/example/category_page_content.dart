@@ -45,79 +45,84 @@ class _CategoryPageContentState extends State<CategoryPageContent> {
 
   List<Widget> _listExample(BuildContext context) {
     return List.generate(cartList.length, (index) {
-        return Container(
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            border: Border(
-              bottom: BorderSide(color: Colours.app_sub_darkgrey),
+        return InkWell(
+          onTap: () {
+            Navigator.pushNamed(context, "/bookDetail");
+          },
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(color: Colours.app_sub_darkgrey),
+              ),
             ),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(15.0),
-            child: Row(
-              children: [
-                // Image.network(
-                //   "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/632892f6-d998-426f-b9ae-90c70a5ef775-soil.png",
-                //   width: 100,
-                //   height: 150,
-                // ),
-                Image.asset(
-                  "assets/images/${cartList[index].image}",
-                  width: 100,
-                  height: 150,
-                ),
-                SizedBox(
-                  width: 15,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "${cartList[index].title}",
-                      style: TextStyle(
-                        fontWeight: FontWeight.w700,
-                        fontSize: 20,
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                children: [
+                  // Image.network(
+                  //   "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/632892f6-d998-426f-b9ae-90c70a5ef775-soil.png",
+                  //   width: 100,
+                  //   height: 150,
+                  // ),
+                  Image.asset(
+                    "assets/images/${cartList[index].image}",
+                    width: 100,
+                    height: 150,
+                  ),
+                  SizedBox(
+                    width: 15,
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "${cartList[index].title}",
+                        style: TextStyle(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 20,
+                        ),
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 100,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 100,
-                    ),
-                    Text(
-                      "${cartList[index].author} | ${cartList[index].store}",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                    Row(
-                      children: [
-                        YhIcons.star,
-                        SizedBox(width: 5,),
-                        Text(
-                          "${cartList[index].score}",
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Text("소장가 ${cartList[index].price}"),
-                        SizedBox(width: 100),
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          constraints: BoxConstraints(),
-                          onPressed: () {},
-                          icon: YhIcons.heart,
-                        ),
-                        SizedBox(width: 10),
-                        IconButton(
-                          padding: EdgeInsets.zero,
-                          constraints: BoxConstraints(),
-                          onPressed: () {},
-                          icon: YhIcons.cart2,
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                      Text(
+                        "${cartList[index].author} | ${cartList[index].store}",
+                        style: TextStyle(fontSize: 16),
+                      ),
+                      Row(
+                        children: [
+                          YhIcons.star,
+                          SizedBox(width: 5,),
+                          Text(
+                            "${cartList[index].score}",
+                            style: TextStyle(fontSize: 16),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Text("소장가 ${cartList[index].price}"),
+                          SizedBox(width: 100),
+                          IconButton(
+                            padding: EdgeInsets.zero,
+                            constraints: BoxConstraints(),
+                            onPressed: () {},
+                            icon: YhIcons.heart,
+                          ),
+                          SizedBox(width: 10),
+                          IconButton(
+                            padding: EdgeInsets.zero,
+                            constraints: BoxConstraints(),
+                            onPressed: () {},
+                            icon: YhIcons.cart2,
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         );

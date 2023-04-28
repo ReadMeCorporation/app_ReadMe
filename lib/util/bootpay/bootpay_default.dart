@@ -42,6 +42,7 @@ class _BootPayDefaultState extends State<BootPayDefault> {
     return SizedBox(
       width: double.infinity,
       child: FloatingActionButton(
+          heroTag: "paymentBtn",
           backgroundColor: Colours.app_sub_black,
           shape: ContinuousRectangleBorder(
               borderRadius: BorderRadius.circular(20)),
