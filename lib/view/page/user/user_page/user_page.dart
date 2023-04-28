@@ -159,7 +159,7 @@ class _UserPageState extends State<UserPage> {
                           BorderSide(color: Colours.app_sub_grey, width: 2.0))),
               child: InkWell(
                 onTap: (){
-                  // 보관함 연결
+                  Navigator.pushNamed(context, "/contentBox");
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

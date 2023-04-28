@@ -30,6 +30,7 @@ class _CartPageState extends State<CartPage> {
                 child: SizedBox(
                   width: 45,
                   child: FloatingActionButton(
+                    heroTag: "upBtn",
                     backgroundColor: Colours.app_main.withOpacity(0.9),
                     onPressed: () {
                       // 기능 추가

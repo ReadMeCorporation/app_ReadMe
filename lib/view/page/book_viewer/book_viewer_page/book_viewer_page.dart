@@ -20,42 +20,7 @@ class BookViewerPage extends StatefulWidget {
 /// 책 받아오기
 class _BookViewerPageState extends State<BookViewerPage>
     with WidgetsBindingObserver {
-  @override
-  void initState() {
-    WidgetsBinding.instance!.addObserver(this);
-    super.initState();
-  }
 
-  @override
-  void dispose() {
-    WidgetsBinding.instance!.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) => MaterialApp(
-        title: 'Epub demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-          brightness: Brightness.light,
-        ),
-        darkTheme: ThemeData(
-          primarySwatch: Colors.blue,
-          brightness: Brightness.dark,
-        ),
-        debugShowCheckedModeBanner: false,
-        home: SafeArea(child: EpubBookContent()),
-      );
-}
-
-class EpubBookContent extends StatefulWidget {
-  EpubBookContent({Key? key}) : super(key: key);
-
-  @override
-  _MyEpubBook createState() => _MyEpubBook();
-}
-
-class _MyEpubBook extends State<EpubBookContent> {
   late EpubController _epubReaderController;
   bool _isBookMark = true;
   bool _membership = true;
@@ -67,81 +32,83 @@ class _MyEpubBook extends State<EpubBookContent> {
 
   @override
   void initState() {
-    super.initState();
+    WidgetsBinding.instance!.addObserver(this);
     _epubReaderController = EpubController(
       document: EpubDocument.openAsset('assets/epubs/test3.epub'),
     );
+    super.initState();
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance!.removeObserver(this);
     _epubReaderController.dispose();
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: _showAppBarAndBottomSheet
-          ? AppBar(
-              centerTitle: true,
-              leading: IconButton(
-                icon: JHicons.back,
-                onPressed: () {
-                  if(Navigator.of(context).widget.pages.length > 1) {
-                    Navigator.pop(context);
-                  } else {
-                    Navigator.pushNamed(context, "/bookDetail");
-                  }
-                },
-              ),
-              backgroundColor: Colours.app_sub_white,
-              title: Text(
-                "스즈메의 문단속",
-                style: TextStyle(
-                    color: Colours.app_sub_black,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 22),
-              ),
-            )
-          : null,
-      key: _scaffoldKey,
-      endDrawer: _membership == false
-          ? BookDrawerNoMembership(scaffoldKey: _scaffoldKey)
-          : BookDrawer(scaffoldKey: _scaffoldKey),
-      body: GestureDetector(
-        onTap: () {
-          setState(() {
-            _showAppBarAndBottomSheet = !_showAppBarAndBottomSheet;
-          });
-        },
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // buildAppBar(), /// Appbar
-            buildBookmark(),
 
-            /// 북마크
-            Expanded(
-              // 책내용
-              child: Center(
-                child: Container(
-                  child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: buildEpubView()),
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
+  @override
+  Widget build(BuildContext context)   {
+    return  Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: _showAppBarAndBottomSheet
+            ? AppBar(
+          centerTitle: true,
+          leading: IconButton(
+            icon: JHicons.back,
+            onPressed: () {
+              if(Navigator.of(context).widget.pages.length > 1) {
+                Navigator.pop(context);
+              } else {
+                Navigator.pushNamed(context, "/bookDetail");
+              }
+            },
+          ),
+          backgroundColor: Colours.app_sub_white,
+          title: Text(
+            "스즈메의 문단속",
+            style: TextStyle(
+                color: Colours.app_sub_black,
+                fontWeight: FontWeight.w700,
+                fontSize: 22),
+          ),
+        )
+            : null,
+        key: _scaffoldKey,
+        endDrawer: _membership == false
+            ? BookDrawerNoMembership(scaffoldKey: _scaffoldKey)
+            : BookDrawer(scaffoldKey: _scaffoldKey),
+        body: GestureDetector(
+          onTap: () {
+            setState(() {
+              _showAppBarAndBottomSheet = !_showAppBarAndBottomSheet;
+            });
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // buildAppBar(), /// Appbar
+              buildBookmark(),
+              /// 북마크
+              Expanded(
+                // 책내용
+                child: Center(
+                  child: Container(
+                    child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: buildEpubView()),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                  ),
                 ),
               ),
-            ),
-            buildBottomSheet()
+              buildBottomSheet()
 
-            /// BottomSheet
-          ],
+              /// BottomSheet
+            ],
+          ),
         ),
-      ),
-    );
+      );
   }
 
   Widget buildBottomSheet() {
@@ -197,7 +164,7 @@ class _MyEpubBook extends State<EpubBookContent> {
                     children: [
                       InkWell(
                           onTap: () {
-                              Navigator.pushNamed(context, "/bookmarkList");
+                            Navigator.pushNamed(context, "/bookmarkList");
                           },
                           child: JHicons.bookBox),
                       Container(
@@ -218,20 +185,6 @@ class _MyEpubBook extends State<EpubBookContent> {
     );
   }
 
-  Widget buildBookmark() {
-    return Visibility(
-      visible: _isBookMark,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 20),
-        child: Align(
-          alignment: Alignment.topRight,
-          child: Container(
-            child: JHicons.bookmark25,
-          ),
-        ),
-      ),
-    );
-  }
 
   EpubView buildEpubView() {
     return EpubView(
@@ -249,26 +202,20 @@ class _MyEpubBook extends State<EpubBookContent> {
     );
   }
 
-  // Widget buildAppBar() {
-  //   return Visibility(
-  //     visible: _showAppBarAndBottomSheet,
-  //     child: AppBar(
-  //       centerTitle: true,
-  //       leading: IconButton(
-  //         icon: JHicons.back,
-  //         onPressed: () {
-  //           Navigator.pushNamed(context, "/bookDetail");
-  //         },
-  //       ),
-  //       backgroundColor: Colours.app_sub_white,
-  //       title: Text(
-  //         "스즈메의 문단속",
-  //         style: TextStyle(
-  //             color: Colours.app_sub_black,
-  //             fontWeight: FontWeight.w700,
-  //             fontSize: 22),
-  //       ),
-  //     ),
-  //   );
-  // }
+  Widget buildBookmark() {
+    return Visibility(
+      visible: _isBookMark,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 20),
+        child: Align(
+          alignment: Alignment.topRight,
+          child: Container(
+            child: JHicons.bookmark25,
+          ),
+        ),
+      ),
+    );
+  }
+
 }
+

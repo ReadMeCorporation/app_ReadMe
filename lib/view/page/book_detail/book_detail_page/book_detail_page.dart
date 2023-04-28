@@ -226,7 +226,7 @@ class _BookDetailPageState extends State<BookDetailPage>
                             Row(
                               children: [
                                 SizedBox(
-                                  child: Image.network(
+                                  child: Image.asset(
                                     "assets/images/book.jpg",
                                     height: 170,
                                     width: 100,
