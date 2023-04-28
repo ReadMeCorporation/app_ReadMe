@@ -38,9 +38,7 @@ class Move {
   static String questionListPage = "/questionList";
   static String bookmarkListPage = "/bookmarkList";
   static String contentBoxPage = "/contentBox";
-
   static String bookDetailPage = "/bookDetail";
-
   static String modalButtonSheet = "/modalButtonSheet";
 }
 

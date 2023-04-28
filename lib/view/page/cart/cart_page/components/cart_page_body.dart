@@ -112,7 +112,7 @@ class _CartPageBodyState extends State<CartPageBody> {
           ],
         ),
         Divider(
-          thickness: 2,
+          thickness: 5,
           height: 1,
         ),
         _bookListTile(),
@@ -141,21 +141,22 @@ class _CartPageBodyState extends State<CartPageBody> {
                   });
                 },
               ),
+              SizedBox(width: 8,),
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15.0),
+                    padding: const EdgeInsets.symmetric(vertical: 25.0),
                     child: Container(
-                      width: 100,
-                      height: 150,
+                      width: 80,
+                      height: 110,
                       child: Image.asset(
                         "assets/images/${cartList[index].image}",
-                        fit: BoxFit.cover,
+                        fit: BoxFit.fitHeight,
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: 15,
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -171,7 +172,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                           overflow: TextOverflow.ellipsis,
                           maxLines: 3,
                         ),
-                        width: 180,
+                        width: 190,
                       ),
                       Text(
                           "${cartList[index].author} | ${cartList[index].store}"),
