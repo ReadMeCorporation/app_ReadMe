@@ -32,7 +32,11 @@ class _CategoryPageState extends State<CategoryPage>  {
                     padding: EdgeInsets.only(left: 10, right: 5),
                     constraints: BoxConstraints(),
                     onPressed: () {
-                      Navigator.pop(context);
+                      if(Navigator.of(context).widget.pages.length > 1) {
+                        Navigator.pop(context);
+                      } else {
+                        Navigator.pushNamed(context, "/navigation");
+                      }
                     },
                     icon: HsStyleIcons.back),
                 IconButton(

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:readme_app/view/page/book_viewer/book_viewer_page/book_viewer_page.dart';
 import '../../../../core/constants/colours.dart';
 import '../../../../core/constants/hs_style_icons.dart';
 import '../../../../core/constants/jh_style_icons.dart';
@@ -98,12 +99,11 @@ class _BookmarkListPageState extends State<BookmarkListPage> {
             fontSize: 22),
       ),
       centerTitle: true,
-      leading: Row(
-        children: [
-          HsStyleIcons.back,
-        ],
-      ),
-      leadingWidth: 100,
+      leading: IconButton(icon: HsStyleIcons.back,
+      onPressed: () {
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BookViewerPage()));
+      }),
+      leadingWidth: 50,
     );
   }
 }

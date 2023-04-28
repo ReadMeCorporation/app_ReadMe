@@ -10,6 +10,7 @@ import 'package:readme_app/core/constants/yh_style_icons.dart';
 import 'package:readme_app/model/book_detail_mock_data.dart';
 import 'package:readme_app/model/review_mock_data.dart';
 import 'package:readme_app/util/star_score/star_score.dart';
+import 'package:readme_app/view/components/home_navigation_bar.dart';
 
 class BookDetailPage extends StatefulWidget {
   const BookDetailPage({Key? key}) : super(key: key);
@@ -24,7 +25,6 @@ final _textController = TextEditingController();
 
 class _BookDetailPageState extends State<BookDetailPage>
     with SingleTickerProviderStateMixin {
-
   late TabController _tabController;
 
   @override
@@ -85,7 +85,6 @@ class _BookDetailPageState extends State<BookDetailPage>
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(width: 18),
             IconButton(
               icon: Icon(
                 isLiked ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
@@ -287,148 +286,151 @@ class _BookDetailPageState extends State<BookDetailPage>
     );
   }
 
-  Column _buildListContents() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "< 책 소개 >",
-          style: TextStyle(
-              color: Colours.app_sub_black,
-              fontSize: Dimens.font_sp20,
-              fontWeight: FontWeight.bold),
-        ),
-        SizedBox(height: 15),
-        Text(
-          "${bookDetail.bookInfo}",
-          style: TextStyle(
-            color: Colours.app_sub_black,
-            fontSize: Dimens.font_sp18,
+  Widget _buildListContents() {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "< 책 소개 >",
+            style: TextStyle(
+                color: Colours.app_sub_black,
+                fontSize: Dimens.font_sp20,
+                fontWeight: FontWeight.bold),
           ),
-          overflow: TextOverflow.ellipsis,
-          maxLines: 4,
-        ),
-        SizedBox(height: 20),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "< 목차 >",
-              style: TextStyle(
-                color: Colours.app_sub_black,
-                fontSize: Dimens.font_sp20,
-                fontWeight: FontWeight.bold,
+          SizedBox(height: 15),
+          Text(
+            "${bookDetail.bookInfo}",
+            style: TextStyle(
+              color: Colours.app_sub_black,
+              fontSize: Dimens.font_sp18,
+            ),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 4,
+          ),
+          SizedBox(height: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "< 목차 >",
+                style: TextStyle(
+                  color: Colours.app_sub_black,
+                  fontSize: Dimens.font_sp20,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            SizedBox(height: 15),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: List.generate(
-                bookContentList.length,
-                (index) {
-                  return Text(
-                    '- ${bookContentList[index].toString()}',
-                    style: TextStyle(
-                      fontSize: Dimens.font_sp18,
-                      color: Colours.app_sub_black,
-                    ),
-                  );
-                },
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 20),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "< 작가 정보 >",
-              style: TextStyle(
-                color: Colours.app_sub_black,
-                fontSize: Dimens.font_sp20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 15),
-            Text(
-              "${bookDetail.author}",
-              style: TextStyle(
-                color: Colours.app_sub_black,
-                fontSize: Dimens.font_sp18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 10),
-            Text(
-              "${bookDetail.authorInfo}",
-              style: TextStyle(
-                color: Colours.app_sub_black,
-                fontSize: Dimens.font_sp18,
-              ),
-              overflow: TextOverflow.ellipsis,
-              maxLines: 4,
-            ),
-            SizedBox(height: 15),
-            Divider(
-              thickness: 2,
-            ),
-            SizedBox(height: 15),
-            Text(
-              "< 리뷰 관리 >",
-              style: TextStyle(
-                color: Colours.app_sub_black,
-                fontSize: Dimens.font_sp20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 15),
-            Column(
-              children: List.generate(
-                riewList.length,
-                (index) {
-                  return Container(
-                    margin: EdgeInsets.symmetric(vertical: 5),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        style: BorderStyle.solid,
-                        color: Colours.app_sub_grey,
+              SizedBox(height: 15),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: List.generate(
+                  bookContentList.length,
+                  (index) {
+                    return Text(
+                      '- ${bookContentList[index].toString()}',
+                      style: TextStyle(
+                        fontSize: Dimens.font_sp18,
+                        color: Colours.app_sub_black,
                       ),
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
-                      ),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              StarScore(score: riewList[index].stars),
-                              Spacer(),
-                              Text("${riewList[index].userId} "),
-                              Text("|  ${riewList[index].writeTime}")
-                            ],
-                          ),
-                          SizedBox(height: 10),
-                          Text(riewList[index].content),
-                        ],
-                      ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
-            ),
-            SizedBox(height: 15),
-            Divider(
-              thickness: 2,
-            ),
-            _buildRivewWrite(context),
-          ],
-        ),
-      ],
+            ],
+          ),
+          SizedBox(height: 20),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "< 작가 정보 >",
+                style: TextStyle(
+                  color: Colours.app_sub_black,
+                  fontSize: Dimens.font_sp20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 15),
+              Text(
+                "${bookDetail.author}",
+                style: TextStyle(
+                  color: Colours.app_sub_black,
+                  fontSize: Dimens.font_sp18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 10),
+              Text(
+                "${bookDetail.authorInfo}",
+                style: TextStyle(
+                  color: Colours.app_sub_black,
+                  fontSize: Dimens.font_sp18,
+                ),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 4,
+              ),
+              SizedBox(height: 15),
+              Divider(
+                thickness: 2,
+              ),
+              SizedBox(height: 15),
+              Text(
+                "< 리뷰 관리 >",
+                style: TextStyle(
+                  color: Colours.app_sub_black,
+                  fontSize: Dimens.font_sp20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 15),
+              Column(
+                children: List.generate(
+                  riewList.length,
+                  (index) {
+                    return Container(
+                      margin: EdgeInsets.symmetric(vertical: 5),
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          style: BorderStyle.solid,
+                          color: Colours.app_sub_grey,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                StarScore(score: riewList[index].stars),
+                                Spacer(),
+                                Text("${riewList[index].userId} "),
+                                Text("|  ${riewList[index].writeTime}")
+                              ],
+                            ),
+                            SizedBox(height: 10),
+                            Text(riewList[index].content),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(height: 15),
+              Divider(
+                thickness: 2,
+              ),
+              _buildRivewWrite(context),
+            ],
+          ),
+        ],
+      ),
     );
   }
 
@@ -562,12 +564,15 @@ class _BookDetailPageState extends State<BookDetailPage>
     return Row(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Text(
-          "${bookDetail.title}",
-          style: TextStyle(
-            fontSize: Dimens.font_sp30,
-            fontWeight: FontWeight.w700,
-            color: Colours.app_sub_black,
+        Padding(
+          padding: const EdgeInsets.only(bottom: 5.0),
+          child: Text(
+            "${bookDetail.title}",
+            style: TextStyle(
+              fontSize: Dimens.font_sp30,
+              fontWeight: FontWeight.w700,
+              color: Colours.app_sub_black,
+            ),
           ),
         ),
       ],
@@ -590,7 +595,7 @@ class _BookDetailPageState extends State<BookDetailPage>
           child: Text(
             "# ${bookDetail.bigCategory}",
             style: TextStyle(
-              fontSize: 22,
+              fontSize: Dimens.font_sp14,
               color: Colours.app_sub_black,
             ),
           ),
@@ -608,7 +613,7 @@ class _BookDetailPageState extends State<BookDetailPage>
           child: Text(
             "# ${bookDetail.smallCategory}",
             style: TextStyle(
-              fontSize: 22,
+              fontSize: Dimens.font_sp14,
               color: Colours.app_sub_black,
             ),
           ),
@@ -676,13 +681,20 @@ class _BookDetailPageState extends State<BookDetailPage>
           IconButton(
             icon: YhIcons.back,
             onPressed: () {
-              Navigator.pop(context);
+              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeNavigationBar()));
+              if(Navigator.of(context).widget.pages.length > 1) {
+                Navigator.pop(context);
+                // Navigator.popUntil(context, ModalRoute.withName('/'));
+              } else {
+                Navigator.pushNamed(context, "/navigation");
+              }
             },
           ),
           IconButton(
             icon: YhIcons.homeFill,
             onPressed: () {
-              Navigator.pushNamed(context, "/main");
+              // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeNavigationBar()));
+              Navigator.pushNamed(context, "/navigation");
             },
           ),
         ],
@@ -716,6 +728,31 @@ class _BookDetailPageState extends State<BookDetailPage>
             child: Image.asset("assets/images/${bookDetail.image}"),
           ),
         ),
+        Positioned(
+          left: 280,
+          top: 530,
+            child: InkWell(
+              onTap: (){
+                Navigator.pushNamed(context, "/viewer");
+              },
+              child: Container(
+          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
+          decoration: BoxDecoration(
+              border: Border.all(
+                color: Colours.app_sub_white,
+                width: 3,
+              ),
+              borderRadius: BorderRadius.circular(20),
+          ),
+          child: Text(
+              "미리보기",
+              style: TextStyle(
+                fontSize: Dimens.font_sp16,
+                color: Colours.app_sub_white,
+              ),
+          ),
+        ),
+            )),
       ],
     );
   }

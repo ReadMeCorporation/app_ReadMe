@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
+import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/yh_style_icons.dart';
 import 'package:readme_app/model/cart_mock_data.dart';
 import 'package:readme_app/view/page/main/main_page/components/main_page_body.dart';
@@ -66,12 +67,15 @@ class _MainPageState extends State<MainPage> {
               elevation: 1.0,
               pinned: true,
               bottom: TabBar(
+                labelStyle: TextStyle(fontWeight: FontWeight.w700, fontSize: Dimens.font_sp14),
+                indicatorColor: Colours.app_main,
+                indicatorWeight: 3,
                 indicatorSize: TabBarIndicatorSize.tab,
                 tabs: [
-                  Tab(text: "TEST"),
-                  Tab(text: "TEST"),
-                  Tab(text: "TEST"),
-                  Tab(text: "TEST"),
+                  Tab(text: "전체"),
+                  Tab(text: "베스트셀러"),
+                  Tab(text: "추천"),
+                  Tab(text: "신간"),
                 ],
               ),
             )
@@ -79,16 +83,7 @@ class _MainPageState extends State<MainPage> {
         },
         body: TabBarView(
             children: List.generate(4, (index) {
-          return ListView.builder(
-            itemBuilder: (context, index) {
-              return Container(
-                color: Colors.red,
-                height: 50,
-                child: Text("test"),
-              );
-            },
-            itemCount: 20,
-          );
+          return _views();
         })),
       ),
     );
@@ -104,86 +99,82 @@ class _MainPageState extends State<MainPage> {
   }
 
   Widget _mainBookList(int index) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        border: Border(
-          bottom: BorderSide(color: Colours.app_sub_darkgrey),
+    return InkWell(
+      onTap: () {
+        Navigator.pushNamed(context, "/bookDetail");
+      },
+      child: Container(
+        width: MediaQuery.of(context).size.width,
+        decoration: BoxDecoration(
+          border: Border(
+            bottom: BorderSide(color: Colours.app_sub_darkgrey),
+          ),
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Row(
-          children: [
-            Image.asset(
-              "assets/images/${cartList[index].image}",
-              width: 100,
-              height: 150,
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/bookDetail");
-                  },
-                  child: Text(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            children: [
+              Image.asset(
+                "assets/images/${cartList[index].image}",
+                width: 90,
+                height: 110,
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
                     "${cartList[index].title}",
                     style: TextStyle(
                       fontWeight: FontWeight.w700,
-                      fontSize: 20,
+                      fontSize: Dimens.font_sp18,
                     ),
                     overflow: TextOverflow.ellipsis,
                     maxLines: 100,
                   ),
-                  style: TextButton.styleFrom(
-                    minimumSize: Size.zero,
-                    padding: EdgeInsets.only(bottom: 7),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                  SizedBox(height: 10,),
+                  Text(
+                    "${cartList[index].author} | ${cartList[index].store}",
+                    style: TextStyle(fontSize: Dimens.font_sp14),
                   ),
-                ),
-                Text(
-                  "${cartList[index].author} | ${cartList[index].store}",
-                  style: TextStyle(fontSize: 16),
-                ),
-                Row(
-                  children: [
-                    YhIcons.star,
-                    Text(
-                      "${cartList[index].score}",
-                      style: TextStyle(fontSize: 16),
-                    ),
-                  ],
-                ),
-                Row(
-                  children: [
-                    Text("소장가 ${cartList[index].price}"),
-                    SizedBox(width: 100),
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      constraints: BoxConstraints(),
-                      onPressed: () {
-                        // 추후 추가
-                      },
-                      icon: YhIcons.heart,
-                    ),
-                    IconButton(
-                      padding: EdgeInsets.zero,
-                      constraints: BoxConstraints(),
-                      onPressed: () {
-                        Navigator.pushNamed(context, "/cart");
-                      },
-                      icon: YhIcons.cart2,
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ],
+                  Row(
+                    children: [
+                      YhIcons.star,
+                      Text(
+                        "${cartList[index].score}",
+                        style: TextStyle(fontSize: Dimens.font_sp14),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Text("소장가 ${cartList[index].price}", style: TextStyle(fontSize: Dimens.font_sp14),),
+                      SizedBox(width: 100),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
+                        onPressed: () {
+                          // 추후 추가
+                        },
+                        icon: YhIcons.heart,
+                      ),
+                      IconButton(
+                        padding: EdgeInsets.zero,
+                        constraints: BoxConstraints(),
+                        onPressed: () {
+                          Navigator.pushNamed(context, "/cart");
+                        },
+                        icon: YhIcons.cart2,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

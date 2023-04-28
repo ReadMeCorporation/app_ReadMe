@@ -18,6 +18,7 @@ class _CartPageState extends State<CartPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      // extendBodyBehindAppBar: true,
       floatingActionButton: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -27,9 +28,9 @@ class _CartPageState extends State<CartPage> {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8.0),
                 child: SizedBox(
-                  width: 50,
+                  width: 45,
                   child: FloatingActionButton(
-                    backgroundColor: Colours.app_main,
+                    backgroundColor: Colours.app_main.withOpacity(0.9),
                     onPressed: () {
                       // 기능 추가
                     },
@@ -47,7 +48,7 @@ class _CartPageState extends State<CartPage> {
           style: TextStyle(
               color: Colours.app_sub_black,
               fontWeight: FontWeight.w700,
-              fontSize: 22),
+              fontSize: Dimens.font_sp20),
         ),
         centerTitle: true,
         leading: Row(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
 import 'package:readme_app/core/constants/yh_style_icons.dart';
+import 'package:readme_app/view/components/home_navigation_bar.dart';
 import 'package:readme_app/view/page/alarm/alarm_page/components/alarm_page_body.dart';
 
 class AlarmPage extends StatelessWidget {
@@ -25,6 +26,7 @@ class AlarmPage extends StatelessWidget {
                     constraints: BoxConstraints(),
                     onPressed: () {
                       Navigator.pop(context);
+                      // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeNavigationBar()));
                     },
                     icon: HsStyleIcons.back),
                 IconButton(
@@ -32,6 +34,7 @@ class AlarmPage extends StatelessWidget {
                   constraints: BoxConstraints(),
                   onPressed: () {
                     Navigator.pushNamed(context, "/navigation");
+                    // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeNavigationBar()));
                   },
                   icon: HsStyleIcons.homeFill,),
               ],

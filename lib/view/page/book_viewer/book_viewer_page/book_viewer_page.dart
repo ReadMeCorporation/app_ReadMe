@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:readme_app/core/constants/move.dart';
+import 'package:readme_app/view/page/book_detail/book_detail_page/book_detail_page.dart';
 import 'package:readme_app/view/page/book_viewer/components/book_drawer_no_membership.dart';
+import 'package:readme_app/view/page/bookmark/bookmark_list_page/bookmark_list_page.dart';
 import '../../../../core/constants/colours.dart';
 import '../../../../core/constants/jh_style_icons.dart';
 import '../../../../util/epub/src/helpers/epub_document.dart';
@@ -79,6 +82,30 @@ class _MyEpubBook extends State<EpubBookContent> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: _showAppBarAndBottomSheet
+          ? AppBar(
+              centerTitle: true,
+              leading: IconButton(
+                icon: JHicons.back,
+                onPressed: () {
+                  if(Navigator.of(context).widget.pages.length > 1) {
+                    Navigator.pop(context);
+                  } else {
+                    Navigator.pushNamed(context, "/bookDetail");
+                  }
+                },
+              ),
+              backgroundColor: Colours.app_sub_white,
+              title: Text(
+                "스즈메의 문단속",
+                style: TextStyle(
+                    color: Colours.app_sub_black,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 22),
+              ),
+            )
+          : null,
       key: _scaffoldKey,
       endDrawer: _membership == false
           ? BookDrawerNoMembership(scaffoldKey: _scaffoldKey)
@@ -92,8 +119,10 @@ class _MyEpubBook extends State<EpubBookContent> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            buildAppBar(), /// Appbar
-            buildBookmark(), /// 북마크
+            // buildAppBar(), /// Appbar
+            buildBookmark(),
+
+            /// 북마크
             Expanded(
               // 책내용
               child: Center(
@@ -106,7 +135,9 @@ class _MyEpubBook extends State<EpubBookContent> {
                 ),
               ),
             ),
-            buildBottomSheet() /// BottomSheet
+            buildBottomSheet()
+
+            /// BottomSheet
           ],
         ),
       ),
@@ -159,28 +190,24 @@ class _MyEpubBook extends State<EpubBookContent> {
                     ),
                   ],
                 ),
-                Container(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 20.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Container(
-                          child: IconButton(
-                              onPressed: () {
-                                print("북마크 보관함으로 이동");
-                              },
-                              icon: JHicons.bookBox),
-                        ),
-                        Container(
-                          child: IconButton(
-                              onPressed: () {
-                                _scaffoldKey.currentState?.openEndDrawer();
-                              },
-                              icon: JHicons.hambuger),
-                        ),
-                      ],
-                    ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                          onTap: () {
+                              Navigator.pushNamed(context, "/bookmarkList");
+                          },
+                          child: JHicons.bookBox),
+                      Container(
+                        child: IconButton(
+                            onPressed: () {
+                              _scaffoldKey.currentState?.openEndDrawer();
+                            },
+                            icon: JHicons.hambuger),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -191,7 +218,7 @@ class _MyEpubBook extends State<EpubBookContent> {
     );
   }
 
-  Visibility buildBookmark() {
+  Widget buildBookmark() {
     return Visibility(
       visible: _isBookMark,
       child: Padding(
@@ -222,29 +249,26 @@ class _MyEpubBook extends State<EpubBookContent> {
     );
   }
 
-  Widget buildAppBar() {
-    return Visibility(
-      visible: _showAppBarAndBottomSheet,
-      child: AppBar(
-        backgroundColor: Colours.app_sub_white,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(child: JHicons.back),
-            SizedBox(),
-            Container(
-              child: Text(
-                "스즈메의 문단속",
-                style: TextStyle(
-                    color: Colours.app_sub_black,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 22),
-              ),
-            ),
-            SizedBox(),
-          ],
-        ),
-      ),
-    );
-  }
+  // Widget buildAppBar() {
+  //   return Visibility(
+  //     visible: _showAppBarAndBottomSheet,
+  //     child: AppBar(
+  //       centerTitle: true,
+  //       leading: IconButton(
+  //         icon: JHicons.back,
+  //         onPressed: () {
+  //           Navigator.pushNamed(context, "/bookDetail");
+  //         },
+  //       ),
+  //       backgroundColor: Colours.app_sub_white,
+  //       title: Text(
+  //         "스즈메의 문단속",
+  //         style: TextStyle(
+  //             color: Colours.app_sub_black,
+  //             fontWeight: FontWeight.w700,
+  //             fontSize: 22),
+  //       ),
+  //     ),
+  //   );
+  // }
 }

@@ -43,7 +43,6 @@ class Move {
   static String loginPage = "/login";
 
   static String bookDetailPage = "/bookDetail";
-
   static String modalButtonSheet = "/modalButtonSheet";
 }
 
