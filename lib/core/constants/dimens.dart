@@ -13,5 +13,4 @@ class Dimens {
   static const double font_sp40= 40.0;
   static const double font_sp50= 50.0;
   static const double font_sp60= 60.0;
-  static const double main_gap= 20.0;
 }
