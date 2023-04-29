@@ -28,19 +28,17 @@ class QuestionListPageViewModel
     questionModel.questions.addAll(data.questions);
     state = questionModel;
   }
-
-
 }
 
-final questionListPageProvider = StateNotifierProvider.autoDispose<
+final QuestionListPageProvider = StateNotifierProvider.autoDispose<
     QuestionListPageViewModel, QuestionListPageModel?>(
-      (ref) {
+  (ref) {
     return QuestionListPageViewModel(null)..notifyInit();
   },
 );
 
 QuestionListPageModel mockQuestionListPageModel =
-QuestionListPageModel(List.of([
+    QuestionListPageModel(List.of([
   Question(1, "구매한 책이 보관함에 없어용", "진행중", "2023.04.01"),
   Question(1, "구매한 책이 보관함에 없어용", "답변완료", "2023.04.01"),
   Question(1, "구매한 책이 보관함에 없어용", "진행중", "2023.04.01"),
@@ -49,3 +47,4 @@ QuestionListPageModel(List.of([
   Question(1, "구매한 책이 보관함에 없어용", "진행중", "2023.04.01"),
   Question(1, "구매한 책이 보관함에 없어용", "진행중", "2023.04.01"),
 ]));
+
