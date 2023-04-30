@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readme_app/core/constants/colours.dart';
-import 'package:readme_app/view/page/question_list/components/question_list_detail.dart';
-import 'package:readme_app/view/page/question_list/question_list_page_view_model.dart';
 
 class QuestionListPageBody extends ConsumerWidget {
   const QuestionListPageBody({Key? key}) : super(key: key);
@@ -10,8 +8,9 @@ class QuestionListPageBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-
-    QuestionListPageModel? model = ref.watch(QuestionListPageProvider);
+    //
+    // QuestionListPageModel? model = ref.watch(QuestionListPageProvider);
+    // Question question;
 
     return SingleChildScrollView(
       child: Padding(
@@ -22,7 +21,7 @@ class QuestionListPageBody extends ConsumerWidget {
               padding: const EdgeInsets.only(bottom: 8.0),
               child: InkWell(
                 onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => QuestionListDetail()),);
+                  Navigator.pushNamed(context, "/questionList");
                 },
                 child: Container(
                   padding: EdgeInsets.all(15),
