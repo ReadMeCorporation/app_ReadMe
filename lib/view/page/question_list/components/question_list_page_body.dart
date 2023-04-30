@@ -11,7 +11,7 @@ class QuestionListPageBody extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
 
-    QuestionListPageModel? model = ref.watch(questionListPageProvider);
+    QuestionListPageModel? model = ref.watch(QuestionListPageProvider);
 
     List<Question> question = [];
     if (model != null) {

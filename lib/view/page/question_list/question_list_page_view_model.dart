@@ -47,4 +47,3 @@ QuestionListPageModel mockQuestionListPageModel =
   Question(1, "구매한 책이 보관함에 없어용", "진행중", "2023.04.01"),
   Question(1, "구매한 책이 보관함에 없어용", "진행중", "2023.04.01"),
 ]));
-

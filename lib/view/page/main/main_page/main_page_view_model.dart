@@ -156,8 +156,6 @@ class MainPageModel {
 
   MainPageModel(this.bookBanners, this.totalBookTiles, this.bestBookTiles,
       this.recommendBookTiles, this.latestBookTiles);
-
-
 }
 
 class BookBanner {
