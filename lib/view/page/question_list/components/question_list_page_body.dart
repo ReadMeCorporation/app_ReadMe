@@ -12,6 +12,7 @@ class QuestionListPageBody extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     QuestionListPageModel? model = ref.watch(questionListPageProvider);
+
     List<Question> question = [];
     if (model != null) {
       question = model.questions;
@@ -21,7 +22,7 @@ class QuestionListPageBody extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(20.0),
         child: Column(
-          children: List.generate(10, (index) {
+          children: List.generate(question.length, (index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 8.0),
               child: InkWell(
@@ -40,10 +41,10 @@ class QuestionListPageBody extends ConsumerWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(model!.questions[index].time, style: TextStyle(
+                          Text(question[index].time, style: TextStyle(
                               fontWeight: FontWeight.w700
                           )),
-                          Text(model!.questions[index].status, style: TextStyle(
+                          Text(question[index].status, style: TextStyle(
                               color: Colours.app_sub_blue
                           ),),
                         ],
@@ -51,7 +52,7 @@ class QuestionListPageBody extends ConsumerWidget {
                       Divider(
                         thickness: 1,
                       ),
-                      Text("소장구매한 책이 보관함에 없어요"),
+                      Text(question[index].title),
                     ],
                   ),
                 ),

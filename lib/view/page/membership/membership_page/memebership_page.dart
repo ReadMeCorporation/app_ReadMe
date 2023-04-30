@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
-import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
-import 'package:readme_app/util/bootpay/bootpay_default.dart';
 import 'package:readme_app/util/bootpay/bootpay_subscribe.dart';
 import 'package:readme_app/view/page/membership/membership_page/components/membership_page_body.dart';
 

@@ -14,4 +14,5 @@ class QuestionController {
 
   // 한 건 조회
 
+
 }

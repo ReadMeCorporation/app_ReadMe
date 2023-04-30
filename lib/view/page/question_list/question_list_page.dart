@@ -16,8 +16,6 @@ class QuestionListPage extends ConsumerWidget {
   }
 
 
-
-
   AppBar _questionListAppbar(BuildContext context) {
     return AppBar(
       elevation: 2,
