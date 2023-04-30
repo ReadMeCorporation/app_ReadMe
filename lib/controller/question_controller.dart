@@ -5,11 +5,13 @@ final questionControllerProvider = Provider<QuestionController>((ref) {
   return QuestionController(ref);
 });
 
-
-class QuestionController{
+class QuestionController {
   final mContext = navigatorKey.currentContext;
   final Ref ref;
 
   QuestionController(this.ref);
+
+
+  // 한 건 조회
 
 }
