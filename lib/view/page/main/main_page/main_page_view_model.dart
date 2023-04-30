@@ -1,4 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:readme_app/model/book/book_repository.dart';
 
 enum BookSearchType{
   total, best, recommend, latest
@@ -18,7 +19,7 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
     // responseDTO.data.page.isLast = false
     // ref.read(mainPageProvider.notifier).notifyInit(mockMainPageModel, false);
     // Navigator.pop(mContext!);
-    var data = mockMainPageModel;
+    var data = BookRepository().mainResponse();
 
     mainPageModel.bookBanners.addAll(data.bookBanners);
     mainPageModel.totalBookTiles.addAll(data.totalBookTiles);
@@ -175,159 +176,3 @@ class BookTile {
   BookTile(this.id, this.path, this.title, this.author, this.store, this.price, this.isHart,
       this.star);
 }
-
-
-
-
-
-
-
-
-
-
-//
-
-MainPageModel mockMainPageModel = MainPageModel(
-  List.of([
-    BookBanner(
-        "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png"),
-    BookBanner(
-        "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png"),
-    BookBanner(
-        "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png")
-  ]),
-  List.of([
-    BookTile(
-        1,
-        "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-        "1984",
-        "조지오웰",
-        "그린",
-        15000,
-        false,
-        4.0),BookTile(
-        1,
-        "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-        "1984",
-        "조지오웰2",
-        "그린",
-        15000,
-        true,
-        4.0),BookTile(
-        1,
-        "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-        "1984",
-        "조지오웰3",
-        "그린",
-        15000,
-        false,
-        4.0),
-  ]),  List.of([
-  BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰",
-      "그린",
-      15000,
-      false,
-      4.0),BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰2",
-      "그린",
-      15000,
-      true,
-      4.0),BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰3",
-      "그린",
-      15000,
-      false,
-      4.0),
-]),  List.of([
-  BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰",
-      "그린",
-      15000,
-      false,
-      4.0),BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰2",
-      "그린",
-      15000,
-      true,
-      4.0),BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰3",
-      "그린",
-      15000,
-      false,
-      4.0),
-]),  List.of([
-  BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰",
-      "그린",
-      15000,
-      false,
-      4.0),BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰2",
-      "그린",
-      15000,
-      true,
-      4.0),BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰3",
-      "그린",
-      15000,
-      false,
-      4.0),
-]),
-);
-
-
-List<BookTile> responseBookList = List.of([
-  BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰",
-      "그린",
-      15000,
-      false,
-      4.0),BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰2",
-      "그린",
-      15000,
-      true,
-      4.0),BookTile(
-      1,
-      "https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png",
-      "1984",
-      "조지오웰3",
-      "그린",
-      15000,
-      false,
-      4.0),
-]);
