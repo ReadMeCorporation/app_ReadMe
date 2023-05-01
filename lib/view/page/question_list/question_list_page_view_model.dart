@@ -21,7 +21,6 @@ class QuestionListPageViewModel
     questionModel.questions.addAll(data);
     state = questionModel;
   }
-
 }
 
 final questionListPageProvider = StateNotifierProvider.autoDispose<

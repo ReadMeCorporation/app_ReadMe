@@ -1,8 +1,8 @@
 import 'package:readme_app/model/book_banner/banner.dart';
-import 'package:readme_app/model/pageable.dart';
-import 'package:readme_app/model/sort.dart';
+import 'package:readme_app/model/pageable/pageable.dart';
+import 'package:readme_app/model/sort/sort.dart';
 
-import 'book/book.dart';
+import '../model/book/book.dart';
 
 class MainDTO  {
   BookBanner bookBanner;
