@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readme_app/main.dart';
 import 'package:readme_app/model/book/book_repository.dart';
 import 'package:readme_app/provider/session_provider.dart';
+import 'package:readme_app/view/page/content_box/content_box_page/content_box_view_model.dart';
 import 'package:readme_app/view/page/main/main_page/main_page_view_model.dart';
 
 final bookControllerProvider = Provider<BookController>((ref) {
@@ -24,6 +25,18 @@ class BookController {
       // responseDTO.data.page.isLast = false
       var responseBookList = BookRepository().getBookList(1, type.toString());
       ref.read(mainPageProvider.notifier).search(type, responseBookList, false);
+      isDuplication = false;
+    }
+  }
+
+  Future<void> searchContentBox(ContentBoxSearchType type) async {
+    if (!isDuplication) {
+      isDuplication = true;
+      // 통신 할때 await
+      // responseDTO.data = responseBookList
+      // responseDTO.data.page.isLast = false
+      var responseBookList = BookRepository().mockContentPageModel();
+      ref.read(contentBoxPageProvider.notifier).searchContentBox(type, responseBookList, false);
       isDuplication = false;
     }
   }
