@@ -4,7 +4,7 @@ class Publisher {
   final int id;
   final String username;
   final String role;
-  final int businessNumber;
+  final String businessNumber;
   final String businessName;
   final DateTime joinTime;
   final String status;

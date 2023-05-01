@@ -1,8 +1,8 @@
 class FileDTO {
-  final int id;
-  final String fileName;
-  final String fileUrl;
-  final String status;
+   int id;
+   String fileName;
+   String fileUrl;
+   String status;
 
   FileDTO(
       {required this.id,

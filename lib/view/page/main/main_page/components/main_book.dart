@@ -92,7 +92,7 @@ class MainBook extends ConsumerWidget {
                         children: [
                           YhIcons.star,
                           Text(
-                            book?.score.toString() ?? "",
+                            book?.stars.toString() ?? "",
                             style: TextStyle(fontSize: Dimens.font_sp14),
                           ),
                         ],

@@ -12,8 +12,11 @@ class MainAdScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     MainPageModel? model = ref.watch(mainPageProvider);
+    List<FileDTO> bannerFile = [];
 
-    List<FileDTO> bannerFile = model!.bookBanners;
+    if(model != null) {
+      bannerFile = model.bookBanners;
+    }
 
     return Container(
       height: 450,
