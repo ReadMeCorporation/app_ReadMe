@@ -24,7 +24,6 @@ class Book {
   final BigCategory bigCategory; // id
   final SmallCategory smallCategory; // id
   final String authorinfo;
-  final String status; // 비활성화 데이터 주지마
   final FileInfo fileInfo; // id
 
   Book({
@@ -38,7 +37,6 @@ class Book {
     required this.bigCategory,
     required this.smallCategory,
     required this.authorinfo,
-    required this.status,
     required this.fileInfo,
   });
 
@@ -53,7 +51,6 @@ class Book {
         "bigCategory": bigCategory,
         "smallCategory": smallCategory,
         "authorinfo": authorinfo,
-        "status": status,
         "fileInfo": fileInfo,
       };
 
@@ -68,6 +65,5 @@ class Book {
         bigCategory = BigCategory.fromJson(json["bigCategory"]),
         smallCategory = SmallCategory.fromJson(json["smallCategory"]),
         authorinfo = json["authorinfo"],
-        status = json["status"],
         fileInfo = FileInfo.fromJson(json["fileInfo"]);
 }
