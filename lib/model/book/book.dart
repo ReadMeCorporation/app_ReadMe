@@ -5,15 +5,15 @@ import 'package:readme_app/model/publisher/publisher.dart';
 import 'package:readme_app/model/small_category/small_category.dart';
 
 class Book {
-  final int id;
-  final Publisher publisher;
-  final String title;
-  final String author;
+   int id;
+   Publisher publisher;
+   String title;
+   String author;
   int price;
   String introduction;
   BigCategory bigCategory; // id
   SmallCategory smallCategory; // id
-  String authorinfo;
+  String authorInfo;
   bool isHeart;
   double stars;
   List<FileDTO> fileDTO; // id
@@ -28,7 +28,7 @@ class Book {
     required this.introduction,
     required this.bigCategory,
     required this.smallCategory,
-    required this.authorinfo,
+    required this.authorInfo,
     required this.isHeart,
     required this.stars,
     required this.fileDTO,
@@ -45,24 +45,25 @@ class Book {
         "introduction": introduction,
         "bigCategory": bigCategory,
         "smallCategory": smallCategory,
-        "authorinfo": authorinfo,
+        "authorInfo": authorInfo,
         "isHeart": isHeart,
-        "score": stars,
+        "stars": stars,
         "fileInfo": fileDTO,
       };
 
 
-  Book.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
-        publisher = Publisher.fromJson(json["publisher"]),
-        title = json["title"],
-        author = json["author"],
-        price = json["price"],
-        introduction = json["introduction"],
-        bigCategory = BigCategory.fromJson(json["bigCategory"]),
-        smallCategory = SmallCategory.fromJson(json["smallCategory"]),
-        authorinfo = json["authorinfo"],
-        isHeart = json["isHeart"],
-        stars = json["stars"],
-        fileDTO = json["fileDTO"].map((e) => FileDTO.fromJson(e)).toList();
+  factory Book.fromJson(Map<String, dynamic> json) {
+    return Book(id: json["id"],
+        publisher: Publisher.fromJson(json["publisher"]),
+        title: json["title"],
+        author: json["author"],
+        price: json["price"],
+        introduction: json["introduction"],
+        bigCategory: BigCategory.fromJson(json["bigCategory"]),
+        smallCategory: SmallCategory.fromJson(json["smallCategory"]),
+        authorInfo: json["authorInfo"],
+        isHeart: json["isHeart"],
+        stars: json["stars"],
+        fileDTO: json["fileDTO"].map((e) => FileDTO.fromJson(e)).toList());
+  }
 }

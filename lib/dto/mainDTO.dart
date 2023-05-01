@@ -5,12 +5,11 @@ import 'package:readme_app/model/sort/sort.dart';
 import '../model/book/book.dart';
 
 class MainDTO  {
-  BookBanner bookBanner;
-  List<Book> content;
+  List<Book>? content;
   Pageable pageable;
   bool last;
-  final int totalElements;
-  final int totalPages;
+   int totalElements;
+   int totalPages;
   int number;
   Sort sort;
   bool first;
@@ -18,23 +17,23 @@ class MainDTO  {
   int size;
   bool empty;
 
+
+
   MainDTO(
-      this.bookBanner,
-      this.content,
-      this.pageable,
-      this.last,
-      this.totalElements,
-      this.totalPages,
-      this.number,
-      this.sort,
-      this.first,
-      this.numberOfElements,
-      this.size,
-      this.empty);
+      {required this.content,
+      required this.pageable,
+      required this.last,
+      required this.totalElements,
+      required this.totalPages,
+      required this.number,
+      required this.sort,
+      required this.first,
+      required this.numberOfElements,
+      required this.size,
+      required this.empty});
 
 
   Map<String, dynamic> toJson() => {
-    "bookBanner": bookBanner,
     "content": content,
     "pageable": pageable,
     "last": last,
@@ -49,17 +48,38 @@ class MainDTO  {
   };
 
 
-  MainDTO.fromJson(Map<String, dynamic> json)
-      : bookBanner = json["bookBanner"].map((e) => BookBanner.fromJson(e)).toList(),
-        content = json["content"].map((e) => Book.fromJson(e)).toList(),
-        pageable = Pageable.fromJson(json["pageable"]),
-        last = json["last"],
-        totalElements = json["totalElements"],
-        totalPages = json["totalPages"],
-        number = json["number"],
-        sort = Sort.fromJson(json["sort"]),
-        first = json["first"],
-        numberOfElements = json["numberOfElements"],
-        size = json["size"],
-        empty = json["empty"];
+  // MainDTO.fromJson(Map<String, dynamic> json)
+  //     :
+  //       content = json["content"].map((e) => Book.fromJson(e)).toList(),
+  //       pageable = Pageable.fromJson(json["pageable"]),
+  //       last = json["last"],
+  //       totalElements = json["totalElements"],
+  //       totalPages = json["totalPages"],
+  //       number = json["number"],
+  //       sort = Sort.fromJson(json["sort"]),
+  //       first = json["first"],
+  //       numberOfElements = json["numberOfElements"],
+  //       size = json["size"],
+  //       empty = json["empty"];
+  factory MainDTO.fromJson(Map<String, dynamic> json) {
+    print("haha:" + json.toString());
+    print(json["totalPages"]);
+    print(json["content"][0]);
+    var mainDTO = MainDTO (
+          // content: json["content"].map((e) => Book.fromJson(e)).toList(),
+          content: null,
+          pageable: Pageable.fromJson(json["pageable"]),
+          last : json["last"],
+          totalElements : json["totalElements"],
+          totalPages:  json["totalPages"],
+          number:  json["number"],
+          sort : Sort.fromJson(json["sort"]),
+          first : json["first"],
+          numberOfElements : json["numberOfElements"],
+          size : json["size"],
+          empty : json["empty"]
+    );
+    print("mainDTO:" + mainDTO.content.toString());
+    return mainDTO;
+  }
 }
