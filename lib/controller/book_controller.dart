@@ -1,13 +1,8 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:readme_app/core/constants/http.dart';
+import 'package:readme_app/dto/mainDTO.dart';
 import 'package:readme_app/dto/response_dto.dart';
 import 'package:readme_app/main.dart';
-import 'package:readme_app/model/book/book.dart';
 import 'package:readme_app/model/book/book_repository.dart';
-import 'package:readme_app/dto/mainDTO.dart';
-import 'package:readme_app/model/pageable/pageable.dart';
-import 'package:readme_app/model/sort/sort.dart';
 import 'package:readme_app/provider/session_provider.dart';
 import 'package:readme_app/view/page/main/main_page/main_page_view_model.dart';
 
@@ -26,14 +21,17 @@ class BookController {
   Future<void> search(BookSearchType type) async {
     if (!isDuplication) {
       isDuplication = true;
-      var responseDTO =  await BookRepository().mainList(type);
+      // 통신 할때 await
+      // responseDTO.data = responseBookList
+      // responseDTO.data.page.isLast = false
+      ResponseDTO responseDTO = await BookRepository().mainList(type);
       MainDTO mainDTO = responseDTO.data;
       ref.read(mainPageProvider.notifier).search(type, mainDTO);
       isDuplication = false;
     }
   }
 
-// 페이지
+
   Future<void> pageSearch(
       BookSearchType type,
       int page
@@ -43,7 +41,7 @@ class BookController {
       // 통신 할때 await
       // responseDTO.data = responseBookList
       // responseDTO.data.page.isLast = false
-      var responseDTO = await BookRepository().searchMainListPage(page, type);
+      ResponseDTO responseDTO =  await BookRepository().searchMainListPage(page, type);
       MainDTO mainDTO = responseDTO.data;
       ref.read(mainPageProvider.notifier).pageSearch(type, mainDTO, page);
       isDuplication = false;

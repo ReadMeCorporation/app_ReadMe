@@ -12,7 +12,7 @@ class MainAdScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     MainPageModel? model = ref.watch(mainPageProvider);
-    List<FileDTO> bannerFile = [];
+    List<String> bannerFile = [];
 
     if(model != null) {
       bannerFile = model.bookBanners;
@@ -33,7 +33,7 @@ class MainAdScreen extends ConsumerWidget {
             children: [
               ImageFiltered(
                   imageFilter: ImageFilter.blur(sigmaX: 40, sigmaY: 10),
-                  child: Image.network(bannerFile[index].fileUrl ?? "")
+                  child: Image.network(bannerFile[index] ?? "")
               ),
               Padding(
                 padding: const EdgeInsets.all(40.0),
@@ -42,7 +42,7 @@ class MainAdScreen extends ConsumerWidget {
                   width: 500,
                   child: Padding(
                     padding: EdgeInsets.all(20),
-                    child: Image.network(bannerFile[index].fileUrl ?? ""),
+                    child: Image.network(bannerFile[index] ?? ""),
                   ),
                 ),
               ),

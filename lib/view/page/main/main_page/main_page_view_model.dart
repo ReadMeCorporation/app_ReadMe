@@ -24,31 +24,41 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
     // Navigator.pop(mContext!);
     ResponseDTO totalResponse =
         await BookRepository().mainList(BookSearchType.total);
-    ResponseDTO bestResponse =
-        await BookRepository().mainList(BookSearchType.best);
-    ResponseDTO recommendResponse =
-        await BookRepository().mainList(BookSearchType.recommend);
-    ResponseDTO latestResponse =
-        await BookRepository().mainList(BookSearchType.latest);
+    // ResponseDTO bestResponse =
+    //     await BookRepository().mainList(BookSearchType.best);
+    // ResponseDTO recommendResponse =
+    //     await BookRepository().mainList(BookSearchType.recommend);
+    // ResponseDTO latestResponse =
+    //     await BookRepository().mainList(BookSearchType.latest);
+    // ResponseDTO bannerList = await BookRepository().getBanner();
 
+    print(totalResponse.data.toString());
+    print(totalResponse.code);
     MainDTO totalMainDTO = totalResponse.data;
-    MainDTO bestMainDTO = bestResponse.data;
-    MainDTO recommendMainDTO = recommendResponse.data;
-    MainDTO latestMainDTO = latestResponse.data;
+    // MainDTO bestMainDTO = bestResponse.data;
+    // MainDTO recommendMainDTO = recommendResponse.data;
+    // MainDTO latestMainDTO = latestResponse.data;
+    // MainDTO bannerDTO = bannerList.data;
+    // List<String> banners = [];
+    //
+    // // bannerDTO.content.forEach((element) => banners.addAll(element.fileDTO[0].fileUrl));
+    // bannerDTO.content.forEach((element) => banners.addAll(element.fileDTO[1].fileUrl as Iterable<String>));
 
-    mainPageModel.totalBooks.addAll(totalMainDTO.content);
-    mainPageModel.bestBooks.addAll(bestMainDTO.content);
-    mainPageModel.recommendBooks.addAll(recommendMainDTO.content);
-    mainPageModel.latestBooks.addAll(latestMainDTO.content);
+    // List<String> bannerUrl = bannerDTO.content
+    //     .forEach((e) => e.fileDTO.forEach((element) => element.fileUrl))
+    //     .toString();
 
-    mainPageModel.bookBanners.addAll(totalMainDTO.bookBanner.fileDTOList);
-
-    // mainPageModel.bookBanners.addAll(data.bookBanners);
+    // mainPageModel.totalBooks.addAll(totalMainDTO?.content);
+    // mainPageModel.bestBooks.addAll(bestMainDTO.content);
+    // mainPageModel.recommendBooks.addAll(recommendMainDTO.content);
+    // mainPageModel.latestBooks.addAll(latestMainDTO.content);
+    //
+    // mainPageModel.bookBanners.addAll(banners);
 
     mainPageModel.isTotalLast = totalMainDTO.last;
-    mainPageModel.isBestLast = bestMainDTO.last;
-    mainPageModel.isRecommendLast = recommendMainDTO.last;
-    mainPageModel.isLatestLast = latestMainDTO.last;
+    // mainPageModel.isBestLast = bestMainDTO.last;
+    // mainPageModel.isRecommendLast = recommendMainDTO.last;
+    // mainPageModel.isLatestLast = latestMainDTO.last;
 
     state = mainPageModel;
   }
@@ -57,13 +67,13 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
   void search(BookSearchType type, MainDTO mainDTO) {
     // response 결과
     if (mainDTO.first && type == BookSearchType.best) {
-      mainPageModel.bestBooks.addAll(mainDTO.content);
+      // mainPageModel.bestBooks.addAll(mainDTO.content);
       mainPageModel.isTotalLast = mainDTO.last;
     } else if (mainDTO.first && type == BookSearchType.recommend) {
-      mainPageModel.recommendBooks.addAll(mainDTO.content);
+      // mainPageModel.recommendBooks.addAll(mainDTO.content);
       mainPageModel.isRecommendLast = mainDTO.last;
     } else if (mainDTO.first && type == BookSearchType.latest) {
-      mainPageModel.latestBooks.addAll(mainDTO.content);
+      // mainPageModel.latestBooks.addAll(mainDTO.content);
       mainPageModel.isLatestLast = mainDTO.last;
     }
   }
@@ -84,7 +94,7 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
 
       final List<Book> totalBooks = [...state!.totalBooks];
-      totalBooks.addAll(mainDTO.content);
+      // totalBooks.addAll(mainDTO.content);
 
       newObject.totalBooks = totalBooks;
       newObject.bestBooks = state!.bestBooks;
@@ -98,7 +108,7 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
     } else if (type == BookSearchType.best) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
       final List<Book> bestBooks = [...state!.bestBooks];
-      bestBooks.addAll(mainDTO.content);
+      // bestBooks.addAll(mainDTO.content);
 
       newObject.bestBooks = bestBooks;
       newObject.totalBooks = state!.totalBooks;
@@ -112,7 +122,7 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
     } else if (type == BookSearchType.recommend) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
       final List<Book> recommendBooks = [...state!.recommendBooks];
-      recommendBooks.addAll(mainDTO.content);
+      // recommendBooks.addAll(mainDTO.content);
 
       newObject.recommendBooks = recommendBooks;
       newObject.totalBooks = state!.totalBooks;
@@ -126,7 +136,7 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
     } else if (type == BookSearchType.latest) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
       final List<Book> latestBooks = [...state!.latestBooks];
-      latestBooks.addAll(mainDTO.content);
+      // latestBooks.addAll(mainDTO.content);
 
       newObject.latestBooks = latestBooks;
       newObject.totalBooks = state!.totalBooks;
@@ -175,7 +185,7 @@ class MainPageModel {
   var isRecommendLast = false;
   var isLatestLast = false;
 
-  List<FileDTO> bookBanners = [];
+  List<String> bookBanners = [];
   List<Book> totalBooks = [];
   List<Book> bestBooks = [];
   List<Book> recommendBooks = [];
