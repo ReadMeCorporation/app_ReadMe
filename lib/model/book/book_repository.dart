@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:readme_app/core/constants/http.dart';
 import 'package:readme_app/dto/response_dto.dart';
-import 'package:readme_app/model/mainDTO.dart';
+import 'package:readme_app/dto/mainDTO.dart';
 import 'package:readme_app/view/page/main/main_page/main_page_view_model.dart';
 
 class BookRepository {

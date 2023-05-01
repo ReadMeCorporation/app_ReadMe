@@ -1,4 +1,4 @@
-import 'package:readme_app/model/sort.dart';
+import 'package:readme_app/model/sort/sort.dart';
 
 class Pageable {
   Sort sort;

@@ -4,7 +4,7 @@ import 'package:readme_app/model/book/book.dart';
 import 'package:readme_app/model/book/book_repository.dart';
 import 'package:readme_app/model/book_banner/banner.dart';
 import 'package:readme_app/model/file_info/file_info.dart';
-import 'package:readme_app/model/mainDTO.dart';
+import 'package:readme_app/dto/mainDTO.dart';
 
 enum BookSearchType { total, best, recommend, latest }
 

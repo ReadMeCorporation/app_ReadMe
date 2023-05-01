@@ -5,9 +5,9 @@ import 'package:readme_app/dto/response_dto.dart';
 import 'package:readme_app/main.dart';
 import 'package:readme_app/model/book/book.dart';
 import 'package:readme_app/model/book/book_repository.dart';
-import 'package:readme_app/model/mainDTO.dart';
-import 'package:readme_app/model/pageable.dart';
-import 'package:readme_app/model/sort.dart';
+import 'package:readme_app/dto/mainDTO.dart';
+import 'package:readme_app/model/pageable/pageable.dart';
+import 'package:readme_app/model/sort/sort.dart';
 import 'package:readme_app/provider/session_provider.dart';
 import 'package:readme_app/view/page/main/main_page/main_page_view_model.dart';
 
