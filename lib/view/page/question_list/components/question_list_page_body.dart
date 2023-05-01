@@ -43,7 +43,7 @@ class QuestionListPageBody extends ConsumerWidget {
                               fontWeight: FontWeight.w700
                           )),
                           Text(question[index].status, style: TextStyle(
-                              color: Colours.app_sub_blue
+                              color: question[index].status == '진행중' ? Colours.app_sub_blue : Colours.app_sub_darkgrey
                           ),),
                         ],
                       ),
