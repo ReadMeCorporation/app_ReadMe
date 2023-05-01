@@ -15,7 +15,7 @@ class Book {
   SmallCategory smallCategory; // id
   String authorinfo;
   bool isHeart;
-  double score;
+  double stars;
   List<FileDTO> fileDTO; // id
 
 
@@ -30,7 +30,7 @@ class Book {
     required this.smallCategory,
     required this.authorinfo,
     required this.isHeart,
-    required this.score,
+    required this.stars,
     required this.fileDTO,
   });
 
@@ -47,7 +47,7 @@ class Book {
         "smallCategory": smallCategory,
         "authorinfo": authorinfo,
         "isHeart": isHeart,
-        "score": score,
+        "score": stars,
         "fileInfo": fileDTO,
       };
 
@@ -63,6 +63,6 @@ class Book {
         smallCategory = SmallCategory.fromJson(json["smallCategory"]),
         authorinfo = json["authorinfo"],
         isHeart = json["isHeart"],
-        score = json["score"],
+        stars = json["stars"],
         fileDTO = json["fileDTO"].map((e) => FileDTO.fromJson(e)).toList();
 }

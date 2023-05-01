@@ -14,13 +14,18 @@ class BookRepository {
   BookRepository._single();
 
   Future<ResponseDTO> mainList(BookSearchType type) async {
+    String endPoint = "/" + type.name;
+    if(type == "total" || type == "latest") {
+      endPoint = "";
+    }
     try {
       // 경로 수정 = $type
       Response response =
-          await dio.get("http://43.200.163.130/books?");
+          await dio.get("http://43.200.163.130:8080/books" + endPoint + "?page=1&size=10");
       ResponseDTO responseDto = ResponseDTO.fromJson(response.data);
       MainDTO mainDTO = MainDTO.fromJson(responseDto.data);
       responseDto.data = mainDTO;
+
       return responseDto;
     } catch (e) {
       return ResponseDTO(code: -1, msg: "실패 : ${e}");
@@ -30,7 +35,7 @@ class BookRepository {
   Future<ResponseDTO> searchMainListPage(int page, BookSearchType type) async {
     try {
       // 경로 수정 $type & $page
-      Response response = await dio.get("http://43.200.163.130/books/");
+      Response response = await dio.get("http://43.200.163.130/books/${type}");
 
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       MainDTO mainDTO = MainDTO.fromJson(responseDTO.data);
