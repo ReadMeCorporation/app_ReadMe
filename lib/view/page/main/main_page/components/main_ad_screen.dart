@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:readme_app/model/book_banner/banner.dart';
+import 'package:readme_app/model/file_info/file_info.dart';
 import 'package:readme_app/view/page/main/main_page/main_page_view_model.dart';
 
 class MainAdScreen extends ConsumerWidget {
@@ -10,6 +12,8 @@ class MainAdScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     MainPageModel? model = ref.watch(mainPageProvider);
+
+    List<FileDTO> bannerFile = model!.bookBanners;
 
     return Container(
       height: 450,
@@ -20,13 +24,13 @@ class MainAdScreen extends ConsumerWidget {
         // autoplayDelay: 5,
         controller: SwiperController(),
         pagination: SwiperPagination(),
-        itemCount: model?.bookBanners.length ?? 0,
+        itemCount: bannerFile.length ?? 0,
         itemBuilder: (BuildContext context, int index) {
           return Stack(
             children: [
               ImageFiltered(
                   imageFilter: ImageFilter.blur(sigmaX: 40, sigmaY: 10),
-                  child: Image.network(model?.bookBanners[index].path ?? "")
+                  child: Image.network(bannerFile[index].fileUrl ?? "")
               ),
               Padding(
                 padding: const EdgeInsets.all(40.0),
@@ -35,7 +39,7 @@ class MainAdScreen extends ConsumerWidget {
                   width: 500,
                   child: Padding(
                     padding: EdgeInsets.all(20),
-                    child: Image.network(model?.bookBanners[index].path ?? ""),
+                    child: Image.network(bannerFile[index].fileUrl ?? ""),
                   ),
                 ),
               ),

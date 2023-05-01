@@ -1,17 +1,25 @@
-class FileInfo {
+class FileDTO {
   final int id;
-  final String type;
+  final String fileName;
+  final String fileUrl;
+  final String status;
 
-  FileInfo({required this.id, required this.type});
-
+  FileDTO(
+      {required this.id,
+      required this.fileName,
+      required this.fileUrl,
+      required this.status});
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "type": type,
-  };
+        "id": id,
+        "fileName": fileName,
+        "fileUrl": fileUrl,
+        "status": status,
+      };
 
-
-  FileInfo.fromJson(Map<String, dynamic> json)
+  FileDTO.fromJson(Map<String, dynamic> json)
       : id = json["id"],
-        type = json["type"];
+        fileName = json["fileName"],
+        fileUrl = json["fileUrl"],
+        status = json["status"];
 }

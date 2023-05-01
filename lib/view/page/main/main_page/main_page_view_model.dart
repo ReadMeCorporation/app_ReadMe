@@ -1,9 +1,12 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:readme_app/dto/response_dto.dart';
+import 'package:readme_app/model/book/book.dart';
 import 'package:readme_app/model/book/book_repository.dart';
+import 'package:readme_app/model/book_banner/banner.dart';
+import 'package:readme_app/model/file_info/file_info.dart';
+import 'package:readme_app/model/mainDTO.dart';
 
-enum BookSearchType{
-  total, best, recommend, latest
-}
+enum BookSearchType { total, best, recommend, latest }
 
 // Controller에서 값을 받은뒤 reponse를 화면 model로 변경하는 작업 (로직)
 class MainPageViewModel extends StateNotifier<MainPageModel?> {
@@ -19,96 +22,119 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
     // responseDTO.data.page.isLast = false
     // ref.read(mainPageProvider.notifier).notifyInit(mockMainPageModel, false);
     // Navigator.pop(mContext!);
-    var data = BookRepository().mainResponse();
+    ResponseDTO totalResponse =
+        await BookRepository().mainList(BookSearchType.total);
+    ResponseDTO bestResponse =
+        await BookRepository().mainList(BookSearchType.best);
+    ResponseDTO recommendResponse =
+        await BookRepository().mainList(BookSearchType.recommend);
+    ResponseDTO latestResponse =
+        await BookRepository().mainList(BookSearchType.latest);
 
-    mainPageModel.bookBanners.addAll(data.bookBanners);
-    mainPageModel.totalBookTiles.addAll(data.totalBookTiles);
-    mainPageModel.isTotalLast = false;
+    MainDTO totalMainDTO = totalResponse.data;
+    MainDTO bestMainDTO = bestResponse.data;
+    MainDTO recommendMainDTO = recommendResponse.data;
+    MainDTO latestMainDTO = latestResponse.data;
+
+    mainPageModel.totalBooks.addAll(totalMainDTO.content);
+    mainPageModel.bestBooks.addAll(bestMainDTO.content);
+    mainPageModel.recommendBooks.addAll(recommendMainDTO.content);
+    mainPageModel.latestBooks.addAll(latestMainDTO.content);
+
+    mainPageModel.bookBanners.addAll(totalMainDTO.bookBanner.fileDTOList);
+
+    // mainPageModel.bookBanners.addAll(data.bookBanners);
+
+    mainPageModel.isTotalLast = totalMainDTO.last;
+    mainPageModel.isBestLast = bestMainDTO.last;
+    mainPageModel.isRecommendLast = recommendMainDTO.last;
+    mainPageModel.isLatestLast = latestMainDTO.last;
+
     state = mainPageModel;
   }
 
   // 최초 조회 시
-  void search (BookSearchType type, List<BookTile> data, bool isLast) {
+  void search(BookSearchType type, MainDTO mainDTO) {
     // response 결과
-    if (mainPageModel.bestBookTiles.isEmpty && type == BookSearchType.best) {
-      mainPageModel.bestBookTiles.addAll(data);
-      mainPageModel.isTotalLast = isLast;
-    } else if (mainPageModel.recommendBookTiles.isEmpty && type == BookSearchType.recommend) {
-      mainPageModel.recommendBookTiles.addAll(data);
-      mainPageModel.isRecommendLast = isLast;
-    } else if (mainPageModel.latestBookTiles.isEmpty && type == BookSearchType.latest) {
-      mainPageModel.latestBookTiles.addAll(data);
-      mainPageModel.isLatestLast = isLast;
+    if (mainDTO.first && type == BookSearchType.best) {
+      mainPageModel.bestBooks.addAll(mainDTO.content);
+      mainPageModel.isTotalLast = mainDTO.last;
+    } else if (mainDTO.first && type == BookSearchType.recommend) {
+      mainPageModel.recommendBooks.addAll(mainDTO.content);
+      mainPageModel.isRecommendLast = mainDTO.last;
+    } else if (mainDTO.first && type == BookSearchType.latest) {
+      mainPageModel.latestBooks.addAll(mainDTO.content);
+      mainPageModel.isLatestLast = mainDTO.last;
     }
   }
 
-  void pageSearch (
-      BookSearchType type,
-      List<BookTile> data,
-      bool isLast,
-      int page
-  ) {
+  void pageSearch(BookSearchType type, MainDTO mainDTO, int page) {
     if (type == BookSearchType.total) {
       mainPageModel.totalPage = page;
     } else if (type == BookSearchType.best) {
       mainPageModel.bestPage = page;
     } else if (type == BookSearchType.recommend) {
       mainPageModel.recommendPage = page;
-    } else  if (type == BookSearchType.latest) {
-      mainPageModel.latestPage= page;
+    } else if (type == BookSearchType.latest) {
+      mainPageModel.latestPage = page;
     }
 
     // response 결과
     if (type == BookSearchType.total) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
-      final List<BookTile> bookTiles = [...state!.totalBookTiles];
-      bookTiles.addAll(data);
 
-      newObject.totalBookTiles = bookTiles;
-      newObject.bestBookTiles = state!.bestBookTiles;
-      newObject.recommendBookTiles = state!.recommendBookTiles;
-      newObject.latestBookTiles = state!.latestBookTiles;
+      final List<Book> totalBooks = [...state!.totalBooks];
+      totalBooks.addAll(mainDTO.content);
 
-      changeIsLast(newObject, isLast, state!.isBestLast, state!.isRecommendLast, state!.isLatestLast);
+      newObject.totalBooks = totalBooks;
+      newObject.bestBooks = state!.bestBooks;
+      newObject.recommendBooks = state!.recommendBooks;
+      newObject.latestBooks = state!.latestBooks;
+
+      changeIsLast(newObject, mainDTO.last, state!.isBestLast,
+          state!.isRecommendLast, state!.isLatestLast);
       changeCommon(newObject);
       state = newObject;
     } else if (type == BookSearchType.best) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
-      final List<BookTile> bookTiles = [...state!.bestBookTiles];
-      bookTiles.addAll(data);
+      final List<Book> bestBooks = [...state!.bestBooks];
+      bestBooks.addAll(mainDTO.content);
 
-      newObject.bestBookTiles = bookTiles;
-      newObject.totalBookTiles     = state!.totalBookTiles;
-      newObject.recommendBookTiles = state!.recommendBookTiles;
-      newObject.latestBookTiles    = state!.latestBookTiles;
+      newObject.bestBooks = bestBooks;
+      newObject.totalBooks = state!.totalBooks;
+      newObject.recommendBooks = state!.recommendBooks;
+      newObject.latestBooks = state!.latestBooks;
 
-      changeIsLast(newObject, state!.isTotalLast, isLast, state!.isRecommendLast, state!.isLatestLast);
+      changeIsLast(newObject, state!.isTotalLast, mainDTO.last,
+          state!.isRecommendLast, state!.isLatestLast);
       changeCommon(newObject);
       state = newObject;
     } else if (type == BookSearchType.recommend) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
-      final List<BookTile> bookTiles = [...state!.recommendBookTiles];
-      bookTiles.addAll(data);
+      final List<Book> recommendBooks = [...state!.recommendBooks];
+      recommendBooks.addAll(mainDTO.content);
 
-      newObject.recommendBookTiles = bookTiles;
-      newObject.totalBookTiles = state!.totalBookTiles;
-      newObject.bestBookTiles = state!.bestBookTiles;
-      newObject.latestBookTiles = state!.latestBookTiles;
+      newObject.recommendBooks = recommendBooks;
+      newObject.totalBooks = state!.totalBooks;
+      newObject.bestBooks = state!.bestBooks;
+      newObject.latestBooks = state!.latestBooks;
 
-      changeIsLast(newObject, state!.isTotalLast, state!.isBestLast, isLast, state!.isLatestLast);
+      changeIsLast(newObject, state!.isTotalLast, state!.isBestLast,
+          mainDTO.last, state!.isLatestLast);
       changeCommon(newObject);
       state = newObject;
     } else if (type == BookSearchType.latest) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
-      final List<BookTile> bookTiles = [...state!.latestBookTiles];
-      bookTiles.addAll(data);
+      final List<Book> latestBooks = [...state!.latestBooks];
+      latestBooks.addAll(mainDTO.content);
 
-      newObject.latestBookTiles = bookTiles;
-      newObject.totalBookTiles = state!.totalBookTiles;
-      newObject.bestBookTiles = state!.bestBookTiles;
-      newObject.recommendBookTiles = state!.recommendBookTiles;
+      newObject.latestBooks = latestBooks;
+      newObject.totalBooks = state!.totalBooks;
+      newObject.bestBooks = state!.bestBooks;
+      newObject.recommendBooks = state!.recommendBooks;
 
-      changeIsLast(newObject, state!.isTotalLast, state!.isBestLast, state!.isRecommendLast, isLast);
+      changeIsLast(newObject, state!.isTotalLast, state!.isBestLast,
+          state!.isRecommendLast, mainDTO.last);
       changeCommon(newObject);
       state = newObject;
     }
@@ -122,7 +148,8 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
     newObject.bookBanners = state!.bookBanners;
   }
 
-  void changeIsLast(MainPageModel newObject, bool isTotalLast, bool isBestLast, bool isRecommendLast, bool isLatestLast) {
+  void changeIsLast(MainPageModel newObject, bool isTotalLast, bool isBestLast,
+      bool isRecommendLast, bool isLatestLast) {
     newObject.isLatestLast = isLatestLast;
     newObject.isTotalLast = isTotalLast;
     newObject.isBestLast = isBestLast;
@@ -130,12 +157,12 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
   }
 }
 
-
-final mainPageProvider  = StateNotifierProvider.autoDispose<MainPageViewModel, MainPageModel?> ((ref) {
-    return  MainPageViewModel(null)..notifyInit();
+final mainPageProvider =
+    StateNotifierProvider.autoDispose<MainPageViewModel, MainPageModel?>(
+  (ref) {
+    return MainPageViewModel(null)..notifyInit();
   },
 );
-
 
 class MainPageModel {
   var totalPage = 1;
@@ -144,36 +171,16 @@ class MainPageModel {
   var latestPage = 1;
 
   var isTotalLast = false;
-  var isBestLast = true;
+  var isBestLast = false;
   var isRecommendLast = false;
   var isLatestLast = false;
 
-  List<BookBanner> bookBanners = [];
-  List<BookTile> totalBookTiles = [];
-  List<BookTile> bestBookTiles = [];
-  List<BookTile> recommendBookTiles = [];
-  List<BookTile> latestBookTiles = [];
+  List<FileDTO> bookBanners = [];
+  List<Book> totalBooks = [];
+  List<Book> bestBooks = [];
+  List<Book> recommendBooks = [];
+  List<Book> latestBooks = [];
 
-  MainPageModel(this.bookBanners, this.totalBookTiles, this.bestBookTiles,
-      this.recommendBookTiles, this.latestBookTiles);
-}
-
-class BookBanner {
-  String path;
-  BookBanner(this.path);
-}
-
-class BookTile {
-  int id;
-  String path;
-  String title;
-  String author;
-  String store;
-  int price;
-  bool isHart;
-  double star;
-
-  BookTile(this.id, this.path, this.title, this.author, this.store, this.price,
-      this.isHart,
-      this.star);
+  MainPageModel(this.bookBanners, this.totalBooks, this.bestBooks,
+      this.recommendBooks, this.latestBooks);
 }

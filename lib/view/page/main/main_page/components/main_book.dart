@@ -7,6 +7,7 @@ import 'package:readme_app/controller/book_controller.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/yh_style_icons.dart';
+import 'package:readme_app/model/book/book.dart';
 import 'package:readme_app/view/components/use_button.dart';
 import 'package:readme_app/view/page/main/main_page/main_page_view_model.dart';
 
@@ -22,24 +23,24 @@ class MainBook extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     MainPageModel? model = ref.watch(mainPageProvider);
-    bool isLast = true;
+    bool isLast = false;
     int page = 1;
 
-    BookTile? bookTile;
+    Book? book;
     if (type == BookSearchType.total) {
-      bookTile = model?.totalBookTiles[idx];
+      book = model?.totalBooks[idx];
       isLast = model?.isTotalLast ?? false;
       page = (model?.totalPage ++) ?? 1;
     } else if (type == BookSearchType.best) {
-      bookTile = model?.bestBookTiles[idx];
+      book = model?.bestBooks[idx];
       isLast = model?.isBestLast ?? false;
       page = (model?.bestPage ++) ?? 1;
     } else if (type == BookSearchType.recommend) {
-      bookTile = model?.recommendBookTiles[idx];
+      book = model?.recommendBooks[idx];
       isLast = model?.isRecommendLast ?? false;
       page = (model?.recommendPage ++) ?? 1;
     } else if (type == BookSearchType.latest) {
-      bookTile = model?.latestBookTiles[idx];
+      book = model?.latestBooks[idx];
       isLast = model?.isLatestLast ?? false;
       page = (model?.latestPage ++) ?? 1;
     }
@@ -62,7 +63,7 @@ class MainBook extends ConsumerWidget {
               child: Row(
                 children: [
                   Image.network(
-                    bookTile?.path ?? "",
+                    book?.fileDTO[0].fileUrl ?? "",
                     width: 90,
                     height: 110,
                   ),
@@ -74,7 +75,7 @@ class MainBook extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        bookTile?.title ?? "",
+                        book?.title ?? "",
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
                           fontSize: Dimens.font_sp18,
@@ -84,21 +85,21 @@ class MainBook extends ConsumerWidget {
                       ),
                       SizedBox(height: 10,),
                       Text(
-                        "${bookTile?.author} | ${bookTile?.store}",
+                        "${book?.author} | ${book?.publisher}",
                         style: TextStyle(fontSize: Dimens.font_sp14),
                       ),
                       Row(
                         children: [
                           YhIcons.star,
                           Text(
-                            bookTile?.star.toString() ?? "",
+                            book?.score.toString() ?? "",
                             style: TextStyle(fontSize: Dimens.font_sp14),
                           ),
                         ],
                       ),
                       Row(
                         children: [
-                          Text("소장가 ${bookTile?.price}", style: TextStyle(fontSize: Dimens.font_sp14),),
+                          Text("소장가 ${book?.price}", style: TextStyle(fontSize: Dimens.font_sp14),),
                           SizedBox(width: 100),
                           IconButton(
                             padding: EdgeInsets.zero,
@@ -136,9 +137,6 @@ class MainBook extends ConsumerWidget {
             )
             : Container()
       ],
-
-
-
     );
   }
 

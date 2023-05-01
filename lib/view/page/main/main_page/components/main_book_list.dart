@@ -20,13 +20,13 @@ class MainBookList extends ConsumerWidget {
     var count = 0;
 
     if (type == BookSearchType.total) {
-      count = model?.totalBookTiles.length ?? 0;
+      count = model?.totalBooks.length ?? 0;
     } else if (type == BookSearchType.best) {
-      count = model?.bestBookTiles.length ?? 0;
+      count = model?.bestBooks.length ?? 0;
     } else if (type == BookSearchType.recommend) {
-      count = model?.recommendBookTiles.length ?? 0;
+      count = model?.recommendBooks.length ?? 0;
     } else if (type == BookSearchType.latest) {
-      count = model?.latestBookTiles.length ?? 0;
+      count = model?.latestBooks.length ?? 0;
     }
 
     return ListView.builder(
