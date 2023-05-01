@@ -4,11 +4,12 @@ import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
 import 'package:readme_app/view/page/question_list/components/question_list_page_body.dart';
 
-class QuestionListPage extends ConsumerWidget {
+
+class QuestionListPage extends  StatelessWidget{
   const QuestionListPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: _questionListAppbar(context),
       body: QuestionListPageBody(),

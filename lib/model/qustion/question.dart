@@ -5,10 +5,12 @@ class Question {
   final String title;
   final String content;
   final int status;
-  final DateTime time;
+  final String? reply;
+  // final DateTime time;
+  final String time;
 
   Question(
-      {required this.id, required this.title, required this.content, required this.status, required this.time});
+      {required this.id, required this.title, required this.content, required this.status, required this.time, required this.reply});
 
 
   Map<String, dynamic> toJson() =>
@@ -18,6 +20,7 @@ class Question {
         "content": content,
         "status": status,
         "time": time,
+        "reply": reply,
       };
 
 
@@ -26,6 +29,9 @@ class Question {
         title = json["title"],
         content = json["content"],
         status = json["status"],
-        time = DateFormat("yyyy-mm-dd").parse(json["time"]);
+        reply = json["reply"],
+        time = json["time"];
+        // time = DateFormat("yyyy-mm-dd").parse(json["time"]);
+
 
 }
