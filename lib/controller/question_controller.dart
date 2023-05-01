@@ -11,4 +11,8 @@ class QuestionController {
 
   QuestionController(this.ref);
 
+
+  // 한 건 조회
+
+
 }
