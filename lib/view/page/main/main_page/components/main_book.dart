@@ -30,19 +30,19 @@ class MainBook extends ConsumerWidget {
     if (type == BookSearchType.total) {
       book = model?.totalBooks[idx];
       isLast = model?.isTotalLast ?? false;
-      page = (model?.totalPage ++) ?? 1;
+      page = (model?.totalPage ++) ?? 0;
     } else if (type == BookSearchType.best) {
       book = model?.bestBooks[idx];
       isLast = model?.isBestLast ?? false;
-      page = (model?.bestPage ++) ?? 1;
+      page = (model?.bestPage ++) ?? 0;
     } else if (type == BookSearchType.recommends) {
       book = model?.recommendBooks[idx];
       isLast = model?.isRecommendLast ?? false;
-      page = (model?.recommendPage ++) ?? 1;
+      page = (model?.recommendPage ++) ?? 0;
     } else if (type == BookSearchType.latest) {
       book = model?.latestBooks[idx];
       isLast = model?.isLatestLast ?? false;
-      page = (model?.latestPage ++) ?? 1;
+      page = (model?.latestPage ++) ?? 0;
     }
 
     return Column(

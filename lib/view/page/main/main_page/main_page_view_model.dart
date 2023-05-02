@@ -89,10 +89,13 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
     if (type == BookSearchType.total) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
 
-      final List<Book> totalBooks = [...state!.totalBooks];
+
+      List<Book>? totalBooks = mainDTO.content;
+      final List<Book> newTotalBooks = [...state!.totalBooks];
+      newTotalBooks.addAll(totalBooks ?? []);
       // totalBooks.addAll(mainDTO.content);
 
-      newObject.totalBooks = totalBooks;
+      newObject.totalBooks = newTotalBooks;
       newObject.bestBooks = state!.bestBooks;
       newObject.recommendBooks = state!.recommendBooks;
       newObject.latestBooks = state!.latestBooks;
@@ -101,12 +104,16 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
           state!.isRecommendLast, state!.isLatestLast);
       changeCommon(newObject);
       state = newObject;
+
     } else if (type == BookSearchType.best) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
-      final List<Book> bestBooks = [...state!.bestBooks];
+
+      List<Book>? bestBooks = mainDTO.content;
+      final List<Book> newBestBooks = [...state!.bestBooks];
+      newBestBooks.addAll(bestBooks ?? []);
       // bestBooks.addAll(mainDTO.content);
 
-      newObject.bestBooks = bestBooks;
+      newObject.bestBooks = newBestBooks;
       newObject.totalBooks = state!.totalBooks;
       newObject.recommendBooks = state!.recommendBooks;
       newObject.latestBooks = state!.latestBooks;
@@ -117,10 +124,14 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
       state = newObject;
     } else if (type == BookSearchType.recommends) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
-      final List<Book> recommendBooks = [...state!.recommendBooks];
+
+
+      List<Book>? recommendBooks = mainDTO.content;
+      final List<Book> newRecommendBooks = [...state!.recommendBooks];
+      newRecommendBooks.addAll(recommendBooks ?? []);
       // recommendBooks.addAll(mainDTO.content);
 
-      newObject.recommendBooks = recommendBooks;
+      newObject.recommendBooks = newRecommendBooks;
       newObject.totalBooks = state!.totalBooks;
       newObject.bestBooks = state!.bestBooks;
       newObject.latestBooks = state!.latestBooks;
@@ -129,18 +140,23 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
           mainDTO.last, state!.isLatestLast);
       changeCommon(newObject);
       state = newObject;
+
     } else if (type == BookSearchType.latest) {
       final MainPageModel newObject = MainPageModel([], [], [], [], []);
-      final List<Book> latestBooks = [...state!.latestBooks];
+
+      List<Book>? latestBooks = mainDTO.content;
+      final List<Book> newLatestBooks = [...state!.latestBooks];
+      newLatestBooks.addAll(latestBooks ?? []);
       // latestBooks.addAll(mainDTO.content);
 
-      newObject.latestBooks = latestBooks;
+      newObject.latestBooks = newLatestBooks;
       newObject.totalBooks = state!.totalBooks;
       newObject.bestBooks = state!.bestBooks;
       newObject.recommendBooks = state!.recommendBooks;
 
       changeIsLast(newObject, state!.isTotalLast, state!.isBestLast,
           state!.isRecommendLast, mainDTO.last);
+
       changeCommon(newObject);
       state = newObject;
     }
@@ -171,10 +187,10 @@ final mainPageProvider =
 );
 
 class MainPageModel {
-  var totalPage = 1;
-  var bestPage = 1;
-  var recommendPage = 1;
-  var latestPage = 1;
+  var totalPage = 0;
+  var bestPage = 0;
+  var recommendPage = 0;
+  var latestPage = 0;
 
   var isTotalLast = false;
   var isBestLast = false;
