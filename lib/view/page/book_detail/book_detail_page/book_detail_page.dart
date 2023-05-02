@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -226,10 +227,13 @@ class _BookDetailPageState extends State<BookDetailPage>
                             Row(
                               children: [
                                 SizedBox(
-                                  child: Image.asset(
-                                    "assets/images/book.jpg",
-                                    height: 170,
+                                  child: CachedNetworkImage(
+                                    height: 150,
                                     width: 100,
+                                    placeholder: (context, url) =>
+                                        const CircularProgressIndicator(),
+                                    imageUrl:
+                                        'https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png',
                                     fit: BoxFit.cover,
                                   ),
                                 ),
@@ -682,7 +686,7 @@ class _BookDetailPageState extends State<BookDetailPage>
             icon: YhIcons.back,
             onPressed: () {
               // Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeNavigationBar()));
-              if(Navigator.of(context).widget.pages.length > 1) {
+              if (Navigator.of(context).widget.pages.length > 1) {
                 Navigator.pop(context);
                 // Navigator.popUntil(context, ModalRoute.withName('/'));
               } else {
@@ -718,41 +722,56 @@ class _BookDetailPageState extends State<BookDetailPage>
       children: [
         ImageFiltered(
           imageFilter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-          child: Image.asset("assets/images/${bookDetail.image}"),
+          child: CachedNetworkImage(
+            alignment: Alignment.center,
+            height: 470,
+            width: double.infinity,
+            placeholder: (context, url) => const CircularProgressIndicator(),
+            imageUrl:
+                'https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png',
+            fit: BoxFit.fill,
+          ),
         ),
         Container(
-          height: 600,
+          height: 500,
           width: 500,
           child: Padding(
-            padding: EdgeInsets.all(60),
-            child: Image.asset("assets/images/${bookDetail.image}"),
+            padding: EdgeInsets.all(75),
+            child: CachedNetworkImage(
+              alignment: Alignment.center,
+              placeholder: (context, url) => const CircularProgressIndicator(),
+              imageUrl:
+                  'https://readmecorpbucket.s3.ap-northeast-2.amazonaws.com/bookcover/893f6a77-47be-452c-9b1a-148b79785e24-book1.png',
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         Positioned(
           left: 280,
-          top: 530,
-            child: InkWell(
-              onTap: (){
-                Navigator.pushNamed(context, "/viewer");
-              },
-              child: Container(
-          padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
-          decoration: BoxDecoration(
-              border: Border.all(
-                color: Colours.app_sub_white,
-                width: 3,
+          top: 450,
+          child: InkWell(
+            onTap: () {
+              Navigator.pushNamed(context, "/viewer");
+            },
+            child: Container(
+              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Colours.app_sub_white,
+                  width: 3,
+                ),
+                borderRadius: BorderRadius.circular(20),
               ),
-              borderRadius: BorderRadius.circular(20),
-          ),
-          child: Text(
-              "미리보기",
-              style: TextStyle(
-                fontSize: Dimens.font_sp16,
-                color: Colours.app_sub_white,
+              child: Text(
+                "미리보기",
+                style: TextStyle(
+                  fontSize: Dimens.font_sp16,
+                  color: Colours.app_sub_white,
+                ),
               ),
+            ),
           ),
         ),
-            )),
       ],
     );
   }
