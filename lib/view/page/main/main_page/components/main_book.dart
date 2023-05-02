@@ -35,7 +35,7 @@ class MainBook extends ConsumerWidget {
       book = model?.bestBooks[idx];
       isLast = model?.isBestLast ?? false;
       page = (model?.bestPage ++) ?? 1;
-    } else if (type == BookSearchType.recommend) {
+    } else if (type == BookSearchType.recommends) {
       book = model?.recommendBooks[idx];
       isLast = model?.isRecommendLast ?? false;
       page = (model?.recommendPage ++) ?? 1;
@@ -63,7 +63,7 @@ class MainBook extends ConsumerWidget {
               child: Row(
                 children: [
                   Image.network(
-                    book?.fileDTO[0].fileUrl ?? "",
+                    book?.coverFile.fileUrl ?? "",
                     width: 90,
                     height: 110,
                   ),
@@ -81,7 +81,7 @@ class MainBook extends ConsumerWidget {
                           fontSize: Dimens.font_sp18,
                         ),
                         overflow: TextOverflow.ellipsis,
-                        maxLines: 100,
+                        maxLines: 3,
                       ),
                       SizedBox(height: 10,),
                       Text(

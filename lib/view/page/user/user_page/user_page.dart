@@ -22,8 +22,8 @@ class _UserPageState extends State<UserPage> {
             children: [
               _logout(),
               _header(),
-              _membershipCard(),
-              // _membershipInfoCard(context),
+              // _membershipCard(),
+              _membershipInfoCard(context),
               _mainButton(),
               _subButton(),
               _bottomInfo(),

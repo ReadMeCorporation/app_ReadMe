@@ -23,7 +23,7 @@ class MainBookList extends ConsumerWidget {
       count = model?.totalBooks.length ?? 0;
     } else if (type == BookSearchType.best) {
       count = model?.bestBooks.length ?? 0;
-    } else if (type == BookSearchType.recommend) {
+    } else if (type == BookSearchType.recommends) {
       count = model?.recommendBooks.length ?? 0;
     } else if (type == BookSearchType.latest) {
       count = model?.latestBooks.length ?? 0;

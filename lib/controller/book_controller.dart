@@ -18,20 +18,6 @@ class BookController {
 
   BookController(this.ref);
 
-  Future<void> search(BookSearchType type) async {
-    if (!isDuplication) {
-      isDuplication = true;
-      // 통신 할때 await
-      // responseDTO.data = responseBookList
-      // responseDTO.data.page.isLast = false
-      ResponseDTO responseDTO = await BookRepository().mainList(type);
-      MainDTO mainDTO = responseDTO.data;
-      ref.read(mainPageProvider.notifier).search(type, mainDTO);
-      isDuplication = false;
-    }
-  }
-
-
   Future<void> pageSearch(
       BookSearchType type,
       int page
