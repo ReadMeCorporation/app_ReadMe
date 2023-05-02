@@ -15,7 +15,7 @@ class BookRepository {
 
   Future<ResponseDTO> getBanner() async {
     try {
-      Response response = await dio.get("http://43.200.163.130:8080/books?page=1&size=3");
+      Response response = await dio.get("http://43.200.163.130:8080/books?page=0&size=3");
       ResponseDTO responseDto = ResponseDTO.fromJson(response.data);
       MainDTO mainDTO = MainDTO.fromJson(responseDto.data);
       responseDto.data = mainDTO;
@@ -32,7 +32,7 @@ class BookRepository {
       endPoint = "";
     }
     try {
-      Response response = await dio.get("http://43.200.163.130:8080/books$endPoint?page=1&size=10");
+      Response response = await dio.get("http://43.200.163.130:8080/books$endPoint?page=0&size=10");
       ResponseDTO responseDto = ResponseDTO.fromJson(response.data);
       MainDTO mainDTO = MainDTO.fromJson(responseDto.data);
       responseDto.data = mainDTO;
@@ -44,10 +44,12 @@ class BookRepository {
   }
 
   Future<ResponseDTO> searchMainListPage(int page, BookSearchType type) async {
+    String endPoint =  type == BookSearchType.best ? "/best-sellers" : "/${type.name}";
+    if(type.name == "total" || type.name == "latest") {
+      endPoint = "";
+    }
     try {
-
-      Response response = await dio.get("http://43.200.163.130/books/${type}");
-
+      Response response = await dio.get("http://43.200.163.130:8080/books$endPoint?page=$page&size=10");
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       MainDTO mainDTO = MainDTO.fromJson(responseDTO.data);
       responseDTO.data = mainDTO;
