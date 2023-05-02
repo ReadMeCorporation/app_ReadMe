@@ -6,17 +6,20 @@ class SmallCategory {
   SmallCategory(
       {required this.id, required this.smallCategory, required this.status});
 
-
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "smallCategory": smallCategory,
-    "status" : status,
-  };
+        "id": id,
+        "smallCategory": smallCategory,
+        "status": status,
+      };
 
-
-  SmallCategory.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
-        smallCategory = json["smallCategory"],
-        status = json["status"];
-
+  factory SmallCategory.fromJson(Map<String, dynamic> json) {
+    print("smallCategory start : " + json.toString());
+    var smallCategory = SmallCategory(
+        id: json["id"],
+        smallCategory: json["smallCategory"],
+        status: json["status"]
+    );
+    print("smallCategory end : " + json.toString());
+    return smallCategory;
+  }
 }

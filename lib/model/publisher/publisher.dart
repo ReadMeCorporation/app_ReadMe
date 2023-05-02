@@ -18,25 +18,28 @@ class Publisher {
       required this.joinTime,
       required this.status});
 
-
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "username": username,
-    "role": role,
-    "businessNumber": businessNumber,
-    "businessName": businessName,
-    "joinTime": joinTime,
-    "status" : status,
-  };
+        "id": id,
+        "username": username,
+        "role": role,
+        "businessNumber": businessNumber,
+        "businessName": businessName,
+        "joinTime": joinTime,
+        "status": status,
+      };
 
-
-  Publisher.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
-        username = json["username"],
-        role = json["role"],
-        businessNumber = json["businessNumber"],
-        businessName = json["businessName"],
-        joinTime = DateFormat("yyyy-mm-dd").parse(json["filepath"]),
-        status = json["status"];
-
+  factory Publisher.fromJson(Map<String, dynamic> json) {
+    print("publisher start : " + json.toString());
+    var publisher = Publisher(
+      id: json["id"],
+      username: json["username"],
+      role: json["role"],
+      businessNumber: json["businessNumber"],
+      businessName: json["businessName"],
+      joinTime: DateFormat("yyyy-mm-dd").parse(json["joinTime"]),
+      status: json["status"]
+    );
+    print("publisher end : " + json.toString());
+    return publisher;
+  }
 }

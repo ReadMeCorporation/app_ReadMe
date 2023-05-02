@@ -39,7 +39,9 @@ class BookRepository {
       // 경로 수정 = $type
       Response response =
           await dio.get("http://43.200.163.130:8080/books$endPoint?page=1&size=1");
-      // print("디버그 0: " + response.data.toString());
+
+
+      print("디버그 0: " + response.data.toString());
       // TODO 문제있슴
       ResponseDTO responseDto = ResponseDTO.fromJson(response.data);
       print("디버그 1: " + responseDto.data.toString());
