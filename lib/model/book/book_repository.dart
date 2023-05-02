@@ -58,3 +58,30 @@ class BookRepository {
     }
   }
 }
+import 'package:dio/dio.dart';
+import 'package:readme_app/core/constants/http.dart';
+import 'package:readme_app/dto/response_dto.dart';
+import 'package:readme_app/model/book/book.dart';
+
+class BookRepository {
+  static final BookRepository _instance = BookRepository._single();
+
+  factory BookRepository() {
+    return _instance;
+  }
+
+  BookRepository._single();
+
+  Future<ResponseDTO> fetchPost(int id, String jwt) async {
+    try {
+      // id = bookId
+      Response response = await dio.get("/books/$id/detail",
+          options: Options(headers: {"Authorization": "$jwt"}));
+      ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+      responseDTO.data = Book.fromJson(responseDTO.data);
+      return responseDTO;
+    } catch (e) {
+      return ResponseDTO(code: -1, msg: "실패 : ${e}");
+    }
+  }
+}
