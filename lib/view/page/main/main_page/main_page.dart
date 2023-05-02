@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 
 import 'package:readme_app/view/page/main/main_page/components/main_page_body.dart';
