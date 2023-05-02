@@ -45,4 +45,9 @@ class MainDTO {
         size: json['size'],
         empty: json['empty']);
   }
+
+  @override
+  String toString() {
+    return 'MainDTO{content: $content, pageable: $pageable, last: $last, totalElements: $totalElements, totalPages: $totalPages, number: $number, sort: $sort, first: $first, numberOfElements: $numberOfElements, size: $size, empty: $empty}';
+  }
 }

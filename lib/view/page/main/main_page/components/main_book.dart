@@ -24,25 +24,25 @@ class MainBook extends ConsumerWidget {
 
     MainPageModel? model = ref.watch(mainPageProvider);
     bool isLast = false;
-    int page = 1;
+    int page = 0;
 
     Book? book;
     if (type == BookSearchType.total) {
       book = model?.totalBooks[idx];
       isLast = model?.isTotalLast ?? false;
-      page = (model?.totalPage ++) ?? 0;
+      page = ((model?.totalPage) ?? 0) + 1;
     } else if (type == BookSearchType.best) {
       book = model?.bestBooks[idx];
       isLast = model?.isBestLast ?? false;
-      page = (model?.bestPage ++) ?? 0;
+      page = ((model?.bestPage ) ?? 0) + 1;
     } else if (type == BookSearchType.recommends) {
       book = model?.recommendBooks[idx];
       isLast = model?.isRecommendLast ?? false;
-      page = (model?.recommendPage ++) ?? 0;
+      page = ((model?.recommendPage ) ?? 0) + 1;
     } else if (type == BookSearchType.latest) {
       book = model?.latestBooks[idx];
       isLast = model?.isLatestLast ?? false;
-      page = (model?.latestPage ++) ?? 0;
+      page = ((model?.latestPage ) ?? 0) + 1;
     }
 
     return Column(
@@ -85,7 +85,7 @@ class MainBook extends ConsumerWidget {
                       ),
                       SizedBox(height: 10,),
                       Text(
-                        "${book?.author} | ${book?.publisher}",
+                        "${book?.author} | ${book?.publisher.businessName}",
                         style: TextStyle(fontSize: Dimens.font_sp14),
                       ),
                       Row(
@@ -127,7 +127,7 @@ class MainBook extends ConsumerWidget {
           ),
         ),
 
-        !isLast && count - 1 == idx
+        isLast != true && count - 1 == idx
             ? Padding(
               padding: const EdgeInsets.symmetric(vertical: 20,horizontal: 50),
               child: UseButton(title: "더보기", buttonPressed: () {

@@ -1,30 +1,27 @@
 import 'package:intl/intl.dart';
 
-class Publisher {
-  final int id;
-  final String username;
-  final String role;
-  final String businessNumber;
-  final String businessName;
-  final String joinTime;
 
-  Publisher(
-      {required this.id,
-      required this.username,
-      required this.role,
-      required this.businessNumber,
-      required this.businessName,
-      required this.joinTime});
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-  factory Publisher.fromJson(Map<String, dynamic> json) {
-    return Publisher(
-      id: json['id'],
-      username: json['username'],
-      role: json['role'],
-      businessNumber: json['businessNumber'],
-      businessName: json['businessName'],
-      joinTime: json['joinTime'],
-      // joinTime: DateFormat("yyyy-mm-dd").parse(json['joinTime']),
-    );
-  }
+// 파일명
+part 'publisher.freezed.dart';
+part 'publisher.g.dart';
+
+// 실행
+// flutter pub run build_runner build
+
+@freezed
+class Publisher with _$Publisher {
+  const factory Publisher({
+    required int id,
+    required String username,
+    required String role,
+    required String businessNumber,
+    required String businessName,
+    required String joinTime,
+  }) = _Publisher;
+
+  factory Publisher.fromJson(Map<String, Object?> json) => _$PublisherFromJson(json);
+
 }
