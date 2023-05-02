@@ -3,18 +3,25 @@ class BigCategory {
   final String bigCategory;
   final String status;
 
-  BigCategory({required this.id, required this.bigCategory, required this.status});
+  BigCategory(
+      {required this.id, required this.bigCategory, required this.status});
 
-  Map<String, dynamic> toJson() => {
-    "id": id,
-    "bigCategory": bigCategory,
-    "status" : status,
-  };
+  Map<String, dynamic> toJson() =>
+      {
+        "id": id,
+        "bigCategory": bigCategory,
+        "status": status,
+      };
 
 
-  BigCategory.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
-        bigCategory = json["bigCategory"],
-        status = json["status"];
+  factory BigCategory.fromJson(Map<String, dynamic> json) {
+    print("bigCategory start : " + json.toString());
+    var bigCategory = BigCategory(id: json["id"],
+        bigCategory: json["bigCategory"],
+        status: json["status"]
+    );
+    print("bigCategory end : " + json.toString());
+    return bigCategory;
+  }
 
 }

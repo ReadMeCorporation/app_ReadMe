@@ -64,10 +64,10 @@ class MainDTO  {
   factory MainDTO.fromJson(Map<String, dynamic> json) {
     print("haha:" + json.toString());
     print(json["totalPages"]);
-    print(json["content"][0]);
+    print("haha2: " + json["content"][0].toString());
+
     var mainDTO = MainDTO (
-          // content: json["content"].map((e) => Book.fromJson(e)).toList(),
-          content: null,
+          content: json["content"].map((e) => Book.fromJson(e)).toList(),
           pageable: Pageable.fromJson(json["pageable"]),
           last : json["last"],
           totalElements : json["totalElements"],
