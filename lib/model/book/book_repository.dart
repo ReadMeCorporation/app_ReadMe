@@ -38,7 +38,6 @@ class BookRepository {
       responseDto.data = mainDTO;
       return responseDto;
     } catch (e) {
-
       return ResponseDTO(code: -1, msg: "실패 : ${e}");
     }
   }

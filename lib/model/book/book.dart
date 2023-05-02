@@ -3,53 +3,34 @@ import 'package:readme_app/model/file_info/file_dto.dart';
 import 'package:readme_app/model/publisher/publisher.dart';
 import 'package:readme_app/model/small_category/small_category.dart';
 
-class Book {
-  int id;
-  Publisher publisher;
-  String title;
-  String author;
-  int price;
-  String introduction;
-  BigCategory bigCategory; // id
-  SmallCategory smallCategory; // id
-  String authorInfo;
-  bool isHeart;
-  double stars;
-  FileDTO epubFile;
-  FileDTO coverFile;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-  Book({
-    required this.id,
-    required this.publisher,
-    required this.title,
-    required this.author,
-    required this.price,
-    required this.introduction,
-    required this.bigCategory,
-    required this.smallCategory,
-    required this.authorInfo,
-    required this.isHeart,
-    required this.stars,
-    required this.epubFile,
-    required this.coverFile,
-  });
+// 파일명
+part 'book.freezed.dart';
+part 'book.g.dart';
 
-  factory Book.fromJson(Map<String, dynamic> json) {
-    return Book(
-      id: json['id'],
-      publisher: Publisher.fromJson(json['publisher']),
-      title: json['title'],
-      author: json['author'],
-      price: json['price'],
-      introduction: json['introduction'],
-      bigCategory: BigCategory.fromJson(json['bigCategory']),
-      smallCategory: SmallCategory.fromJson(json['smallCategory']),
-      authorInfo: json['authorInfo'],
-      isHeart: json['isHeart'] ?? true,
-      stars: json['stars'],
-      epubFile: FileDTO.fromJson(json['epubFile']),
-      coverFile: FileDTO.fromJson(json['coverFile']),
-    );
-  }
+// 실행
+// flutter pub run build_runner build
+
+@freezed
+class Book with _$Book {
+  const factory Book({
+    required int id,
+    required Publisher publisher,
+    required String title,
+    required String author,
+    required int price,
+    required String introduction,
+    required BigCategory bigCategory,
+    required SmallCategory smallCategory,
+    required String authorInfo,
+    required bool isHeart,
+    required double stars,
+    required FileDTO epubFile,
+    required FileDTO coverFile
+  }) = _Book;
+
+  factory Book.fromJson(Map<String, Object?> json) => _$BookFromJson(json);
 
 }

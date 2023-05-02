@@ -1,14 +1,23 @@
-class SmallCategory {
-  final int id;
-  final String smallCategory;
 
-  SmallCategory(
-      {required this.id, required this.smallCategory});
 
-  factory SmallCategory.fromJson(Map<String, dynamic> json) {
-   return SmallCategory(
-        id: json['id'],
-        smallCategory: json['smallCategory'],
-    );
-  }
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
+
+// 파일명
+part 'small_category.freezed.dart';
+part 'small_category.g.dart';
+
+// 실행
+// flutter pub run build_runner build
+
+@freezed
+class SmallCategory with _$SmallCategory {
+  const factory SmallCategory({
+    required int id,
+    required String smallCategory
+  }) = _SmallCategory;
+
+
+  factory SmallCategory.fromJson(Map<String, Object?> json) => _$SmallCategoryFromJson(json);
+
 }
