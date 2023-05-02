@@ -3,8 +3,6 @@ import 'dart:ui';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:readme_app/model/book_banner/banner.dart';
-import 'package:readme_app/model/file_info/file_info.dart';
 import 'package:readme_app/view/page/main/main_page/main_page_view_model.dart';
 
 class MainAdScreen extends ConsumerWidget {

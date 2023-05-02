@@ -13,17 +13,6 @@ class Question {
       {required this.id, required this.title, required this.content, required this.status, required this.time, required this.reply});
 
 
-  Map<String, dynamic> toJson() =>
-      {
-        "id": id,
-        "title": title,
-        "content": content,
-        "status": status,
-        "time": time,
-        "reply": reply,
-      };
-
-
   Question.fromJson(Map<String, dynamic> json)
       : id = json["id"],
         title = json["title"],

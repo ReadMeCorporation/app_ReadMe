@@ -14,15 +14,6 @@ class MainPageBody extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    tabController.addListener(() {
-      if(tabController.index == 1) {
-        ref.read(bookControllerProvider).search(BookSearchType.best);
-        } else if(tabController.index == 2) {
-          ref.read(bookControllerProvider).search(BookSearchType.recommend);
-      } else if(tabController.index == 3) {
-        ref.read(bookControllerProvider).search(BookSearchType.latest);
-      }
-    });
 
     return DefaultTabController(
       length: 4,
@@ -85,7 +76,7 @@ class MainPageBody extends ConsumerWidget {
           children: [
             MainBookList(BookSearchType.total),
             MainBookList(BookSearchType.best),
-            MainBookList(BookSearchType.recommend),
+            MainBookList(BookSearchType.recommends),
             MainBookList(BookSearchType.latest)
           ]),
       ),

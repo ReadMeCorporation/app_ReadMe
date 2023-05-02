@@ -1,5 +1,4 @@
 import 'package:intl/intl.dart';
-import 'package:readme_app/model/file_info/file_info.dart';
 
 class User {
   final int id;
@@ -19,15 +18,6 @@ class User {
       required this.joinTime,
       required this.status});
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "username": username,
-        "role": role,
-        "isMembership": isMembership,
-        "isAutoPayment": isAutoPayment,
-        "joinTime": joinTime,
-        "status": status,
-      };
 
   User.fromJson(Map<String, dynamic> json)
       : id = json["id"],
