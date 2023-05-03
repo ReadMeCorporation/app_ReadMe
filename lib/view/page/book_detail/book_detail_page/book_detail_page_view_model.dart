@@ -27,7 +27,7 @@ class BookDetailPageViewModel extends StateNotifier<BookDetailPageModel?> {
   BookDetailPageViewModel(super.state, this.ref);
 
   void notifyInit(int id, String jwt) async {
-    ResponseDTO responseDTO = await BookRepository().fetchPost(id, jwt);
+    ResponseDTO responseDTO = await BookRepository().bookDetail(id, jwt);
     state = BookDetailPageModel(book: responseDTO.data);
   }
 

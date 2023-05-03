@@ -72,11 +72,10 @@ class BookRepository {
 
   BookRepository._single();
 
-  Future<ResponseDTO> fetchPost(int id, String jwt) async {
+  Future<ResponseDTO> bookDetail(int id, String jwt) async {
     try {
       // id = bookId
-      Response response = await dio.get("/books/$id/detail",
-          options: Options(headers: {"Authorization": "$jwt"}));
+      Response response = await dio.get("http://43.200.163.130:8080/books?page=0&size=3");
       ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
       responseDTO.data = Book.fromJson(responseDTO.data);
       return responseDTO;
