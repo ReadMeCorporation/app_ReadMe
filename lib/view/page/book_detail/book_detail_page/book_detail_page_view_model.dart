@@ -12,15 +12,26 @@ final bookDetailPageProvider = StateNotifierProvider.autoDispose<BookDetailPageV
 },);
 
 // 창고 데이터
+// @freezed
+// class BookDetailPageModel with _$BookDetailPageModel {
+//   const factory BookDetailPageModel({
+//     required Book book,
+//     required List<Reviews>? reviews
+// }) = _BookDetailPageModel;
+//
+// }
+
 class BookDetailPageModel {
   Book book;
   List<Reviews>? reviews;
-
   BookDetailPageModel({required this.book});
 }
 
+
+
 // 창고
 class BookDetailPageViewModel extends StateNotifier<BookDetailPageModel?> {
+
   Ref ref;
 
   BookDetailPageViewModel(super.state, this.ref);

@@ -21,7 +21,7 @@ class BookDetailCover extends ConsumerWidget {
 
     if (model != null) {
       useBook = model!.book;
-      reviews = model!.reviews;
+      reviews = model.reviews;
     }
 
     return Stack(
