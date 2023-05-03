@@ -119,7 +119,7 @@ class _BookDetailPageState extends State<BookDetailPage>
                         child: const Text('Cancle'),
                       ),
                       TextButton(
-                        onPressed: () => Move.cartPage,
+                        onPressed: () => Navigator.pushNamed(context, '/cart'),
                         child: const Text('Ok'),
                       ),
                     ],
@@ -211,7 +211,7 @@ class _BookDetailPageState extends State<BookDetailPage>
                             SizedBox(height: 40),
                             MembershipButton(
                               text: '멤버십 구독하기',
-                              onPressed: () => Navigator.pop(context),
+                              onPressed: () => Navigator.pushNamed(context, '/membership'),
                             ),
                           ],
                         ),
@@ -274,7 +274,7 @@ class _BookDetailPageState extends State<BookDetailPage>
                             //SizedBox(height: 30),
                             PurchaseButton(
                               text: '소장하기',
-                              onPressed: () => Navigator.pop(context),
+                              onPressed: () => Navigator.pushNamed(context, '/cart'),
                             ),
                           ],
                         ),
