@@ -1,12 +1,19 @@
-class Sort {
-  bool sorted;
-  bool unsorted;
-  bool empty;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-  Sort(this.sorted, this.unsorted, this.empty);
+// 파일명
+part 'sort.freezed.dart';
 
-  Sort.fromJson(Map<String, dynamic> json)
-      : sorted = json['sorted'],
-        unsorted = json['unsorted'],
-        empty = json['empty'];
+part 'sort.g.dart';
+
+@freezed
+class Sort with _$Sort {
+  factory Sort({
+    required bool sorted,
+    required bool unsorted,
+    required bool empty
+  }) = _Sort;
+
+  factory Sort.fromJson(Map<String, Object?> json) =>
+      _$SortFromJson(json);
 }

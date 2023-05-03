@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readme_app/dto/response_dto.dart';
 import 'package:readme_app/model/book/book.dart';
 import 'package:readme_app/model/book/book_repository.dart';
-import 'package:readme_app/dto/mainDTO.dart';
+import 'package:readme_app/dto/main_dto.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:flutter/foundation.dart';
 

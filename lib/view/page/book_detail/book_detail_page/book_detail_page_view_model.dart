@@ -31,15 +31,5 @@ class BookDetailPageViewModel extends StateNotifier<BookDetailPageModel?> {
     state = BookDetailPageModel(book: responseDTO.data);
   }
 
-// void notifyRemove(int id){
-//   Book book = state!.book;
-//   if(book.id == id){
-//     state = null;
-//   }
-// }
-//
-// // api 수정 요청 -> 수정된 Post를 돌려받음.
-// void notifyUpdate(Book updateBook){
-//   state = BookDetailPageModel(book: updateBook);
-// }
+
 }
