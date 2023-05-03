@@ -2,20 +2,19 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readme_app/dto/response_dto.dart';
 import 'package:readme_app/model/book/book.dart';
 import 'package:readme_app/model/book/book_repository.dart';
+import 'package:readme_app/model/reviews/reviews.dart';
 import 'package:readme_app/provider/session_provider.dart';
 
 // 창고 관리자
-final bookDetailPageProvider = StateNotifierProvider.family
-    .autoDispose<BookDetailPageViewModel, BookDetailPageModel?, int>(
-        (ref, postId) {
-  SessionUser sessionUser = ref.read(sessionProvider);
-  return BookDetailPageViewModel(null, ref)
-    ..notifyInit(postId, sessionUser.jwt!);
-});
+final bookDetailPageProvider = StateNotifierProvider.autoDispose<BookDetailPageViewModel, BookDetailPageModel?>(
+        (ref) {
+  return BookDetailPageViewModel(null)..notifyInit();
+},);
 
 // 창고 데이터
 class BookDetailPageModel {
   Book book;
+  List<Reviews>? reviews;
 
   BookDetailPageModel({required this.book});
 }
