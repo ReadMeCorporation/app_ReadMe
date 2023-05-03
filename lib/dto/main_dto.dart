@@ -10,6 +10,8 @@ import 'package:flutter/foundation.dart';
 part 'main_dto.freezed.dart';
 part 'main_dto.g.dart';
 
+// 실행 : flutter pub run build_runner build
+
 @freezed
 class MainDTO with _$MainDTO {
   factory MainDTO(

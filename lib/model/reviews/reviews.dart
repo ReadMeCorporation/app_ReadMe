@@ -1,31 +1,25 @@
 import 'package:readme_app/model/user/user.dart';
 
-class Reviews {
-  final int id;
-  final User user;
-  final double stars;
-  final String content;
-  final String status;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/foundation.dart';
 
-  Reviews(
-      {required this.id,
-      required this.user,
-      required this.stars,
-      required this.content,
-      required this.status});
+// 파일명
+part 'reviews.freezed.dart';
+part 'reviews.g.dart';
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "user": user,
-        "stars": stars,
-        "content": content,
-        "status": status,
-      };
+// 실행
+// flutter pub run build_runner build
 
-  Reviews.fromJson(Map<String, dynamic> json)
-      : id = json["id"],
-        user = User.fromJson(json["smallCategory"]),
-        stars = json["stars"],
-        content = json["content"],
-        status = json["status"];
+@freezed
+class Reviews with _$Reviews{
+  const factory Reviews({
+    required int id,
+    required User user,
+    required double stars,
+    required String content,
+    required String status
+
+}) = _Reviews;
+
+ factory Reviews.fromJson(Map<String, Object?> json) => _$ReviewsFromJson(json);
 }

@@ -19,7 +19,7 @@ class Publisher with _$Publisher {
     required String role,
     required String businessNumber,
     required String businessName,
-    required String joinTime,
+    required String joinTime
   }) = _Publisher;
 
   factory Publisher.fromJson(Map<String, Object?> json) => _$PublisherFromJson(json);
