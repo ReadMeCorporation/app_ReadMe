@@ -3,7 +3,7 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 final dio = Dio(BaseOptions(
   // 주소 변경
-  baseUrl: "http://43.200.163.130:8080",
+  baseUrl: "http://52.78.109.74:8080",
   contentType: "application/json; charset=utf-8",
 ));
 

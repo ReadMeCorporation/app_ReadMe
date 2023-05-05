@@ -1,6 +1,6 @@
 import 'package:intl/intl.dart';
 
-class User {
+class AppUser {
   final int id;
   final String username;
   final String role;
@@ -9,7 +9,7 @@ class User {
   final DateTime joinTime;
   final String status;
 
-  User(
+  AppUser(
       {required this.id,
       required this.username,
       required this.role,
@@ -19,7 +19,7 @@ class User {
       required this.status});
 
 
-  User.fromJson(Map<String, dynamic> json)
+  AppUser.fromJson(Map<String, dynamic> json)
       : id = json["id"],
         username = json["username"],
         role = json["role"],

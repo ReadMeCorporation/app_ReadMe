@@ -38,10 +38,9 @@ class Move {
   static String questionPage = "/question";
   static String questionListPage = "/questionList";
   static String bookmarkListPage = "/bookmarkList";
-  static String contentBoxPage = "/contentBox";
-
   static String loginPage = "/login";
 
+  static String contentBoxPage = "/contentBox";
   static String bookDetailPage = "/bookDetail";
   static String modalButtonSheet = "/modalButtonSheet";
 }
@@ -67,24 +66,6 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.questionListPage: (context) => QuestionListPage(),
     Move.bookmarkListPage: (context) => BookmarkListPage(),
     Move.contentBoxPage: (context) => ContentBoxPage(),
-    Move.cartPage : (context) => CartPage(),
-    Move.paymentPage : (context) => PaymentPage(),
-    Move.bookDetailPage : (context) => BookDetailPage(),
-
-
-    Move.modalButtonSheet : (context) => ModalButtonSheet(),
-    Move.bookViewerPage : (context) => BookViewerPage(),
-    Move.membershipPage : (context) => MembershipPage(),
-    Move.reviewPage : (context) => ReviewPage(),
-    Move.paymentListPage : (context) => PaymentListPage(),
-    Move.membershipCancelPage : (context) => MembershipCancelPage(),
-    Move.questionPage : (context) => QuestionPage(),
-    Move.questionListPage : (context) => QuestionListPage(),
-    Move.bookmarkListPage : (context) => BookmarkListPage(),
     Move.loginPage: (context) => LoginPage(),
-
-    Move.contentBoxPage : (context) => ContentBoxPage(),
-
-
   };
 }
