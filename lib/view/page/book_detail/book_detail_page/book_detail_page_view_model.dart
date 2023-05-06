@@ -6,10 +6,10 @@ import 'package:readme_app/model/reviews/reviews.dart';
 import 'package:readme_app/provider/session_provider.dart';
 
 // 창고 관리자
-final bookDetailPageProvider = StateNotifierProvider.autoDispose<BookDetailPageViewModel, BookDetailPageModel?>(
-        (ref) {
-  return BookDetailPageViewModel(null)..notifyInit();
-},);
+// final bookDetailPageProvider = StateNotifierProvider.autoDispose<BookDetailPageViewModel, BookDetailPageModel?>(
+//         (ref) {
+//   return BookDetailPageViewModel(null)..notifyInit();
+// },);
 
 // 창고 데이터
 // @freezed
