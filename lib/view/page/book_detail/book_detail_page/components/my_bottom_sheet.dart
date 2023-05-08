@@ -5,6 +5,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:readme_app/core/constants/colours.dart';
+import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/model/book_detail_mock_data.dart';
 import 'package:readme_app/view/page/book_detail/book_detail_page/components/membership_button.dart';
 import 'package:readme_app/view/page/book_detail/book_detail_page/components/purchase_button.dart';
@@ -12,9 +13,11 @@ import 'package:readme_app/view/page/book_detail/book_detail_page/components/pur
 class MyBottomSheet extends StatefulWidget {
   const MyBottomSheet({Key? key}) : super(key: key);
 
+
   @override
   State<BottomSheet> createState() => _BottomSheetState();
 }
+
 
 class _BottomSheetState extends State<BottomSheet> with SingleTickerProviderStateMixin  {
   late TabController tabController;
@@ -242,3 +245,4 @@ void _showModalBottomSheet(context, TabController tabController ) {
     },
   );
 }
+

@@ -6,6 +6,8 @@ import 'package:readme_app/model/book_detail_mock_data.dart';
 import 'package:readme_app/model/review_mock_data.dart';
 import 'package:readme_app/util/star_score/star_score.dart';
 import 'package:readme_app/view/page/book_detail/book_detail_page/components/book_detail_cover.dart';
+import 'package:readme_app/view/page/book_detail/book_detail_page/components/my_tab_bar.dart';
+
 import 'package:readme_app/view/page/book_detail/book_detail_page/components/rivew_write.dart';
 
 class BookDetailBody extends ConsumerStatefulWidget {
@@ -15,7 +17,7 @@ class BookDetailBody extends ConsumerStatefulWidget {
   ConsumerState<BookDetailBody> createState() => _BookDetailBodyState();
 }
 
-int _selectedButtonIndex = 0;
+
 
 class _BookDetailBodyState extends ConsumerState<BookDetailBody> {
   @override
@@ -41,7 +43,7 @@ class _BookDetailBodyState extends ConsumerState<BookDetailBody> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: _buildTabBar(),
+                  children: MyTabBar(),
                 ),
                 Divider(
                   thickness: 2,
@@ -157,54 +159,6 @@ Row _buildPrice() {
   );
 }
 
-List<Widget> _buildTabBar() {
-  return [
-    TextButton(
-      style: TextButton.styleFrom(
-        textStyle: const TextStyle(
-          fontSize: Dimens.font_sp20,
-        ),
-      ),
-      onPressed: () {
-        setState(() {
-          _selectedButtonIndex = 0;
-        });
-      },
-      child: Text(
-        "도서 정보",
-        style: TextStyle(
-          color: _selectedButtonIndex == 0
-              ? Colours.app_sub_black
-              : Colours.app_sub_black,
-          fontSize: Dimens.font_sp20,
-          fontWeight:
-              _selectedButtonIndex == 0 ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-    ),
-    TextButton(
-      style: TextButton.styleFrom(
-        textStyle: const TextStyle(fontSize: Dimens.font_sp20),
-      ),
-      onPressed: () {
-        setState(() {
-          _selectedButtonIndex = 1;
-        });
-      },
-      child: Text(
-        "리뷰 관리",
-        style: TextStyle(
-          color: _selectedButtonIndex == 1
-              ? Colours.app_sub_black
-              : Colours.app_sub_black,
-          fontSize: Dimens.font_sp20,
-          fontWeight:
-              _selectedButtonIndex == 1 ? FontWeight.bold : FontWeight.normal,
-        ),
-      ),
-    ),
-  ];
-}
 
 Widget _buildListContents(BuildContext context) {
   return Padding(
