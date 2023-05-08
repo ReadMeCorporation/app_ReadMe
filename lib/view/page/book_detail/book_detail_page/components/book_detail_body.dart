@@ -43,7 +43,7 @@ class _BookDetailBodyState extends ConsumerState<BookDetailBody> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
-                  children: MyTabBar(),
+                  children: [MyTabBar(),]
                 ),
                 Divider(
                   thickness: 2,

@@ -21,25 +21,99 @@ import 'package:readme_app/provider/session_provider.dart';
 //
 // }
 
-class BookDetailPageModel {
-  Book book;
-  List<Reviews>? reviews;
-  BookDetailPageModel({required this.book});
-}
+// @unfreezed
+// class BookDetailPageModel with _$BookDetailPageModel {
+//   factory BookDetailPageModel({
+//     required String title,
+//     required String epubFilePath,
+//     required String coverFilePath,
+//     required int price,
+//     required bool isHeart,
+//     required String author,
+//     required String businessName,
+//     required String introduction,
+//     required List<String> index,
+//     required String authorInfo,
+//     required List<ReviewMockData> reviews,
+//     TableUser? user,
+//   }) = _BookDetailPageModel;
+// }
 
+// class BookDetailPageViewModel extends StateNotifier<BookDetailPageModel?> {
+//   BookDetailPageViewModel(super.state);
+//
+//   void notifyInit(Map<String, dynamic> bookDetailData) async {
+//     BookDetailPageModel initBookDetail = BookDetailPageModel(
+//       title: "",
+//       epubFilePath: "",
+//       coverFilePath: "",
+//       price: 0,
+//       isHeart: false,
+//       author: "",
+//       businessName: "",
+//       introduction: "",
+//       index: [],
+//       authorInfo: "",
+//       reviews: [],
+//       user: null,
+//     );
+//
+//     initBookDetail.user = await MySqfliteInit.getUser();
+//     print(initBookDetail.user?.id ?? 0);
+//
+//     BookDetailMockData2 bookDetail = bookDetailData["bookDetail"];
+//
+//     print("bookDetail.epubFilePath: ${bookDetail.epubFilePath}");
+//     initBookDetail = initBookDetail.copyWith(
+//       title: bookDetail.title,
+//       epubFilePath: bookDetail.epubFilePath,
+//       coverFilePath: bookDetail.coverFilePath,
+//       price: bookDetail.price,
+//       isHeart: bookDetail.isHeart,
+//       author: bookDetail.author,
+//       businessName: bookDetail.author,
+//       introduction: bookDetail.author,
+//       index: bookDetail.indexList,
+//       authorInfo: bookDetail.author,
+//       reviews: [],
+//       user: initBookDetail.user,
+//     );
+//
+//     state = initBookDetail;
+//   }
+//
+//
+//   class BookDetailPageModel {
+//   Book book;
+//   List<Reviews>? reviews;
+//   BookDetailPageModel({required this.book});
+// }
+
+
+// void changeIsShowAppBarAndBottomSheet(value) async {
+//   state = state!.copyWith(isShowAppBarAndBottomSheet: value);
+// }
+// }
+//
+// final bookDetailPageProvider = StateNotifierProvider.family.autoDispose<
+//     BookDetailPageViewModel, BookDetailPageModel?, Map<String, dynamic>>(
+//       (ref, bookDetailData) {
+//     return BookDetailPageViewModel(null)..notifyInit(bookDetailData);
+//   },
+// );
 
 
 // 창고
-class BookDetailPageViewModel extends StateNotifier<BookDetailPageModel?> {
-
-  Ref ref;
-
-  BookDetailPageViewModel(super.state, this.ref);
-
-  void notifyInit(int id, String jwt) async {
-    ResponseDTO responseDTO = await BookRepository().bookDetail(id, jwt);
-    state = BookDetailPageModel(book: responseDTO.data);
-  }
-
-
-}
+// class BookDetailPageViewModel extends StateNotifier<BookDetailPageModel?> {
+//
+//   Ref ref;
+//
+//   BookDetailPageViewModel(super.state, this.ref);
+//
+//   void notifyInit(int id, String jwt) async {
+//     ResponseDTO responseDTO = await BookRepository().bookDetail(id, jwt);
+//     state = BookDetailPageModel(book: responseDTO.data);
+//   }
+//
+//
+// }
