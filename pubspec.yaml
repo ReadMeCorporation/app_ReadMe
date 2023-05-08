@@ -42,11 +42,11 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   cached_network_image: 3.2.3
 
-
   freezed: ^2.3.2
   build_runner: ^2.3.3
-
-
+  freezed_annotation: ^2.1.0
+  json_annotation: ^4.6.0
+  sqflite: ^2.2.8+1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -59,6 +59,11 @@ dependencies:
   scrollable_positioned_list: ^0.3.2
   collection: ^1.16.0
   universal_file: ^1.0.0
+  loading_animation_widget: ^1.2.0+4
+  google_sign_in: ^6.1.0
+  firebase_core: ^2.10.0
+  firebase_auth: ^4.4.2
+#  animated_bottom_navigation_bar: ^1.2.0
 
 
 dev_dependencies:

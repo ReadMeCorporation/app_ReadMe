@@ -9,8 +9,9 @@ import 'package:readme_app/view/page/main/main_page/main_page_view_model.dart';
 
 class MainBookList extends ConsumerWidget {
 
-  BookSearchType type;
-  MainBookList(this.type, {super.key});
+  String name;
+  String requestName;
+  MainBookList(this.name, this.requestName, {super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -19,20 +20,20 @@ class MainBookList extends ConsumerWidget {
 
     var count = 0;
 
-    if (type == BookSearchType.total) {
+    if (name == "전체") {
       count = model?.totalBooks.length ?? 0;
-    } else if (type == BookSearchType.best) {
+    } else if (name == "베스트셀러") {
       count = model?.bestBooks.length ?? 0;
-    } else if (type == BookSearchType.recommends) {
+    } else if (name == "추천") {
       count = model?.recommendBooks.length ?? 0;
-    } else if (type == BookSearchType.latest) {
+    } else if (name == "신간") {
       count = model?.latestBooks.length ?? 0;
     }
 
     return ListView.builder(
       itemCount: count,
       itemBuilder: (context, index) {
-        return MainBook(index, type, count);
+        return MainBook(index, name, count, requestName);
       },
     );
   }

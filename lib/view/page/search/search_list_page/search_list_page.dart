@@ -93,8 +93,8 @@ class _SearchListPageState extends State<SearchListPage> {
                 padding: const EdgeInsets.all(15.0),
                 child: Row(
                   children: [
-                    Image.asset(
-                      "assets/images/${cartList[0].image}",
+                    Image.network(
+                      cartList[0].image,
                       width: 100,
                       height: 150,
                     ),

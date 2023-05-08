@@ -21,8 +21,11 @@ Sort _$SortFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Sort {
   bool get sorted => throw _privateConstructorUsedError;
+  set sorted(bool value) => throw _privateConstructorUsedError;
   bool get unsorted => throw _privateConstructorUsedError;
+  set unsorted(bool value) => throw _privateConstructorUsedError;
   bool get empty => throw _privateConstructorUsedError;
+  set empty(bool value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -118,11 +121,11 @@ class _$_Sort with DiagnosticableTreeMixin implements _Sort {
   factory _$_Sort.fromJson(Map<String, dynamic> json) => _$$_SortFromJson(json);
 
   @override
-  final bool sorted;
+  bool sorted;
   @override
-  final bool unsorted;
+  bool unsorted;
   @override
-  final bool empty;
+  bool empty;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -138,22 +141,7 @@ class _$_Sort with DiagnosticableTreeMixin implements _Sort {
       ..add(DiagnosticsProperty('unsorted', unsorted))
       ..add(DiagnosticsProperty('empty', empty));
   }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Sort &&
-            (identical(other.sorted, sorted) || other.sorted == sorted) &&
-            (identical(other.unsorted, unsorted) ||
-                other.unsorted == unsorted) &&
-            (identical(other.empty, empty) || other.empty == empty));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, sorted, unsorted, empty);
-
+  
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
@@ -170,18 +158,22 @@ class _$_Sort with DiagnosticableTreeMixin implements _Sort {
 
 abstract class _Sort implements Sort {
   factory _Sort(
-      {required final bool sorted,
-      required final bool unsorted,
-      required final bool empty}) = _$_Sort;
+      {required bool sorted,
+      required bool unsorted,
+      required bool empty}) = _$_Sort;
+
 
   factory _Sort.fromJson(Map<String, dynamic> json) = _$_Sort.fromJson;
 
   @override
   bool get sorted;
+  set sorted(bool value);
   @override
   bool get unsorted;
+  set unsorted(bool value);
   @override
   bool get empty;
+  set empty(bool value);
   @override
   @JsonKey(ignore: true)
   _$$_SortCopyWith<_$_Sort> get copyWith => throw _privateConstructorUsedError;

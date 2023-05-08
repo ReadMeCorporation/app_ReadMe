@@ -9,16 +9,18 @@ import 'package:flutter/foundation.dart';
 part 'pageable.freezed.dart';
 part 'pageable.g.dart';
 
-@freezed
+
+@unfreezed
 class Pageable with _$Pageable {
   factory Pageable({
-    required Sort sort,
-    required int pageSize,
-    required int pageNumber,
-    required int offset,
-    required bool paged,
-    required bool unpaged
+  required Sort sort,
+  required int pageSize,
+  required int pageNumber,
+  required int offset,
+  required bool paged,
+  required bool unpaged
   }) = _Pageable;
 
   factory Pageable.fromJson(Map<String, Object?> json) => _$PageableFromJson(json);
 }
+

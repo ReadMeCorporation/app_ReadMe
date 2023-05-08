@@ -21,8 +21,11 @@ FileDTO _$FileDTOFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$FileDTO {
   int get id => throw _privateConstructorUsedError;
+  set id(int value) => throw _privateConstructorUsedError;
   String get fileName => throw _privateConstructorUsedError;
+  set fileName(String value) => throw _privateConstructorUsedError;
   String get fileUrl => throw _privateConstructorUsedError;
+  set fileUrl(String value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -115,18 +118,17 @@ class __$$_FileDTOCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_FileDTO with DiagnosticableTreeMixin implements _FileDTO {
-  const _$_FileDTO(
-      {required this.id, required this.fileName, required this.fileUrl});
+  _$_FileDTO({required this.id, required this.fileName, required this.fileUrl});
 
   factory _$_FileDTO.fromJson(Map<String, dynamic> json) =>
       _$$_FileDTOFromJson(json);
 
   @override
-  final int id;
+  int id;
   @override
-  final String fileName;
+  String fileName;
   @override
-  final String fileUrl;
+  String fileUrl;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -143,21 +145,6 @@ class _$_FileDTO with DiagnosticableTreeMixin implements _FileDTO {
       ..add(DiagnosticsProperty('fileUrl', fileUrl));
   }
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_FileDTO &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.fileName, fileName) ||
-                other.fileName == fileName) &&
-            (identical(other.fileUrl, fileUrl) || other.fileUrl == fileUrl));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, fileName, fileUrl);
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
@@ -173,19 +160,22 @@ class _$_FileDTO with DiagnosticableTreeMixin implements _FileDTO {
 }
 
 abstract class _FileDTO implements FileDTO {
-  const factory _FileDTO(
-      {required final int id,
-      required final String fileName,
-      required final String fileUrl}) = _$_FileDTO;
+  factory _FileDTO(
+      {required int id,
+      required String fileName,
+      required String fileUrl}) = _$_FileDTO;
 
   factory _FileDTO.fromJson(Map<String, dynamic> json) = _$_FileDTO.fromJson;
 
   @override
   int get id;
+  set id(int value);
   @override
   String get fileName;
+  set fileName(String value);
   @override
   String get fileUrl;
+  set fileUrl(String value);
   @override
   @JsonKey(ignore: true)
   _$$_FileDTOCopyWith<_$_FileDTO> get copyWith =>

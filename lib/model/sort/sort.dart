@@ -6,9 +6,9 @@ part 'sort.freezed.dart';
 
 part 'sort.g.dart';
 
-@freezed
+@unfreezed
 class Sort with _$Sort {
-  factory Sort({
+   factory Sort({
     required bool sorted,
     required bool unsorted,
     required bool empty

@@ -11,9 +11,9 @@ part 'file_dto.g.dart';
 // 실행
 // flutter pub run build_runner build
 
-@freezed
+@unfreezed
 class FileDTO with _$FileDTO {
-  const factory FileDTO({
+   factory FileDTO({
    required int id,
    required String fileName,
    required String fileUrl

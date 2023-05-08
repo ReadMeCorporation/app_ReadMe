@@ -5,6 +5,7 @@ import 'package:readme_app/view/page/book_viewer/components/jh_style_button_add_
 
 import '../../../../core/constants/jh_style_icons.dart';
 
+
 class BookDrawer extends StatefulWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
   BookDrawer({Key? key, required this.scaffoldKey}) : super(key: key);

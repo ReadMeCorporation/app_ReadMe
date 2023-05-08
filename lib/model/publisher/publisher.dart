@@ -11,9 +11,9 @@ part 'publisher.g.dart';
 // 실행
 // flutter pub run build_runner build
 
-@freezed
+@unfreezed
 class Publisher with _$Publisher {
-  const factory Publisher({
+    factory Publisher({
     required int id,
     required String username,
     required String role,

@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
+import 'package:readme_app/dto/use_cart/use_cart_dto.dart';
 import 'package:readme_app/model/cart_mock_data.dart';
 import 'package:readme_app/util/bootpay/bootpay_default.dart';
+import 'package:readme_app/view/page/cart/cart_page/cart_page_view_model.dart';
 import 'package:readme_app/view/page/cart/cart_page/components/cart_page_body.dart';
 
-class CartPage extends StatefulWidget {
-  const CartPage({Key? key}) : super(key: key);
+class CartPage extends ConsumerWidget {
+   CartPage({Key? key}) : super(key: key);
+
+  final scrollController = ScrollController();
 
   @override
-  State<CartPage> createState() => _CartPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
 
-class _CartPageState extends State<CartPage> {
-  @override
-  Widget build(BuildContext context) {
+    CartPageModel? model = ref.watch(cartPageProvider);
+
+    List<UseCartDTO> cartList = [];
+    if(model != null) {
+      cartList.addAll(model.cartBooks);
+    }
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // extendBodyBehindAppBar: true,
@@ -33,13 +41,17 @@ class _CartPageState extends State<CartPage> {
                     heroTag: "upBtn",
                     backgroundColor: Colours.app_main.withOpacity(0.9),
                     onPressed: () {
-                      // 기능 추가
+                      scrollController.animateTo(
+                        0.0,
+                        duration: Duration(milliseconds: 300),
+                        curve: Curves.easeOut,
+                      );
                     },
                     child: HsStyleIcons.up,
                   ),
                 ),
               ),
-              BootPayDefault(),
+              BootPayDefault(cartBookList: cartList),
             ],
           )),
       backgroundColor: Colours.app_sub_white,
@@ -74,7 +86,7 @@ class _CartPageState extends State<CartPage> {
         leadingWidth: 100,
         backgroundColor: Colours.app_sub_white,
       ),
-      body: CartPageBody(),
+      body: CartPageBody(scrollController: scrollController),
     );
   }
 }

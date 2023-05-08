@@ -10,11 +10,11 @@ part 'small_category.g.dart';
 // 실행
 // flutter pub run build_runner build
 
-@freezed
+@unfreezed
 class SmallCategory with _$SmallCategory {
-  const factory SmallCategory({
+   factory SmallCategory({
     required int id,
-    required String smallCategory
+    required String name
   }) = _SmallCategory;
 
 

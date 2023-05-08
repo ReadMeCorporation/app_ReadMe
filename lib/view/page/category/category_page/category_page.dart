@@ -1,22 +1,20 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
 import 'package:readme_app/core/constants/yh_style_icons.dart';
-import 'package:readme_app/view/page/category/category_page/components/example/category_page_body.dart';
+import 'package:readme_app/view/page/category/category_page/category_page_view_model.dart';
+import 'package:readme_app/view/page/category/category_page/components/category_page_body.dart';
 
-class CategoryPage extends StatefulWidget {
+class CategoryPage extends ConsumerWidget {
    const CategoryPage({Key? key}) : super(key: key);
 
   @override
-  State<CategoryPage> createState() => _CategoryPageState();
-}
+  Widget build(BuildContext context, WidgetRef ref) {
+    CategoryPageModel? model = ref.watch(categoryPageProvider);
 
-class _CategoryPageState extends State<CategoryPage>  {
-
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colours.app_sub_white,
       appBar: PreferredSize(
@@ -26,28 +24,6 @@ class _CategoryPageState extends State<CategoryPage>  {
           child: AppBar(
             leadingWidth: 100,
             backgroundColor: Colours.app_sub_white,
-            leading: Row(
-              children: [
-                IconButton(
-                    padding: EdgeInsets.only(left: 10, right: 5),
-                    constraints: BoxConstraints(),
-                    onPressed: () {
-                      if(Navigator.of(context).widget.pages.length > 1) {
-                        Navigator.pop(context);
-                      } else {
-                        Navigator.pushNamed(context, "/navigation");
-                      }
-                    },
-                    icon: HsStyleIcons.back),
-                IconButton(
-                  padding: EdgeInsets.zero,
-                  constraints: BoxConstraints(),
-                  onPressed: () {
-                    Navigator.pushNamed(context, "/navigation");
-                  },
-                  icon: HsStyleIcons.homeFill,),
-              ],
-            ),
             actions: [
               IconButton(
                   padding: EdgeInsets.only(right: 15),

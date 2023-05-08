@@ -1,37 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:readme_app/controller/question_controller.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/view/components/use_button.dart';
 
-class QuestionPageForm extends StatefulWidget {
-  const QuestionPageForm({Key? key}) : super(key: key);
+class QuestionPageForm extends ConsumerWidget {
+  QuestionPageForm({Key? key}) : super(key: key);
+
+  final   _formKey = GlobalKey<FormState>();
+  final _titleController = TextEditingController();
+  final _contentController = TextEditingController();
 
   @override
-  State<QuestionPageForm> createState() => _QuestionPageFormState();
-}
-
-class _QuestionPageFormState extends State<QuestionPageForm> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  late TextEditingController _titleController;
-  late TextEditingController _contentController;
-
-  @override
-  void initState() {
-    super.initState();
-    _titleController = TextEditingController();
-    _contentController = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _titleController.dispose();
-    _contentController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Form(
       key: _formKey,
       child: ListView(
@@ -39,11 +22,7 @@ class _QuestionPageFormState extends State<QuestionPageForm> {
           Padding(
             padding: const EdgeInsets.all(20.0),
             child: Column(
-              children: [
-                _titleField(),
-                _contentField(),
-                _subButton()
-              ],
+              children: [_titleField(), _contentField(), _subButton(ref)],
             ),
           ),
         ],
@@ -51,21 +30,20 @@ class _QuestionPageFormState extends State<QuestionPageForm> {
     );
   }
 
-  Widget _subButton() {
+  Widget _subButton(WidgetRef ref) {
     return Padding(
-          padding: EdgeInsets.symmetric(vertical: 15),
-          child: UseButton(
-              title: "제출하기",
-              buttonPressed: () {
-                // 추가
-              }),
-        );
+      padding: EdgeInsets.symmetric(vertical: 15),
+      child: UseButton(title: "제출하기", buttonPressed: () {
+              ref.read(questionControllerProvider).saveQuestion(_titleController.text, _contentController.text);
+      }),
+    );
   }
 
   Widget _contentField() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 10.0),
           child: Text(

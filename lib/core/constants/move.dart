@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:readme_app/core/constants/secure_storage.dart';
+import 'package:readme_app/sqflite/sqflite.dart';
+import 'package:readme_app/sqflite/table/table_user.dart';
 import 'package:readme_app/view/components/home_navigation_bar.dart';
 import 'package:readme_app/view/page/alarm/alarm_page/alarm_page.dart';
+import 'package:readme_app/view/page/auth/login_page/login_page.dart';
 import 'package:readme_app/view/page/book_detail/book_detail_page/book_detail_page.dart';
 import 'package:readme_app/view/page/book_viewer/book_viewer_page/book_viewer_page.dart';
 import 'package:readme_app/view/page/cart/cart_page/cart_page.dart';
 import 'package:readme_app/view/page/category/category_page/category_page.dart';
+import 'package:readme_app/view/page/main/main_page/main_page.dart';
 import 'package:readme_app/view/page/main/main_page/main_page.dart';
 import 'package:readme_app/view/page/membership/membership_page/memebership_page.dart';
 import 'package:readme_app/view/page/membership_cancel/membership_cancel_page.dart';
@@ -39,15 +44,27 @@ class Move {
   static String contentBoxPage = "/contentBox";
   static String bookDetailPage = "/bookDetail";
   static String modalButtonSheet = "/modalButtonSheet";
+  static String loginPage = "/login";
+
 }
 
-Map<String, Widget Function(BuildContext)> getRouters() {
+Map<String, Widget Function(BuildContext)> getRouters(){
   return {
     Move.categoryPage: (context) => CategoryPage(),
     Move.searchListPage: (context) => SearchListPage(),
     Move.mainPage: (context) => MainPage(),
     Move.userPage: (context) => UserPage(),
-    Move.navigationBar: (context) => HomeNavigationBar(),
+    Move.navigationBar: (context) {
+      return HomeNavigationBar(
+          // [
+          //   CategoryPage(),
+          //   SearchListPage(),
+          //   MainPage(),
+          //   ContentBoxPage(),
+          //   UserPage(),
+          // ]
+      );
+    },
     Move.alarmPage: (context) => AlarmPage(),
     Move.paymentPage: (context) => PaymentPage(),
     Move.cartPage: (context) => CartPage(),
@@ -62,5 +79,7 @@ Map<String, Widget Function(BuildContext)> getRouters() {
     Move.questionListPage: (context) => QuestionListPage(),
     Move.bookmarkListPage: (context) => BookmarkListPage(),
     Move.contentBoxPage: (context) => ContentBoxPage(),
+    Move.loginPage: (context) => LoginPage(),
+
   };
 }

@@ -1,17 +1,19 @@
-import 'dart:developer';
-
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:readme_app/dto/response_dto.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:readme_app/dto/main_dto/main_dto.dart';
+import 'package:readme_app/dto/response_dto/response_dto.dart';
+import 'package:readme_app/main.dart';
 import 'package:readme_app/model/book/book.dart';
 import 'package:readme_app/model/book/book_repository.dart';
-import 'package:readme_app/dto/main_dto.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
+import 'package:readme_app/sqflite/sqflite.dart';
+import 'package:readme_app/sqflite/table/table_main_tab.dart';
+import 'package:readme_app/view/components/custom_dialog.dart';
+
 
 // 파일명
 part 'main_page_view_model.freezed.dart';
 
-enum BookSearchType { total, best, recommends, latest }
 
 // Controller에서 값을 받은뒤 reponse를 화면 model로 변경하는 작업 (로직)
 class MainPageViewModel extends StateNotifier<MainPageModel?> {
@@ -31,89 +33,73 @@ class MainPageViewModel extends StateNotifier<MainPageModel?> {
         totalBooks: [],
         bestBooks: [],
         recommendBooks: [],
-        latestBooks: []);
+        latestBooks: [],
+        mainTabs: []
+    );
 
-    ResponseDTO totalResponse =
-        await BookRepository().mainList(BookSearchType.total);
-    ResponseDTO bestResponse =
-        await BookRepository().mainList(BookSearchType.best);
-    ResponseDTO recommendResponse =
-        await BookRepository().mainList(BookSearchType.recommends);
-    // ResponseDTO latestResponse = await BookRepository().mainList(BookSearchType.latest);
-    ResponseDTO bannerList = await BookRepository().getBanner();
+    // Book Start
+    List<TableMainTab> mainTabs = await MySqfliteInit.getMainTabs();
+    mainPageModel = mainPageModel.copyWith(mainTabs: mainTabs);
 
-    MainDTO totalMainDTO = totalResponse.data;
-    MainDTO bestMainDTO = bestResponse.data;
-    MainDTO recommendMainDTO = recommendResponse.data;
-    MainDTO latestMainDTO = totalResponse.data;
-    MainDTO bannerDTO = bannerList.data;
+    for (var mainTab in mainTabs) {
+      var response = await BookRepository().mainList(mainTab.requestName);
+      MainDTO data = response.data;
+      List<Book>? contentList = data.content;
 
-    // Banner Start // Why pageable ?
-    List<String> banners = [];
-    bannerDTO.content
-        ?.forEach((element) => banners.add(element.coverFile.fileUrl));
-    mainPageModel.bookBanners.addAll(banners);
-    // Banner End
+      if (contentList.isNotEmpty) {
+        if (mainTab.name == "전체") {
 
-    // Total Start
-    List<Book>? totalContent = totalMainDTO.content;
-    if (totalContent != null && totalContent.isNotEmpty) {
-      mainPageModel.totalBooks.addAll(totalContent);
-      mainPageModel = mainPageModel.copyWith(isTotalLast: totalMainDTO.last);
+          // TODO 나중에 추가 예정 Banner Start
+          List<String> banners = [];
+          for (var element in contentList) {
+            banners.add(element.coverFile.fileUrl);
+          }
+          mainPageModel.bookBanners.addAll(banners);
+          // Banner End
+
+          mainPageModel.totalBooks.addAll(contentList);
+          mainPageModel = mainPageModel.copyWith(isTotalLast: data.last);
+        } else if (mainTab.name == "베스트셀러") {
+          mainPageModel.bestBooks.addAll(contentList);
+          mainPageModel = mainPageModel.copyWith(isBestLast: data.last);
+        } else if (mainTab.name == "추천") {
+          mainPageModel.recommendBooks.addAll(contentList);
+          mainPageModel = mainPageModel.copyWith(isRecommendLast: data.last);
+        } else if (mainTab.name == "신간") {
+          mainPageModel.latestBooks.addAll(contentList);
+          mainPageModel = mainPageModel.copyWith(isLatestLast: data.last);
+        }
+      }
     }
-    // Total End
-
-    // best Start
-    List<Book>? bestContent = bestMainDTO.content;
-    if (bestContent != null && bestContent.isNotEmpty) {
-      mainPageModel.bestBooks.addAll(bestContent);
-      mainPageModel = mainPageModel.copyWith(isBestLast: bestMainDTO.last);
-    }
-    // best End
-
-    // recommend Start
-    List<Book>? recommendContent = recommendMainDTO.content;
-    if (recommendContent != null && recommendContent.isNotEmpty) {
-      mainPageModel.recommendBooks.addAll(recommendContent);
-      mainPageModel =
-          mainPageModel.copyWith(isRecommendLast: recommendMainDTO.last);
-    }
-    // recommen End
-
-    // latest Start
-    List<Book>? latestContent = latestMainDTO.content;
-    if (latestContent != null && latestContent.isNotEmpty) {
-      mainPageModel.latestBooks.addAll(latestContent);
-      mainPageModel = mainPageModel.copyWith(isLatestLast: latestMainDTO.last);
-    }
-    // latest End
 
     state = mainPageModel;
+    // Book End
   }
 
-  void pageSearch(BookSearchType type, MainDTO mainDTO, int page) {
-    if (type == BookSearchType.total) {
-      // TODO 물어보기
-      // List<Book>? totalBooks = mainDTO.content;
-      // List<Book> newTotalBooks = [...state!.totalBooks];
-      // newTotalBooks.addAll(totalBooks as List<Book>);
-      state = state!.copyWith(
-          totalBooks: mainDTO.content as List<Book>,
-          isTotalLast: mainDTO.last,
-          totalPage: page);
-
-    } else if (type == BookSearchType.best) {
-      state = state!.copyWith(
-          bestBooks : mainDTO.content as List<Book> , isBestLast: mainDTO.last, bestPage: page);
-
-    } else if (type == BookSearchType.recommends) {
-      state = state!.copyWith(
-          recommendBooks: mainDTO.content as List<Book> , isRecommendLast: mainDTO.last, recommendPage: page);
-
-    } else if (type == BookSearchType.latest) {
-      state = state!.copyWith(
-          latestBooks : mainDTO.content as List<Book>, isLatestLast: mainDTO.last, latestPage: page);
+  void pageSearch(String name, ResponseDTO responseDTO, int page) {
+    if(responseDTO.code ==1) {
+      List<Book> bookList = responseDTO.data.content;
+      if (name == "전체") {
+        List<Book> newTotalBooks = [...state!.totalBooks];
+        newTotalBooks.addAll(bookList);
+        state = state!.copyWith(totalBooks: newTotalBooks, isTotalLast: responseDTO.data.last,  totalPage: page);
+      } else if (name == "베스트셀러") {
+        List<Book> newBestBooks = [...state!.bestBooks];
+        newBestBooks.addAll(bookList);
+        state = state!.copyWith( bestBooks : newBestBooks , isBestLast: responseDTO.data.last, bestPage: page);
+      } else if (name ==  "추천") {
+        List<Book> newRecommendsBooks = [...state!.recommendBooks];
+        newRecommendsBooks.addAll(bookList);
+        state = state!.copyWith( recommendBooks:newRecommendsBooks , isRecommendLast: responseDTO.data.last, recommendPage: page);
+      } else if (name ==  "신간") {
+        List<Book> newLatestBooks = [...state!.latestBooks];
+        newLatestBooks.addAll(bookList);
+        state = state!.copyWith( latestBooks : newLatestBooks, isLatestLast: responseDTO.data.last, latestPage: page);
+      }
+    } else {
+      DialogUtil.dialogShow(navigatorKey.currentContext!, responseDTO.msg);
     }
+
   }
 }
 
@@ -124,9 +110,9 @@ final mainPageProvider =
   },
 );
 
-@freezed
+@unfreezed
 class MainPageModel with _$MainPageModel {
-  const factory MainPageModel({
+   factory MainPageModel({
     required int totalPage,
     required int bestPage,
     required int recommendPage,
@@ -140,5 +126,6 @@ class MainPageModel with _$MainPageModel {
     required List<Book> bestBooks,
     required List<Book> recommendBooks,
     required List<Book> latestBooks,
+     required List<TableMainTab> mainTabs,
   }) = _MainPageModel;
 }

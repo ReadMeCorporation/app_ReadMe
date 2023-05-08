@@ -1,26 +1,38 @@
-import 'package:intl/intl.dart';
+class User {
 
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:flutter/foundation.dart';
+  int id;
+  String username;
+  String role;
+  int isMembership;
+  int isAutoPayment;
 
-// 파일명
-part 'user.freezed.dart';
+  User({
+    required this.id,
+    required this.username,
+    required this.role,
+    required this.isMembership,
+    required this.isAutoPayment,
+  });
 
-part 'user.g.dart';
 
-// 실행
-// flutter pub run build_runner build
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'username': username,
+      'role': role,
+      'isMembership': isMembership,
+      'isAutoPayment': isAutoPayment,
+    };
+  }
 
-@freezed
-class User with _$User {
-  const factory User(
-      {required int id,
-      required String username,
-      required String role,
-      required bool isMembership,
-      required bool isAutoPayment,
-      required DateTime joinTime,
-      required String status}) = _User;
-
-  factory User.fromJson(Map<String, Object?> json) => _$UserFromJson(json);
+  factory User.fromJson(Map<String, Object?> json) {
+    return User(
+      id: json['id'] as int,
+      username: json['username'] as String,
+      role: json['role'] as String,
+      isMembership: json['isMembership'] as bool ? 1 : 0,
+      isAutoPayment: json['isAutoPayment'] as bool ? 1 : 0,
+    );
+  }
 }
+

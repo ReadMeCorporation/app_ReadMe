@@ -21,11 +21,18 @@ Pageable _$PageableFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$Pageable {
   Sort get sort => throw _privateConstructorUsedError;
+  set sort(Sort value) => throw _privateConstructorUsedError;
   int get pageSize => throw _privateConstructorUsedError;
+  set pageSize(int value) => throw _privateConstructorUsedError;
   int get pageNumber => throw _privateConstructorUsedError;
+  set pageNumber(int value) => throw _privateConstructorUsedError;
   int get offset => throw _privateConstructorUsedError;
+  set offset(int value) => throw _privateConstructorUsedError;
   bool get paged => throw _privateConstructorUsedError;
+  set paged(bool value) => throw _privateConstructorUsedError;
   bool get unpaged => throw _privateConstructorUsedError;
+  set unpaged(bool value) => throw _privateConstructorUsedError;
+
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -187,17 +194,17 @@ class _$_Pageable with DiagnosticableTreeMixin implements _Pageable {
       _$$_PageableFromJson(json);
 
   @override
-  final Sort sort;
+  Sort sort;
   @override
-  final int pageSize;
+  int pageSize;
   @override
-  final int pageNumber;
+  int pageNumber;
   @override
-  final int offset;
+  int offset;
   @override
-  final bool paged;
+  bool paged;
   @override
-  final bool unpaged;
+  bool unpaged;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -217,26 +224,6 @@ class _$_Pageable with DiagnosticableTreeMixin implements _Pageable {
       ..add(DiagnosticsProperty('unpaged', unpaged));
   }
 
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Pageable &&
-            (identical(other.sort, sort) || other.sort == sort) &&
-            (identical(other.pageSize, pageSize) ||
-                other.pageSize == pageSize) &&
-            (identical(other.pageNumber, pageNumber) ||
-                other.pageNumber == pageNumber) &&
-            (identical(other.offset, offset) || other.offset == offset) &&
-            (identical(other.paged, paged) || other.paged == paged) &&
-            (identical(other.unpaged, unpaged) || other.unpaged == unpaged));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, sort, pageSize, pageNumber, offset, paged, unpaged);
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
@@ -253,27 +240,33 @@ class _$_Pageable with DiagnosticableTreeMixin implements _Pageable {
 
 abstract class _Pageable implements Pageable {
   factory _Pageable(
-      {required final Sort sort,
-      required final int pageSize,
-      required final int pageNumber,
-      required final int offset,
-      required final bool paged,
-      required final bool unpaged}) = _$_Pageable;
+      {required Sort sort,
+      required int pageSize,
+      required int pageNumber,
+      required int offset,
+      required bool paged,
+      required bool unpaged}) = _$_Pageable;
 
   factory _Pageable.fromJson(Map<String, dynamic> json) = _$_Pageable.fromJson;
 
   @override
   Sort get sort;
+  set sort(Sort value);
   @override
   int get pageSize;
+  set pageSize(int value);
   @override
   int get pageNumber;
+  set pageNumber(int value);
   @override
   int get offset;
+  set offset(int value);
   @override
   bool get paged;
+  set paged(bool value);
   @override
   bool get unpaged;
+  set unpaged(bool value);
   @override
   @JsonKey(ignore: true)
   _$$_PageableCopyWith<_$_Pageable> get copyWith =>

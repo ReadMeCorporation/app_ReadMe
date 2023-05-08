@@ -306,7 +306,7 @@ class __$$_BookCopyWithImpl<$Res> extends _$BookCopyWithImpl<$Res, _$_Book>
 /// @nodoc
 @JsonSerializable()
 class _$_Book with DiagnosticableTreeMixin implements _Book {
-  const _$_Book(
+  _$_Book(
       {required this.id,
       required this.publisher,
       required this.title,
@@ -435,7 +435,7 @@ class _$_Book with DiagnosticableTreeMixin implements _Book {
 }
 
 abstract class _Book implements Book {
-  const factory _Book(
+  factory _Book(
       {required final int id,
       required final Publisher publisher,
       required final String title,

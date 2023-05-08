@@ -17,23 +17,23 @@ class HomeNavigationBar extends StatefulWidget {
   State<HomeNavigationBar> createState() => _HomeNavigationBarState();
 }
 
-class _HomeNavigationBarState extends State<HomeNavigationBar> {
+class _HomeNavigationBarState extends State<HomeNavigationBar>{
 
-  int _selectedIndex = 2;
-
-  List<Widget> pageList = [
-    CategoryPage(),
-    SearchListPage(),
-    MainPage(),
-    ContentBoxPage(),
-    UserPage(),
-  ];
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: pageList.elementAt(_selectedIndex),
+        child: IndexedStack(
+          index: _selectedIndex,
+          children: [
+            CategoryPage(),
+            SearchListPage(),
+            MainPage(),
+            ContentBoxPage(),
+            UserPage()
+          ]),
       ),
       bottomNavigationBar: BottomNavigationBar(
         showSelectedLabels: false,
@@ -74,5 +74,8 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }
 

@@ -1,32 +1,41 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:readme_app/controller/cart_controller.dart';
 import 'package:readme_app/core/constants/colours.dart';
 import 'package:readme_app/core/constants/dimens.dart';
 import 'package:readme_app/core/constants/hs_style_icons.dart';
+import 'package:readme_app/dto/use_cart/use_cart_dto.dart';
 import 'package:readme_app/model/cart_mock_data.dart';
 import 'package:readme_app/view/components/use_button.dart';
+import 'package:readme_app/view/page/cart/cart_page/cart_page_view_model.dart';
 
-class CartPageBody extends StatefulWidget {
-  CartPageBody({Key? key}) : super(key: key);
+class CartPageBody extends ConsumerWidget {
+  CartPageBody({required this.scrollController, Key? key}) : super(key: key);
 
-  @override
-  State<CartPageBody> createState() => _CartPageBodyState();
-}
-
-class _CartPageBodyState extends State<CartPageBody> {
+  final scrollController;
+  List<UseCartDTO> cartBooks = [];
   bool isAllChecked = false;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    CartPageModel? model = ref.watch(cartPageProvider);
+
+    if(model != null) {
+      cartBooks = model!.cartBooks;
+      isAllChecked = model!.isAllChecked;
+    }
+
     return SingleChildScrollView(
+      controller: scrollController,
       child: Column(
         children: [
-          _hsCheckBox(),
+          _hsCheckBox(context, ref),
           Container(
             height: 10,
             color: Colours.app_sub_grey,
           ),
-          _paymentInfo(),
+          _paymentInfo(ref),
           SizedBox(
             height: 100,
           ),
@@ -35,7 +44,7 @@ class _CartPageBodyState extends State<CartPageBody> {
     );
   }
 
-  Widget _paymentInfo() {
+  Widget _paymentInfo(WidgetRef ref) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -65,7 +74,7 @@ class _CartPageBodyState extends State<CartPageBody> {
                       style: TextStyle(fontWeight: FontWeight.w600),
                     ),
                   ),
-                  Text("${getCount()}권"),
+                  Text("${getCount()} 권"),
                 ],
               ),
               SizedBox(
@@ -91,7 +100,7 @@ class _CartPageBodyState extends State<CartPageBody> {
     );
   }
 
-  Widget _hsCheckBox() {
+  Widget _hsCheckBox(BuildContext context, WidgetRef ref) {
     return Column(
       children: [
         Row(
@@ -100,10 +109,8 @@ class _CartPageBodyState extends State<CartPageBody> {
                 activeColor: Colours.app_sub_black,
                 value: isAllChecked,
                 onChanged: (value) {
-                  setState(() {
                     isAllChecked = value!;
-                    allChecked(value);
-                  });
+                  ref.read(cartPageProvider.notifier).changeAllChecked(value);
                 }),
             Text(
               "전체 선택",
@@ -115,14 +122,14 @@ class _CartPageBodyState extends State<CartPageBody> {
           thickness: 5,
           height: 1,
         ),
-        _bookListTile(),
+        _bookListTile(context, ref),
       ],
     );
   }
 
-  Widget _bookListTile() {
+  Widget _bookListTile(BuildContext context, WidgetRef ref) {
     return Column(
-      children: List.generate(cartList.length, (index) {
+      children: List.generate(cartBooks.length, (index) {
         return Container(
           width: MediaQuery.of(context).size.width,
           decoration: BoxDecoration(
@@ -134,61 +141,68 @@ class _CartPageBodyState extends State<CartPageBody> {
             children: [
               Checkbox(
                 activeColor: Colours.app_sub_black,
-                value: cartList[index].ischecked,
+                value: cartBooks[index].isChecked,
                 onChanged: (value) {
-                  setState(() {
-                    cartList[index].ischecked = value!;
-                  });
+                  ref.read(cartPageProvider.notifier).changedOneCheck(value, index);
+                  // changeChecked(value, index);
                 },
               ),
               SizedBox(width: 8,),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 25.0),
-                    child: Container(
-                      width: 80,
-                      height: 110,
-                      child: Image.asset(
-                        "assets/images/${cartList[index].image}",
-                        fit: BoxFit.fitHeight,
+              InkWell(
+                onTap: () {
+                  Navigator.pushNamed(context, "/bookDetail", arguments: {
+                  'bookId': cartBooks[index].cartDTO.book.id},);
+                },
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 25.0),
+                      child: Container(
+                        width: 80,
+                        height: 110,
+                        child: Image.network(
+                          "${cartBooks[index].cartDTO.book.coverFile.fileUrl}",
+                          fit: BoxFit.fitHeight,
+                        ),
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    width: 15,
-                  ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        child: Text(
-                          "${cartList[index].title}",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w700,
-                            fontSize: 17,
+                    SizedBox(
+                      width: 15,
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          child: Text(
+                            "${cartBooks[index].cartDTO.book.title}",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
+                              fontSize: 17,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 3,
                           ),
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 3,
+                          width: 190,
                         ),
-                        width: 190,
-                      ),
-                      Text(
-                          "${cartList[index].author} | ${cartList[index].store}"),
-                      Row(
-                        children: [
-                          HsStyleIcons.star,
-                          Text("${cartList[index].score}"),
-                        ],
-                      ),
-                      Text("소장가 ${cartList[index].price}"),
-                    ],
-                  ),
-                ],
+                        Text(
+                            "${cartBooks[index].cartDTO.book.author} | ${cartBooks[index].cartDTO.book.publisher.businessName}"),
+                        Row(
+                          children: [
+                            HsStyleIcons.star,
+                            Text("${cartBooks[index].cartDTO.book.stars}"),
+                          ],
+                        ),
+                        Text("소장가 ${priceFormat(cartBooks[index].cartDTO.book.price)}"),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               Spacer(),
-              IconButton(onPressed: () {}, icon: HsStyleIcons.delete)
+              IconButton(onPressed: () {
+                ref.read(cartControllerProvider).deleteCartBook(cartBooks[index].cartDTO.id);
+              }, icon: HsStyleIcons.delete)
             ],
           ),
         );
@@ -197,9 +211,9 @@ class _CartPageBodyState extends State<CartPageBody> {
   }
 
   int getSum() {
-    int sum = cartList
-        .where((element) => element.ischecked)
-        .map((e) => e.price)
+    int sum = cartBooks
+        .where((element) => element.isChecked)
+        .map((e) => e.cartDTO.book.price)
         .toList()
         .fold(0, (a, b) => a + b);
 
@@ -207,17 +221,22 @@ class _CartPageBodyState extends State<CartPageBody> {
   }
 
   int getCount() {
-    int count = cartList.where((element) => element.ischecked).toList().length;
+    int count = cartBooks.where((element) => element.isChecked).toList().length;
     return count;
   }
 
   allChecked(value) {
     if (value == true) {
-      cartList.forEach((element) => element.ischecked = true);
+      cartBooks.forEach((element) => element.isChecked = true);
     } else {
-      cartList.forEach((element) => element.ischecked = false);
+      cartBooks.forEach((element) => element.isChecked = false);
     }
   }
+
+  changeChecked(value, int index) {
+    cartBooks[index].isChecked = value;
+  }
+
 
   String priceFormat(int price) {
     var newPrice = NumberFormat('###,###,###,### 원');

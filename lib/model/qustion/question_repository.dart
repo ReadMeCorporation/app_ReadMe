@@ -1,3 +1,6 @@
+import 'package:dio/dio.dart';
+import 'package:readme_app/core/constants/http.dart';
+import 'package:readme_app/dto/response_dto/response_dto.dart';
 import 'package:readme_app/model/qustion/question.dart';
 
 class QuestionRepository {
@@ -14,4 +17,38 @@ class QuestionRepository {
     }
     );
   }
+
+
+  Future<ResponseDTO> saveQuestion(String title, String content) async {
+    try {
+      Response response = await MyHttp.get()
+      // todo 경로
+          .post("/questions", data: {'title': title, 'content': content});
+      if(response.statusCode == 401 || response.statusCode == 403) {
+        return ResponseDTO(code: 401, msg: response.statusMessage);
+      } else if(response.statusCode == 200) {
+        ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+        responseDTO.data = Question.fromJson(responseDTO.data);
+        return responseDTO;
+      } else {
+        return ResponseDTO(code:response.statusCode, msg: response.statusMessage);
+      }
+    } catch (e) {
+      return ResponseDTO(code: -1, msg: "실패 : ${e}");
+    }
+  }
+
+  // Future<ResponseDTO> findList() async {
+  //   try {
+  //     Response response = await MyHttp.get()
+  //     // todo 경로
+  //         .post("/questions");
+  //     ResponseDTO responseDTO = ResponseDTO.fromJson(response.data);
+  //     // todo dto
+  //     responseDTO.data = Question.fromJson(responseDTO.data);
+  //     return responseDTO;
+  //   } catch (e) {
+  //     return ResponseDTO(code: -1, msg: "실패 : ${e}");
+  //   }
+  // }
 }
