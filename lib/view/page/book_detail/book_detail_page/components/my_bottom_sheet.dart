@@ -9,8 +9,8 @@ import 'package:readme_app/model/book_detail_mock_data.dart';
 import 'package:readme_app/view/page/book_detail/book_detail_page/components/membership_button.dart';
 import 'package:readme_app/view/page/book_detail/book_detail_page/components/purchase_button.dart';
 
-class BottomSheet extends StatefulWidget {
-  const BottomSheet({Key? key}) : super(key: key);
+class MyBottomSheet extends StatefulWidget {
+  const MyBottomSheet({Key? key}) : super(key: key);
 
   @override
   State<BottomSheet> createState() => _BottomSheetState();
