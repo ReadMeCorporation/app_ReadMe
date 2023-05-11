@@ -86,7 +86,7 @@ https://github.com/ReadMeCorporation/app_ReadMe/blob/dev/3%EC%A1%B0%20%ED%8C%8C%
 - 장희선(업로드 예정)
 - 임지상(업로드 예정)
 - 안정훈(업로드 예정)
-- 김유현(업로드 예정)
+- 김유현(https://quiver-ease-2cb.notion.site/3-7ff8c3a923df429f8b33100d2a09ea13)
 
 ## 유저 시나리오
 ![image](https://github.com/ReadMeCorporation/app_ReadMe/assets/68271830/6ef610ff-c958-415a-ac21-cb409863666f)
